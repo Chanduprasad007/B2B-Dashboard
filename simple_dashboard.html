@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>smallcase · B2B Weekly Pulse</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#f0f4f8;--surface:#fff;--surface2:#f8fafc;--border:#e2e8f0;--border2:#cbd5e1;
+--navy:#0f172a;--blue:#3b82f6;--blue-d:#1d4ed8;--blue-lt:#eff6ff;--blue-md:#dbeafe;
+--green:#10b981;--green-lt:#ecfdf5;--red:#ef4444;--red-lt:#fef2f2;
+--amber:#f59e0b;--amber-lt:#fffbeb;--amber-md:#fef3c7;
+--purple:#8b5cf6;--purple-lt:#f5f3ff;--teal:#14b8a6;--teal-lt:#f0fdfa;
+--txt:#1e293b;--txt2:#475569;--txt3:#94a3b8;
+--r:12px;--r-sm:8px;
+--sh:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+--sh-md:0 4px 16px rgba(0,0,0,.08);--sh-lg:0 20px 40px rgba(0,0,0,.12);
+}
+
+/* ─── GAMIFIED / AI DARK MODE ─── */
+body.dark-mode {
+--bg: #0b0f19;
+--surface: #141b2d;
+--surface2: #1f2940;
+--border: #2a3854;
+--border2: #384b6e;
+--navy: #f8fafc;
+--blue: #00e5ff;
+--blue-d: #00b8d4;
+--blue-lt: rgba(0, 229, 255, 0.15);
+--blue-md: rgba(0, 229, 255, 0.3);
+--green: #00ffaa;
+--green-lt: rgba(0, 255, 170, 0.15);
+--red: #ff3366;
+--red-lt: rgba(255, 51, 102, 0.15);
+--amber: #ffbb00;
+--amber-lt: rgba(255, 187, 0, 0.15);
+--amber-md: rgba(255, 187, 0, 0.3);
+--purple: #b233ff;
+--purple-lt: rgba(178, 51, 255, 0.15);
+--teal: #00e5ff;
+--teal-lt: rgba(0, 229, 255, 0.15);
+--txt: #cbd5e1;
+--txt2: #94a3b8;
+--txt3: #64748b;
+--sh: 0 4px 15px rgba(0, 0, 0, 0.3);
+--sh-md: 0 0 20px rgba(0, 229, 255, 0.2);
+--sh-lg: 0 0 40px rgba(0, 229, 255, 0.2);
+}
+
+body.dark-mode ::-webkit-scrollbar { width: 8px; height: 8px; }
+body.dark-mode ::-webkit-scrollbar-track { background: var(--bg); }
+body.dark-mode ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+body.dark-mode ::-webkit-scrollbar-thumb:hover { background: var(--blue); }
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);font-size:13px;line-height:1.5;-webkit-font-smoothing:antialiased; transition: background 0.3s, color 0.3s;}
+
+/* ─── TOPBAR ─── */
+.topbar{background:var(--navy);color:#fff;height:56px;display:flex;align-items:center;padding:0 28px;gap:16px;position:sticky;top:0;z-index:200;box-shadow:0 2px 8px rgba(0,0,0,.2); transition: all 0.3s;}
+body.dark-mode .topbar { background: rgba(11, 15, 25, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); box-shadow: 0 0 15px rgba(0, 229, 255, 0.1); }
+.topbar-brand{display:flex;align-items:center;gap:10px}
+.topbar-logo{width:32px;height:32px;background:linear-gradient(135deg,#3b82f6,#8b5cf6);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff}
+body.dark-mode .topbar-logo { background: linear-gradient(135deg, #00e5ff, #b233ff); box-shadow: 0 0 10px rgba(178,51,255,0.5); }
+.topbar h1{font-size:15px;font-weight:700;letter-spacing:-.3px}
+.topbar-sub{font-size:11px;color:#94a3b8;margin-left:4px}
+.topbar-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.topbar-btn{padding:6px 14px;background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.15);border-radius:var(--r-sm);cursor:pointer;font-size:12px;font-weight:500;font-family:inherit;transition:all .2s}
+.topbar-btn:hover{background:rgba(255,255,255,.18)}
+.topbar-btn.primary{background:var(--blue-d);border-color:transparent;box-shadow:0 2px 6px rgba(29,78,216,.4)}
+#status-pill{font-size:11px;color:#94a3b8;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:3px 12px}
+
+/* ─── LAYOUT ─── */
+.page{max-width:1400px;margin:0 auto;padding:24px 28px}
+
+/* ─── CHANNEL TOGGLE ─── */
+.channel-bar{display:flex;gap:8px;margin-bottom:24px;border-bottom:1px solid var(--border);padding-bottom:16px;}
+.channel-btn{padding:8px 18px;border:1px solid var(--border);border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;background:var(--surface);color:var(--txt2);font-family:inherit;transition:all .2s;}
+.channel-btn:hover{background:var(--surface2);color:var(--navy);}
+.channel-btn.active{background:var(--navy);color:var(--surface);border-color:var(--navy);}
+body.dark-mode .channel-btn {background:var(--surface);color:var(--txt3);border-color:var(--border2);}
+body.dark-mode .channel-btn:hover {color:var(--blue);border-color:var(--blue);}
+body.dark-mode .channel-btn.active {background:var(--blue-md);color:var(--blue);border-color:var(--blue);box-shadow: 0 0 10px rgba(0, 229, 255, 0.15);}
+
+/* ─── WEEK SELECTOR ─── */
+.week-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 20px;margin-bottom:24px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;box-shadow:var(--sh)}
+.week-bar label{font-size:11px;font-weight:700;color:var(--txt3);text-transform:uppercase;letter-spacing:.8px}
+.week-btn{padding:8px 16px;border:1px solid var(--border);border-radius:var(--r-sm);font-size:12px;font-weight:600;cursor:pointer;background:transparent;color:var(--txt2);font-family:inherit;transition:all .2s;text-align:left;line-height:1.4}
+.week-btn:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-lt)}
+.week-btn.active{background:var(--navy);color:var(--surface);border-color:var(--navy);font-weight:600}
+body.dark-mode .week-btn.active { background: var(--blue-lt); border-color: var(--blue); color: var(--blue); box-shadow: 0 0 10px rgba(0, 229, 255, 0.1); }
+.week-custom{display:flex;align-items:center;gap:8px;margin-left:auto}
+.week-custom input{border:1px solid var(--border);border-radius:var(--r-sm);padding:5px 10px;font-size:12px;font-family:inherit;background:var(--surface);color:var(--txt)}
+.week-custom input:focus{outline:none;border-color:var(--blue)}
+body.dark-mode .week-custom input { color-scheme: dark; }
+.apply-btn{padding:6px 16px;background:var(--blue-d);color:#fff;border:none;border-radius:var(--r-sm);cursor:pointer;font-size:12px;font-weight:600;font-family:inherit}
+
+/* ─── SECTION HEADING ─── */
+.sec-head{font-size:11px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.8px;margin:28px 0 14px;padding-left:12px;border-left:4px solid var(--blue-d);display:flex;align-items:center;justify-content:space-between; transition: color 0.3s;}
+body.dark-mode .sec-head { color: var(--blue); text-shadow: 0 0 8px rgba(0, 229, 255, 0.4); border-left-color: var(--blue); }
+.sec-head span{font-size:10px;color:var(--txt3);font-weight:500;text-transform:none;letter-spacing:0;border:none;padding:0; text-shadow:none;}
+
+/* ─── KPI CARDS ─── */
+.kpi-grid{display:grid;gap:14px;margin-bottom:24px}
+.kpi-grid.c5{grid-template-columns:repeat(5,1fr)}
+.kpi-grid.c4{grid-template-columns:repeat(4,1fr)}
+.kpi-grid.c3{grid-template-columns:repeat(3,1fr)}
+.kpi-grid.c2{grid-template-columns:repeat(2,1fr)}
+.kpi-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;box-shadow:var(--sh);position:relative;overflow:hidden;transition:all .25s; cursor:pointer;}
+.kpi-card:hover{transform:translateY(-2px);box-shadow:var(--sh-md)}
+.kpi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.kpi-card.blue::before{background:linear-gradient(90deg,#1d4ed8,#3b82f6)}
+.kpi-card.green::before{background:linear-gradient(90deg,#059669,#10b981)}
+.kpi-card.red::before{background:linear-gradient(90deg,#b91c1c,#ef4444)}
+.kpi-card.amber::before{background:linear-gradient(90deg,#d97706,#f59e0b)}
+.kpi-card.purple::before{background:linear-gradient(90deg,#7c3aed,#8b5cf6)}
+.kpi-card.teal::before{background:linear-gradient(90deg,#0d9488,#14b8a6)}
+
+/* Gamified KPI Cards */
+body.dark-mode .kpi-card { background: linear-gradient(180deg, rgba(31,41,64,0.5) 0%, rgba(20,27,45,1) 100%); }
+body.dark-mode .kpi-card:hover { border-color: var(--blue); box-shadow: 0 0 20px rgba(0, 229, 255, 0.15); transform: translateY(-3px); }
+body.dark-mode .kpi-card.blue::before { background: var(--blue); box-shadow: 0 0 15px var(--blue); }
+body.dark-mode .kpi-card.green::before { background: var(--green); box-shadow: 0 0 15px var(--green); }
+body.dark-mode .kpi-card.red::before { background: var(--red); box-shadow: 0 0 15px var(--red); }
+body.dark-mode .kpi-card.amber::before { background: var(--amber); box-shadow: 0 0 15px var(--amber); }
+body.dark-mode .kpi-card.purple::before { background: var(--purple); box-shadow: 0 0 15px var(--purple); }
+body.dark-mode .kpi-card.teal::before { background: var(--teal); box-shadow: 0 0 15px var(--teal); }
+
+.kpi-label{font-size:10px;font-weight:700;color:var(--txt3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px}
+.kpi-value{font-size:28px;font-weight:800;color:var(--navy);line-height:1;letter-spacing:-1px;margin-bottom:4px}
+.kpi-sub{font-size:11px;color:var(--txt3)}
+.kpi-delta{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:700;padding:2px 7px;border-radius:6px;margin-top:6px}
+.kpi-delta.up-good{background:var(--green-lt);color:var(--green)}
+.kpi-delta.down-good{background:var(--green-lt);color:var(--green)}
+.kpi-delta.up-bad{background:var(--red-lt);color:var(--red)}
+.kpi-delta.down-bad{background:var(--red-lt);color:var(--red)}
+.kpi-delta.neutral{background:var(--surface2);color:var(--txt3)}
+
+/* ─── MODAL ─── */
+.modal-overlay {
+position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(4px);
+z-index: 9999; display: flex; align-items: center; justify-content: center;
+opacity: 0; pointer-events: none; transition: opacity 0.3s;
+}
+.modal-overlay.active { opacity: 1; pointer-events: auto; }
+.modal-content {
+background: var(--surface); border: 1px solid var(--border);
+border-radius: var(--r); width: 95%; max-width: 1050px; max-height: 85vh;
+display: flex; flex-direction: column; overflow: hidden;
+box-shadow: var(--sh-lg); transform: translateY(20px); transition: transform 0.3s;
+}
+body.dark-mode .modal-content { box-shadow: 0 0 40px rgba(0, 229, 255, 0.15); border-color: var(--blue-md); }
+.modal-overlay.active .modal-content { transform: translateY(0); }
+.modal-header { padding: 18px 24px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: var(--surface2); }
+.modal-title { font-size: 14px; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.5px; }
+body.dark-mode .modal-title { color: var(--blue); }
+.modal-close { cursor: pointer; background: transparent; border: none; font-size: 24px; color: var(--txt3); line-height: 1; transition: color 0.2s; }
+.modal-close:hover { color: var(--red); }
+.modal-body { padding: 24px; overflow-y: auto; flex: 1; background: var(--bg); }
+
+/* ─── WEEK COMPARISON BAR ─── */
+.compare-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:16px 20px;margin-bottom:24px;box-shadow:var(--sh)}
+.compare-bar h3{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:12px}
+.compare-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;font-size:12px}
+.compare-label{min-width:160px;color:var(--txt2);font-weight:500}
+.compare-track{flex:1;background:var(--surface2);border-radius:6px;height:18px;overflow:hidden;position:relative}
+.compare-fill-cur{height:100%;border-radius:6px;transition:width .8s cubic-bezier(.4,0,.2,1);position:absolute;top:0;left:0}
+.compare-fill-prev{height:100%;border-radius:6px;opacity:.35;position:absolute;top:0;left:0}
+.compare-vals{min-width:90px;text-align:right;font-size:11px;color:var(--txt2)}
+
+/* ─── ATTRIBUTE EXPLORER (2 ROWS HORIZONTAL) ─── */
+.attr-explorer{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);margin-bottom:24px}
+.attr-tabs{display:flex;background:var(--surface2);border-bottom:1px solid var(--border);overflow-x:auto}
+.attr-tab{padding:10px 18px;font-size:12px;font-weight:500;cursor:pointer;color:var(--txt2);border:none;background:transparent;white-space:nowrap;font-family:inherit;border-bottom:2px solid transparent;transition:all .2s}
+.attr-tab:hover{color:var(--navy);background:rgba(0,0,0,.02)}
+.attr-tab.active{color:var(--blue-d);border-bottom-color:var(--blue-d);font-weight:700;background:var(--surface)}
+body.dark-mode .attr-tab.active { color: var(--blue); border-bottom-color: var(--blue); text-shadow: 0 0 8px rgba(0,229,255,0.4); }
+.attr-body{padding:20px}
+
+.attr-values {
+display: grid;
+grid-template-rows: repeat(2, 1fr);
+grid-auto-flow: column;
+grid-auto-columns: minmax(190px, 1fr);
+gap: 12px;
+margin-bottom: 20px;
+overflow-x: auto;
+padding-bottom: 12px;
+}
+.attr-values::-webkit-scrollbar { height: 8px; }
+.attr-values::-webkit-scrollbar-track { background: var(--surface2); border-radius: 4px; }
+.attr-values::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+body.dark-mode .attr-values::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+body.dark-mode .attr-values::-webkit-scrollbar-thumb { background: rgba(0,229,255,0.2); }
+body.dark-mode .attr-values::-webkit-scrollbar-thumb:hover { background: var(--blue); }
+
+.attr-value-card{border:2px solid var(--border);border-radius:var(--r-sm);padding:14px 16px;cursor:pointer;transition:all .2s;background:var(--surface); height: 100%; display: flex; flex-direction: column; justify-content: center;}
+.attr-value-card:hover{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-md)}
+.attr-value-card.selected{border-color:var(--blue-d);background:var(--blue-lt);box-shadow:0 0 0 3px var(--blue-md)}
+
+body.dark-mode .attr-value-card { background: rgba(31,41,64,0.3); }
+body.dark-mode .attr-value-card:hover { border-color: var(--blue); box-shadow: 0 0 15px rgba(0,229,255,0.2); background: rgba(0,229,255,0.05); }
+body.dark-mode .attr-value-card.selected { border-color: var(--blue); background: rgba(0,229,255,0.1); box-shadow: 0 0 15px rgba(0,229,255,0.3) inset, 0 0 15px rgba(0,229,255,0.2); }
+
+.attr-value-name{font-size:12px;font-weight:600;color:var(--navy);margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.attr-value-count{font-size:22px;font-weight:800;color:var(--blue-d);letter-spacing:-1px}
+body.dark-mode .attr-value-count { color: var(--blue); text-shadow: 0 0 8px rgba(0,229,255,0.3); }
+.attr-value-pct{font-size:10px;color:var(--txt3);margin-top:4px}
+
+/* ─── DRILL PANEL ─── */
+.drill-panel{background:var(--surface2);border:1px solid var(--border);border-radius:var(--r-sm);padding:16px 20px;animation:slideIn .2s ease}
+body.dark-mode .drill-panel { border-color: var(--blue-md); box-shadow: 0 0 20px rgba(0,229,255,0.1) inset; background: rgba(31,41,64,0.2); }
+@keyframes slideIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.drill-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.drill-title .chip{background:var(--blue-d);color:#fff;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600}
+body.dark-mode .drill-title .chip { background: var(--blue); color: #000; box-shadow: 0 0 10px rgba(0,229,255,0.5); }
+.drill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.drill-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);padding:14px;box-shadow:var(--sh)}
+.drill-card h4{font-size:11px;font-weight:700;color:var(--txt2);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.drill-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--surface2);font-size:12px}
+.drill-row:last-child{border-bottom:none}
+.drill-row-label{color:var(--txt2);max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.drill-row-bar{flex:1;margin:0 10px;background:var(--surface2);border-radius:3px;height:6px;overflow:hidden}
+.drill-row-bar-fill{height:100%;border-radius:3px;background:var(--blue-d);opacity:.7}
+body.dark-mode .drill-row-bar-fill { background: var(--blue); box-shadow: 0 0 8px rgba(0,229,255,0.8); opacity:1;}
+.drill-row-val{font-weight:700;color:var(--navy);min-width:28px;text-align:right}
+
+/* ─── CHARTS ─── */
+.chart-grid{display:grid;gap:14px;margin-bottom:24px}
+.chart-grid.c2{grid-template-columns:1fr 1fr}
+.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;box-shadow:var(--sh)}
+body.dark-mode .chart-card { background: radial-gradient(circle at top right, rgba(0,229,255,0.03), transparent), var(--surface); }
+.chart-card h3{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:14px}
+.chart-card canvas{max-height:220px}
+
+/* ─── COMMENTS & AI ─── */
+.comments-panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);margin-bottom:24px}
+.comments-panel-head{padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--surface2)}
+.comments-panel-head h3{font-size:13px;font-weight:700;color:var(--navy)}
+.ai-btn{padding:7px 18px;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border:none;border-radius:var(--r-sm);cursor:pointer;font-size:12px;font-weight:700;font-family:inherit;box-shadow:0 2px 6px rgba(217,119,6,.3);transition:all .2s;display:flex;align-items:center;gap:6px}
+.ai-btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(217,119,6,.4)}
+.ai-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+body.dark-mode .ai-btn { background: linear-gradient(135deg, #b233ff, #00e5ff); border: 1px solid #00e5ff; box-shadow: 0 0 15px rgba(0,229,255,0.4); color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
+body.dark-mode .ai-btn:hover { box-shadow: 0 0 25px rgba(0,229,255,0.6); }
+
+.ai-summary-box{margin:16px 20px;background:var(--amber-lt);border:1px solid var(--amber-md);border-radius:var(--r-sm);padding:16px;font-size:12px;line-height:1.8;color:var(--txt)}
+.ai-summary-box strong{color:var(--navy)}
+.sentiment-pills{display:flex;flex-wrap:wrap;gap:8px;margin:0 20px 16px}
+.sentiment-pill{padding:5px 14px;border-radius:20px;font-size:11px;font-weight:600}
+.sentiment-pill.issue{background:var(--red-lt);color:var(--red)}
+.sentiment-pill.neutral{background:var(--surface2);color:var(--txt2);border:1px solid var(--border)}
+.sentiment-pill.positive{background:var(--green-lt);color:var(--green)}
+.comment-list{max-height:320px;overflow-y:auto;border-top:1px solid var(--border)}
+.comment-item{padding:12px 20px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start}
+.comment-item:last-child{border-bottom:none}
+.comment-item:hover{background:var(--surface2)}
+.comment-meta{min-width:120px}
+.comment-date{font-size:10px;color:var(--txt3);font-weight:600}
+.comment-rm{font-size:11px;font-weight:700;color:var(--navy);margin-top:2px}
+.comment-broker{font-size:10px;color:var(--txt3)}
+.comment-badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:12px;font-size:9px;font-weight:700;margin-top:4px}
+.comment-text{font-size:12px;color:var(--txt);line-height:1.6}
+.comment-issue-tag{display:inline-block;background:var(--amber-lt);color:var(--amber);border:1px solid var(--amber-md);border-radius:12px;padding:1px 8px;font-size:10px;font-weight:600;margin-bottom:4px}
+
+/* ─── BADGES ─── */
+.badge{display:inline-flex;align-items:center;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:600}
+.badge-blue{background:var(--blue-lt);color:var(--blue-d)}
+.badge-green{background:var(--green-lt);color:var(--green)}
+.badge-red{background:var(--red-lt);color:var(--red)}
+.badge-amber{background:var(--amber-lt);color:var(--amber)}
+.badge-purple{background:var(--purple-lt);color:var(--purple)}
+.badge-gray{background:var(--surface2);color:var(--txt2);border:1px solid var(--border)}
+
+/* ─── TABLES ─── */
+.tbl-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);margin-bottom:24px}
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:12px}
+thead th{padding:10px 16px;text-align:left;font-weight:600;font-size:10px;letter-spacing:.5px;color:var(--txt2);text-transform:uppercase;background:var(--surface2);border-bottom:1px solid var(--border);white-space:nowrap;}
+tbody td{padding:10px 16px;color:var(--txt);border-bottom:1px solid var(--border)}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:var(--surface2)}
+tfoot td{padding:10px 16px;font-weight:700;color:var(--navy);background:var(--surface2);border-top:2px solid var(--border)}
+
+/* ─── LOADING ─── */
+.loading{display:flex;align-items:center;justify-content:center;padding:80px 40px;font-size:14px;color:var(--txt3);flex-direction:column;gap:16px}
+.spinner{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--blue-d);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.error-box{background:var(--red-lt);border:1px solid var(--red);border-radius:var(--r);padding:20px;margin:20px 0;color:var(--red);font-size:13px}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1100px){.kpi-grid.c5, .kpi-grid.c4{grid-template-columns:repeat(3,1fr)}.chart-grid.c2{grid-template-columns:1fr}}
+@media(max-width:780px){.kpi-grid.c5,.kpi-grid.c4{grid-template-columns:repeat(2,1fr)}.page{padding:16px}.topbar{padding:0 16px}}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+<div class="topbar-brand">
+<div class="topbar-logo">sc</div>
+<h1>B2B Weekly Pulse <span class="topbar-sub">Simplified View</span></h1>
+<button onclick="window.open('https://script.google.com/a/macros/smallcase.com/s/AKfycbxa8Zr_fGMVAwL_P3HKAT9aPv0yz1KA23DfMFVW4J_yIMnqbxxA3-CVCO0XpuEHbpmm/exec','_blank')"style="background: linear-gradient(135deg, #F59E0B, #D97706); color: #fff; border: none; font-weight: 700; font-size: 12px; padding: 4px 14px; border-radius: 20px; cursor: pointer; box-shadow: 0 2px 6px rgba(245,158,11,0.4); display: flex; align-items: center; margin-left: 8px;">&#129504; Advanced View ↗</button>
+
+</div>
+<div class="topbar-right">
+<span id="status-pill">Loading…</span>
+<button class="topbar-btn" onclick="toggleTheme()">🌓 Theme</button>
+<button class="topbar-btn" onclick="refreshAll()">↻ Refresh</button>
+</div>
+</div>
+
+<div class="page" id="page-root">
+<div class="loading"><div class="spinner"></div>Loading data from Google Sheets…</div>
+</div>
+
+<!-- METRICS DEEPDIVE MODAL -->
+<div class="modal-overlay" id="kpi-modal" onclick="if(event.target===this) closeKpiModal()">
+<div class="modal-content">
+<div class="modal-header">
+<div class="modal-title" id="modal-title">Metrics Deepdive</div>
+<button class="modal-close" onclick="closeKpiModal()">&times;</button>
+</div>
+<div class="modal-body" id="modal-body">
+<!-- Agent breakdown table injected here dynamically -->
+</div>
+</div>
+</div>
+
+<script>
+// ================================================================
+// STATE
+// ================================================================
+var S = {
+calls:[], callTkts:[], whatsapp:[], careEmails:[],
+dateFrom: null, dateTo: null,
+prevFrom: null, prevTo: null,
+charts: {},
+attrTab: 'broker',
+attrSelected: null,
+aiRunning: false,
+aiResult: null,
+cacheBuiltAt: '',
+channelTab: 'combined' // 'combined', 'calls', 'whatsapp'
+};
+
+var CLAUDE_API_KEY = "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";
+
+// ================================================================
+// INIT & THEME
+// ================================================================
+document.addEventListener('DOMContentLoaded', function() {
+if (localStorage.getItem('theme') === 'dark') {
+document.body.classList.add('dark-mode');
+}
+
+google.script.run
+.withSuccessHandler(function(data) {
+S.calls = data.calls ||[];
+S.callTkts = data.callTkts ||[];
+S.whatsapp = data.whatsapp ||[];
+S.careEmails = data.careEmails ||[];
+S.cacheBuiltAt = data.builtAt || '';
+
+initWeek('thisweek');
+document.getElementById('status-pill').textContent =
+S.cacheBuiltAt ? 'Cache: ' + S.cacheBuiltAt : 'Live data';
+})
+.withFailureHandler(function(e) {
+document.getElementById('page-root').innerHTML =
+'<div class="loading"><div class="error-box">⚠️ Failed to load: ' + e.message + '<br>Please reload the page or Force Refresh from the main dashboard.</div></div>';
+})
+.getAllData();
+});
+
+function toggleTheme() {
+document.body.classList.toggle('dark-mode');
+localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+render(); // redraw elements & charts with proper theme colors
+}
+
+function refreshAll() {
+google.script.run
+.withSuccessHandler(function() { location.reload(); })
+.withFailureHandler(function(e) { alert('Refresh failed: ' + e.message); })
+.forceRebuildCache();
+}
+
+function setChannel(ch) {
+S.channelTab = ch;
+S.attrSelected = null;
+render();
+}
+
+// ================================================================
+// DATE & TIME HELPERS
+// ================================================================
+function parseDate(v) {
+if (!v) return null;
+var today = new Date();
+today.setHours(23,59,59,999);
+
+if (typeof v === 'number') {
+var dn = new Date(v);
+return (!isNaN(dn) && dn.getFullYear() >= 2000 && dn <= today) ? dn : null;
+}
+var s = String(v).trim();
+if (!s) return null;
+
+if (/^\d{10,}$/.test(s)) {
+var dn2 = new Date(parseInt(s, 10));
+return (!isNaN(dn2) && dn2.getFullYear() >= 2000 && dn2 <= today) ? dn2 : null;
+}
+var m1 = s.match(/^(\d{1,2})-(\d{1,2})-(\d{4})/);
+if (m1) {
+var dm = new Date(+m1[3], +m1[2]-1, +m1[1]);
+return (!isNaN(dm) && dm.getFullYear() >= 2000 && dm <= today) ? dm : null;
+}
+var m2 = s.match(/^(\d{4})-(\d{2})-(\d{2})/);
+if (m2) {
+var dm2 = new Date(+m2[1], +m2[2]-1, +m2[3]);
+return (!isNaN(dm2) && dm2.getFullYear() >= 2000 && dm2 <= today) ? dm2 : null;
+}
+return null;
+}
+
+function dStr(d) {
+if (!d) return '';
+return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+}
+function dLabel(d) {
+if (!d) return '';
+var months =['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+return d.getDate()+' '+months[d.getMonth()]+' '+d.getFullYear();
+}
+function pad(n){ return n<10?'0'+n:String(n); }
+function addDays(d,n){ var r=new Date(d); r.setDate(r.getDate()+n); return r; }
+function inRange(v, from, to) {
+var d = parseDate(v);
+if (!d) return false;
+return dStr(d) >= dStr(from) && dStr(d) <= dStr(to);
+}
+function filterByDate(rows, col, from, to) {
+return rows.filter(function(r){ return inRange(r[col], from, to); });
+}
+
+function getThuWedCycle(d) {
+var r = new Date(d);
+var day = r.getDay();
+var diff = day >= 4 ? day - 4 : day + 3;
+r.setDate(r.getDate() - diff);
+r.setHours(0,0,0,0);
+var wed = new Date(r);
+wed.setDate(wed.getDate() + 6);
+wed.setHours(23,59,59,999);
+return { thu: r, wed: wed };
+}
+
+function getLatestDate() {
+var today = new Date(); today.setHours(0,0,0,0);
+var max = null;
+function chk(v) {
+var d = parseDate(v);
+if (d && d <= today && (!max || d > max)) max = d;
+}
+S.calls.forEach(function(r){ chk(r['Call Date']); });
+S.callTkts.concat(S.whatsapp).concat(S.careEmails).forEach(function(r){ chk(r['Created date']); });
+if (!max) max = today;
+return max;
+}
+
+function initWeek(preset) {
+var latest = getLatestDate();
+var cycle = getThuWedCycle(latest);
+var curThu = cycle.thu;
+var curWed = cycle.wed;
+
+if (preset === 'thisweek') {
+S.dateFrom = curThu;
+S.dateTo = curWed;
+} else if (preset === 'lastweek') {
+S.dateFrom = addDays(curThu, -7);
+S.dateTo = addDays(curWed, -7);
+} else if (preset === '2weeksago') {
+S.dateFrom = addDays(curThu, -14);
+S.dateTo = addDays(curWed, -14);
+} else {
+S.dateFrom = curThu;
+S.dateTo = curWed;
+}
+
+S.prevFrom = addDays(S.dateFrom, -7);
+S.prevTo = addDays(S.dateTo, -7);
+
+var df = document.getElementById('df-week');
+var dt = document.getElementById('dt-week');
+if (df) df.value = dStr(S.dateFrom);
+if (dt) dt.value = dStr(S.dateTo);
+
+S.attrSelected = null; S.aiResult = null;
+render();
+}
+
+function applyCustomWeek() {
+var df = document.getElementById('df-week').value;
+var dt = document.getElementById('dt-week').value;
+if (!df || !dt) return;
+var d1 = new Date(df);
+var d2 = new Date(dt);
+if(isNaN(d1) || isNaN(d2)) return;
+d1.setHours(0,0,0,0);
+d2.setHours(23,59,59,999);
+var diffDays = Math.ceil( (d2.getTime() - d1.getTime()) / (1000*60*60*24) );
+
+S.dateFrom = d1; S.dateTo = d2;
+S.prevFrom = addDays(d1, -diffDays); S.prevTo = addDays(d2, -diffDays);
+S.attrSelected = null; S.aiResult = null;
+render();
+}
+
+function timeStrToMins(t) {
+if (t === undefined || t === null || t === '') return 0;
+if (typeof t === 'number') {
+if (t < 1 && t > 0) return t * 24 * 60;
+return t / 60;
+}
+var s = String(t).trim();
+
+var m3 = s.match(/(\d+):(\d{1,2}):(\d{2}):(\d{2})/);
+if (m3) return parseInt(m3[1])*24*60 + parseInt(m3[2])*60 + parseInt(m3[3]) + parseInt(m3[4])/60;
+var m = s.match(/(\d{1,2}):(\d{2}):(\d{2})/);
+if (m) return parseInt(m[1])*60 + parseInt(m[2]) + parseInt(m[3])/60;
+var m2 = s.match(/(\d{1,2}):(\d{2})/);
+if (m2) return parseInt(m2[1]) + parseInt(m2[2])/60;
+var hm = s.match(/(\d+)\s*[hH]\s*(\d+)\s*[mM]/);
+if (hm) return parseInt(hm[1])*60 + parseInt(hm[2]);
+var mm = s.match(/^(\d+)\s*[mM]$/);
+if (mm) return parseInt(mm[1]);
+var ss = s.match(/^(\d+)\s*[sS]$/);
+if (ss) return parseInt(ss[1])/60;
+if (!isNaN(s) && s !== '') {
+var num = parseFloat(s);
+if (num < 1 && num > 0) return num * 24 * 60;
+return num / 60;
+}
+return 0;
+}
+
+function getFirstValidTime(r, fields) {
+for (var i=0; i<fields.length; i++) {
+var val = r[fields[i]];
+if (val !== undefined && val !== null && val !== '') {
+var m = timeStrToMins(val);
+if (m > 0) return m;
+}
+}
+return 0;
+}
+
+// ================================================================
+// MAIN RENDER
+// ================================================================
+function render() {
+destroyCharts();
+var root = document.getElementById('page-root');
+
+// WRAP IN excludeInvalidNumber
+var callRows = excludeInvalidNumber(filterByDate(S.calls, 'Call Date', S.dateFrom, S.dateTo));
+var ctRows = filterByDate(S.callTkts, 'Created date', S.dateFrom, S.dateTo);
+var waRows = filterByDate(S.whatsapp, 'Created date', S.dateFrom, S.dateTo);
+
+// WRAP IN excludeInvalidNumber
+var prevCallRows = excludeInvalidNumber(filterByDate(S.calls, 'Call Date', S.prevFrom, S.prevTo));
+var prevCtRows = filterByDate(S.callTkts, 'Created date', S.prevFrom, S.prevTo);
+var prevWaRows = filterByDate(S.whatsapp, 'Created date', S.prevFrom, S.prevTo);
+
+var devrevRows = [];
+var prevDevrev =[];
+
+if (S.channelTab === 'combined') {
+devrevRows = ctRows.concat(waRows);
+prevDevrev = prevCtRows.concat(prevWaRows);
+} else if (S.channelTab === 'calls') {
+devrevRows = ctRows;
+prevDevrev = prevCtRows;
+} else if (S.channelTab === 'whatsapp') {
+devrevRows = waRows;
+prevDevrev = prevWaRows;
+}
+
+var html = renderWeekBar();
+html += renderChannelToggle();
+
+html += renderCallKPIs(callRows, prevCallRows, waRows, prevWaRows);
+html += renderWeekComparison(callRows, prevCallRows, ctRows, prevCtRows, waRows, prevWaRows);
+html += '<div id="charts-section">' + renderChartsHtml() + '</div>';
+html += renderAttrExplorer(devrevRows, prevDevrev);
+html += renderCommentsPanel(devrevRows);
+
+root.innerHTML = html;
+
+setTimeout(function() { drawCharts(callRows, prevCallRows, waRows); }, 50);
+}
+
+function destroyCharts() {
+Object.values(S.charts).forEach(function(c){ try{c.destroy();}catch(e){} });
+S.charts = {};
+}
+
+// ================================================================
+// CHANNEL TOGGLE & WEEK BAR
+// ================================================================
+function renderChannelToggle() {
+return '<div class="channel-bar">' +
+'<button class="channel-btn '+(S.channelTab==='combined'?'active':'')+'" onclick="setChannel(\'combined\')">Combined (Calls + WhatsApp)</button>' +
+'<button class="channel-btn '+(S.channelTab==='calls'?'active':'')+'" onclick="setChannel(\'calls\')">Calls</button>' +
+'<button class="channel-btn '+(S.channelTab==='whatsapp'?'active':'')+'" onclick="setChannel(\'whatsapp\')">WhatsApp</button>' +
+'</div>';
+}
+
+function renderWeekBar() {
+var latest = getLatestDate();
+var cycle = getThuWedCycle(latest);
+var curThu = cycle.thu;
+var lastThu = addDays(curThu, -7);
+var twoThu = addDays(curThu, -14);
+var curVal = dStr(S.dateFrom);
+
+function wkLabel(thu) {
+var wed = addDays(thu, 6);
+return dLabel(thu) + ' – ' + dLabel(wed);
+}
+
+var curLabel = dLabel(S.dateFrom) + ' – ' + dLabel(S.dateTo);
+var prevLabel = dLabel(S.prevFrom) + ' – ' + dLabel(S.prevTo);
+
+return '<div class="week-bar">' +
+'<label>Week:</label>' +
+'<button class="week-btn'+(curVal===dStr(curThu)?' active':'')+'" onclick="initWeek(\'thisweek\')">Latest Week (Thu-Wed)<br><span style="font-size:10px;font-weight:400">'+wkLabel(curThu)+'</span></button>' +
+'<button class="week-btn'+(curVal===dStr(lastThu)?' active':'')+'" onclick="initWeek(\'lastweek\')">Previous Week<br><span style="font-size:10px;font-weight:400">'+wkLabel(lastThu)+'</span></button>' +
+'<button class="week-btn'+(curVal===dStr(twoThu)?' active':'')+'" onclick="initWeek(\'2weeksago\')">2 Weeks Ago<br><span style="font-size:10px;font-weight:400">'+wkLabel(twoThu)+'</span></button>' +
+'<div class="week-custom">' +
+'<span style="font-size:11px;color:var(--txt3)">Custom:</span>' +
+'<input type="date" id="df-week" value="'+dStr(S.dateFrom)+'">' +
+'<span style="color:var(--txt3)">–</span>' +
+'<input type="date" id="dt-week" value="'+dStr(S.dateTo)+'">' +
+'<button class="apply-btn" onclick="applyCustomWeek()">Apply</button>' +
+'</div>' +
+'<div style="margin-left:auto;text-align:right;font-size:11px;line-height:1.6">' +
+'<div style="color:var(--navy);font-weight:700">📅 ' + curLabel + '</div>' +
+'<div style="color:var(--txt3)">vs &nbsp;<strong style="color:var(--txt2)">' + prevLabel + '</strong></div>' +
+'</div>' +
+'</div>';
+}
+
+// ================================================================
+// KPI CARDS & CALCULATION
+// ================================================================
+function pct(a,b){ return b ? Math.round(a/b*1000)/10 : 0; }
+function avg(arr){ return arr.length ? arr.reduce(function(a,b){return a+b},0)/arr.length : 0; }
+
+function minsToHMS(m) {
+if (!m || isNaN(m)) return '-';
+var s = Math.round(m*60);
+if (s<60) return s+'s';
+if (s<3600) return Math.floor(s/60)+'m '+pad(s%60)+'s';
+return Math.floor(s/3600)+'h '+pad(Math.floor((s%3600)/60))+'m';
+}
+
+function delta(cur,prev,lowerBetter) {
+if (!prev || prev===0) return '<span class="kpi-delta neutral">— no prev data</span>';
+var p = Math.round((cur-prev)/prev*100);
+if (p===0) return '<span class="kpi-delta neutral">— same as prev</span>';
+var good = lowerBetter ? p<0 : p>0;
+var cls = (p>0 ? 'up' : 'down') + (good ? '-good' : '-bad');
+return '<span class="kpi-delta '+cls+'">'+(p>0?'↑':'↓')+' '+Math.abs(p)+'% vs prev</span>';
+}
+
+function renderCallKPIs(callRows, prevCallRows, waRows, prevWaRows) {
+var ib = callRows.filter(function(r){ return r['Call Type']==='Inbound'; });
+var ibAns = ib.filter(function(r){ return r['Status']==='Answered'; });
+var ibMiss = ib.filter(function(r){ return r['Status']==='Unanswered'; });
+var pg = callRows.filter(function(r){ return r['Call Type']==='Progressive'; });
+var pgAns = pg.filter(function(r){ return r['Status']==='Answered'; });
+var prevIb = prevCallRows.filter(function(r){ return r['Call Type']==='Inbound'; });
+
+var ahtArr = ibAns.map(function(r){ return timeStrToMins(r['Duration']); }).filter(function(v){return v>0;});
+var prevAhtArr = prevIb.filter(function(r){ return r['Status']==='Answered'; }).map(function(r){ return timeStrToMins(r['Duration']); }).filter(function(v){return v>0;});
+
+var waAvgFields =['Average response time', 'First response time', 'Response time', 'Avg time', 'Handling time', 'AHT', 'Avg Time', 'Average Time', 'FRT'];
+var waResFields = ['Resolution time', 'Time to resolve', 'Resolution Time', 'Resolution'];
+
+var waAvgTimeArr = waRows.map(function(r){ return getFirstValidTime(r, waAvgFields); }).filter(function(v){return v>0;});
+var waResTimeArr = waRows.map(function(r){ return getFirstValidTime(r, waResFields); }).filter(function(v){return v>0;});
+
+var prevWaAvgTimeArr = prevWaRows.map(function(r){ return getFirstValidTime(r, waAvgFields); }).filter(function(v){return v>0;});
+var prevWaResTimeArr = prevWaRows.map(function(r){ return getFirstValidTime(r, waResFields); }).filter(function(v){return v>0;});
+
+var h = '<div class="sec-head">📞 Key Metrics <span style="font-size:10px;color:var(--txt3);margin-left:12px;">(Click any card to deepdive Agent Performance)</span></div>';
+
+if (S.channelTab === 'whatsapp') {
+h += '<div class="kpi-grid c4">';
+} else if (S.channelTab === 'calls') {
+h += '<div class="kpi-grid c5">';
+} else {
+h += '<div class="kpi-grid c4">';
+}
+
+if (S.channelTab === 'combined') {
+var totCur = ib.length + waRows.length;
+var totPrev = prevIb.length + prevWaRows.length;
+h += kpi('Total Interactions','purple', totCur, delta(totCur,totPrev,false), 'all');
+h += kpi('Inbound Calls','blue', ib.length, delta(ib.length,prevIb.length,false), 'inbound');
+h += kpi('WhatsApp Chats','teal', waRows.length, delta(waRows.length,prevWaRows.length,false), 'whatsapp');
+h += kpi('Answered Calls','green', ibAns.length, pct(ibAns.length,ib.length||1)+'% ans rate', 'answered');
+h += kpi('Missed Calls','red', ibMiss.length, pct(ibMiss.length,ib.length||1)+'% miss rate', 'missed');
+h += kpi('Avg WA Response','amber', minsToHMS(avg(waAvgTimeArr)), delta(avg(waAvgTimeArr), avg(prevWaAvgTimeArr), true), 'whatsapp');
+h += kpi('Avg WA Resolution','blue', minsToHMS(avg(waResTimeArr)), delta(avg(waResTimeArr), avg(prevWaResTimeArr), true), 'whatsapp');
+} else if (S.channelTab === 'calls') {
+h += kpi('Total Inbound','blue', ib.length, delta(ib.length,prevIb.length,false), 'inbound');
+h += kpi('Answered','green', ibAns.length, pct(ibAns.length,ib.length||1)+'% ans rate', 'answered');
+h += kpi('Missed (Unans)','red', ibMiss.length, pct(ibMiss.length,ib.length||1)+'% miss rate', 'missed');
+h += kpi('Progressive Attempted','purple', pg.length, pgAns.length+' answered ('+pct(pgAns.length,pg.length||1)+'%)', 'progressive');
+h += kpi('Avg Call AHT','teal', minsToHMS(avg(ahtArr)), delta(avg(ahtArr),avg(prevAhtArr),true), 'aht');
+} else if (S.channelTab === 'whatsapp') {
+h += kpi('Total WhatsApp Chats','teal', waRows.length, delta(waRows.length,prevWaRows.length,false), 'whatsapp');
+var uniqueRMs = new Set(waRows.map(function(r){return r['RM Name'];}).filter(Boolean)).size;
+var prevUniqueRMs = new Set(prevWaRows.map(function(r){return r['RM Name'];}).filter(Boolean)).size;
+h += kpi('Unique RMs Assisted','purple', uniqueRMs, delta(uniqueRMs, prevUniqueRMs, false), 'whatsapp');
+h += kpi('Avg Response Time','amber', minsToHMS(avg(waAvgTimeArr)), delta(avg(waAvgTimeArr), avg(prevWaAvgTimeArr), true), 'whatsapp');
+h += kpi('Avg Resolution Time','blue', minsToHMS(avg(waResTimeArr)), delta(avg(waResTimeArr), avg(prevWaResTimeArr), true), 'whatsapp');
+}
+
+h += '</div>';
+return h;
+}
+
+function kpi(label, color, value, sub, modalType) {
+return '<div class="kpi-card '+color+'" title="Click to view Agent details" onclick="openKpiModal(\''+modalType+'\')">' +
+'<div class="kpi-label">'+label+'</div>' +
+'<div class="kpi-value">'+value+'</div>' +
+'<div class="kpi-sub">'+sub+'</div>' +
+'</div>';
+}
+
+// ================================================================
+// AGENT PERFORMANCE MODAL CALCS
+// ================================================================
+function computeAgentStats(callRows, waRows) {
+var agents = {};
+
+function getAg(name) {
+var ag = String(name || '(Unassigned)').trim();
+if (!agents[ag]) agents[ag] = {
+ib:0, ans:0, miss:0, ahtSum:0, ahtCount:0,
+wa:0, waAvgSum:0, waAvgCount:0, waResSum:0, waResCount:0, pg:0
+};
+return agents[ag];
+}
+
+if (callRows) {
+callRows.forEach(function(r) {
+var agentName = r['Agent'] || r['RM Name'] || r['Agent Name'] || r['Receiver'];
+var ag = getAg(agentName);
+if (r['Call Type'] === 'Inbound') {
+ag.ib++;
+if (r['Status'] === 'Answered') {
+ag.ans++;
+var dur = timeStrToMins(r['Duration']);
+if (dur > 0) { ag.ahtSum += dur; ag.ahtCount++; }
+} else {
+ag.miss++;
+}
+} else if (r['Call Type'] === 'Progressive') {
+ag.pg++;
+}
+});
+}
+
+if (waRows) {
+var waAvgFields =['Average response time', 'First response time', 'Response time', 'Avg time', 'Handling time', 'AHT', 'Avg Time', 'Average Time', 'FRT'];
+var waResFields =['Resolution time', 'Time to resolve', 'Resolution Time', 'Resolution'];
+
+waRows.forEach(function(r) {
+var agentName = r['Owners[0]'] || r['Owner[0]'] || r['Created by'] || r['RM Name'];
+var ag = getAg(agentName);
+ag.wa++;
+
+var avgT = getFirstValidTime(r, waAvgFields);
+if (avgT > 0) { ag.waAvgSum += avgT; ag.waAvgCount++; }
+
+var resT = getFirstValidTime(r, waResFields);
+if (resT > 0) { ag.waResSum += resT; ag.waResCount++; }
+});
+}
+
+return agents;
+}
+
+function openKpiModal(metricType) {
+var title = '';
+var callRows = [];
+var waRows =[];
+
+var isCall = ['inbound', 'answered', 'missed', 'progressive', 'aht'].indexOf(metricType) !== -1;
+var isWa = metricType === 'whatsapp';
+
+if (isCall) {
+callRows = excludeInvalidNumber(filterByDate(S.calls, 'Call Date', S.dateFrom, S.dateTo));
+} else if (isWa) {
+waRows = filterByDate(S.whatsapp, 'Created date', S.dateFrom, S.dateTo);
+} else {
+callRows = excludeInvalidNumber(filterByDate(S.calls, 'Call Date', S.dateFrom, S.dateTo));
+waRows = filterByDate(S.whatsapp, 'Created date', S.dateFrom, S.dateTo);
+}
+
+if(metricType === 'inbound') title = 'Total Inbound Calls';
+else if(metricType === 'answered') title = 'Answered Inbound Calls';
+else if(metricType === 'missed') title = 'Missed (Unanswered) Calls';
+else if(metricType === 'progressive') title = 'Progressive Calls';
+else if(metricType === 'aht') title = 'Answered Inbound Calls (AHT View)';
+else if(metricType === 'whatsapp') title = 'WhatsApp Chats and Time Metrics';
+else if(metricType === 'all') title = 'Total Interacted Channels';
+
+document.getElementById('modal-title').textContent = title + ' — Agent Breakdown';
+document.getElementById('modal-body').innerHTML = renderAgentModalData(callRows, waRows, metricType);
+document.getElementById('kpi-modal').classList.add('active');
+}
+
+function closeKpiModal() {
+document.getElementById('kpi-modal').classList.remove('active');
+}
+
+function renderAgentModalData(callRows, waRows, metricType) {
+var agents = computeAgentStats(callRows, waRows);
+
+var isCall =['inbound', 'answered', 'missed', 'progressive', 'aht'].indexOf(metricType) !== -1;
+var isWa = metricType === 'whatsapp';
+
+var mode = 'combined';
+if (metricType === 'progressive') mode = 'progressive';
+else if (isCall) mode = 'calls';
+else if (isWa) mode = 'whatsapp';
+
+var sorted = Object.keys(agents).sort(function(a,b) {
+var da = agents[a], db = agents[b];
+if (metricType === 'inbound') return (db.ib) - (da.ib);
+if (metricType === 'answered') return (db.ans) - (da.ans) || (db.ib - da.ib);
+if (metricType === 'missed') return (db.miss) - (da.miss) || (db.ib - da.ib);
+if (metricType === 'progressive') return (db.pg) - (da.pg);
+if (metricType === 'aht') return (db.ahtCount ? db.ahtSum/db.ahtCount : 0) - (da.ahtCount ? da.ahtSum/da.ahtCount : 0);
+if (metricType === 'whatsapp') return (db.wa) - (da.wa);
+return (db.ib + db.wa) - (da.ib + da.wa);
+});
+
+var h = '<div class="tbl-card" style="margin-bottom:0; box-shadow:none; border:none;"><div class="tbl-wrap"><table>';
+
+if (mode === 'whatsapp') {
+h += '<thead><tr><th>Agent</th><th>WhatsApp Chats</th><th>Avg Resp Time</th><th>Avg Res Time</th></tr></thead><tbody>';
+} else if (mode === 'progressive') {
+h += '<thead><tr><th>Agent</th><th>Progressive Calls</th></tr></thead><tbody>';
+} else if (mode === 'calls') {
+h += '<thead><tr><th>Agent</th><th>Total Inbound</th><th>Answered</th><th>Missed</th><th>Answer Rate</th><th>Avg AHT</th></tr></thead><tbody>';
+} else {
+h += '<thead><tr><th>Agent</th><th>Total Interactions</th><th>Inbound</th><th>Ans</th><th>Miss</th><th>Ans Rate</th><th>Avg AHT</th><th>WA Chats</th><th>WA Avg Resp</th><th>WA Avg Res</th></tr></thead><tbody>';
+}
+
+var highlight = function(val, isTarget) { return isTarget ? '<strong style="color:var(--blue)">'+val+'</strong>' : val; };
+
+var rowsRendered = 0;
+
+sorted.forEach(function(ag) {
+var d = agents[ag];
+var tot = d.ib + d.wa;
+
+// Strict skip logic to ensure 0-data agents never leak into other metric views
+if (metricType === 'inbound' && d.ib === 0) return;
+if (metricType === 'answered' && d.ans === 0) return;
+if (metricType === 'missed' && d.miss === 0) return;
+if (metricType === 'progressive' && d.pg === 0) return;
+if (metricType === 'whatsapp' && d.wa === 0) return;
+if (metricType === 'aht' && d.ans === 0) return;
+if (metricType === 'all' && tot === 0 && d.pg === 0) return;
+
+rowsRendered++;
+
+var rate = pct(d.ans, d.ib);
+var aht = d.ahtCount ? minsToHMS(d.ahtSum / d.ahtCount) : '-';
+var rateColor = rate >= 80 ? 'var(--green)' : (rate >= 50 ? 'var(--amber)' : 'var(--red)');
+
+h += '<tr>';
+h += '<td><strong style="color:var(--navy)">'+escHtml(ag)+'</strong></td>';
+
+if (mode === 'whatsapp') {
+h += '<td>'+highlight(d.wa, true)+'</td>';
+h += '<td><span style="font-family:monospace;font-size:11px;">'+(d.waAvgCount ? minsToHMS(d.waAvgSum/d.waAvgCount) : '-')+'</span></td>';
+h += '<td><span style="font-family:monospace;font-size:11px;">'+(d.waResCount ? minsToHMS(d.waResSum/d.waResCount) : '-')+'</span></td>';
+} else if (mode === 'progressive') {
+h += '<td>'+highlight(d.pg, true)+'</td>';
+} else if (mode === 'calls') {
+h += '<td>'+highlight(d.ib, metricType==='inbound')+'</td>';
+h += '<td><span class="badge badge-green" style="background:var(--green-lt); color:var(--green);">'+highlight(d.ans, metricType==='answered')+'</span></td>';
+h += '<td><span class="badge badge-red" style="background:var(--red-lt); color:var(--red);">'+highlight(d.miss, metricType==='missed')+'</span></td>';
+h += '<td><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;background:var(--surface2);height:6px;border-radius:3px;min-width:60px;overflow:hidden;"><div style="width:'+rate+'%;background:'+rateColor+';height:100%;border-radius:3px;"></div></div><span style="min-width:40px;text-align:right;font-size:11px;font-weight:700;color:var(--txt)">'+rate+'%</span></div></td>';
+h += '<td><span style="font-family:monospace;font-size:11px;">'+highlight(aht, metricType==='aht')+'</span></td>';
+} else {
+h += '<td>'+highlight(tot, metricType==='all')+'</td>';
+h += '<td>'+highlight(d.ib, metricType==='inbound')+'</td>';
+h += '<td><span class="badge badge-green" style="background:var(--green-lt); color:var(--green);">'+highlight(d.ans, metricType==='answered')+'</span></td>';
+h += '<td><span class="badge badge-red" style="background:var(--red-lt); color:var(--red);">'+highlight(d.miss, metricType==='missed')+'</span></td>';
+h += '<td><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;background:var(--surface2);height:6px;border-radius:3px;min-width:60px;overflow:hidden;"><div style="width:'+rate+'%;background:'+rateColor+';height:100%;border-radius:3px;"></div></div><span style="min-width:40px;text-align:right;font-size:11px;font-weight:700;color:var(--txt)">'+rate+'%</span></div></td>';
+h += '<td><span style="font-family:monospace;font-size:11px;">'+highlight(aht, metricType==='aht')+'</span></td>';
+h += '<td><span class="badge badge-blue" style="background:var(--teal-lt); color:var(--teal);">'+highlight(d.wa, metricType==='whatsapp')+'</span></td>';
+h += '<td><span style="font-family:monospace;font-size:11px;">'+(d.waAvgCount ? minsToHMS(d.waAvgSum/d.waAvgCount) : '-')+'</span></td>';
+h += '<td><span style="font-family:monospace;font-size:11px;">'+(d.waResCount ? minsToHMS(d.waResSum/d.waResCount) : '-')+'</span></td>';
+}
+
+h += '</tr>';
+});
+
+if(rowsRendered === 0) {
+var colSpan = mode==='whatsapp'?4 : (mode==='progressive'?2 : (mode==='calls'?6:10));
+h += '<tr><td colspan="'+colSpan+'" style="text-align:center; padding: 20px; color: var(--txt3);">No data found for this selection.</td></tr>';
+}
+
+h += '</tbody></table></div></div>';
+return h;
+}
+
+// ================================================================
+// WEEK-ON-WEEK COMPARISON BAR
+// ================================================================
+function renderWeekComparison(callRows, prevCallRows, ctRows, prevCtRows, waRows, prevWaRows) {
+var metrics =[];
+
+if (S.channelTab === 'combined' || S.channelTab === 'calls') {
+metrics.push({ label:'Inbound Calls', cur: callRows.filter(function(r){return r['Call Type']==='Inbound';}).length, prev: prevCallRows.filter(function(r){return r['Call Type']==='Inbound';}).length, color:'#3b82f6' });
+metrics.push({ label:'Calls Answered', cur: callRows.filter(function(r){return r['Status']==='Answered'&&r['Call Type']==='Inbound';}).length, prev: prevCallRows.filter(function(r){return r['Status']==='Answered'&&r['Call Type']==='Inbound';}).length, color:'#10b981' });
+metrics.push({ label:'Calls Missed', cur: callRows.filter(function(r){return r['Status']==='Unanswered'&&r['Call Type']==='Inbound';}).length, prev: prevCallRows.filter(function(r){return r['Status']==='Unanswered'&&r['Call Type']==='Inbound';}).length, color:'#ef4444' });
+metrics.push({ label:'Progressive Calls',cur: callRows.filter(function(r){return r['Call Type']==='Progressive';}).length, prev: prevCallRows.filter(function(r){return r['Call Type']==='Progressive';}).length, color:'#8b5cf6' });
+}
+
+if (S.channelTab === 'combined' || S.channelTab === 'whatsapp') {
+metrics.push({ label:'WhatsApp Chats', cur: waRows.length, prev: prevWaRows.length, color:'#0d9488' });
+}
+
+if(metrics.length === 0) return '';
+
+var maxVal = Math.max.apply(null, metrics.map(function(m){ return Math.max(m.cur,m.prev); })) || 1;
+
+var h = '<div class="compare-bar">';
+h += '<h3>Week-on-Week Comparison &nbsp;<span style="font-size:11px;font-weight:500;color:var(--txt3)">■ Current vs &nbsp; <span style="opacity:.4">■ Previous Period</span></span></h3>';
+
+metrics.forEach(function(m) {
+var curW = Math.round(m.cur/maxVal*100);
+var prevW = Math.round(m.prev/maxVal*100);
+var chg = m.prev ? Math.round((m.cur-m.prev)/m.prev*100) : null;
+var chgHtml = chg !== null
+? '<span style="font-size:11px;font-weight:700;color:'+(chg>=0?'var(--green)':'var(--red)')+'">'+(chg>=0?'+':'')+chg+'%</span>'
+: '<span style="font-size:11px;color:var(--txt3)">new</span>';
+
+h += '<div class="compare-row">';
+h += '<div class="compare-label">'+m.label+'</div>';
+h += '<div class="compare-track">' +
+'<div class="compare-fill-prev" style="width:'+prevW+'%;background:'+m.color+'"></div>' +
+'<div class="compare-fill-cur" style="width:'+curW+'%;background:'+m.color+'"></div>' +
+'</div>';
+h += '<div class="compare-vals">'+m.cur+' &nbsp;'+chgHtml+'</div>';
+h += '</div>';
+});
+h += '</div>';
+return h;
+}
+
+// ================================================================
+// CHARTS
+// ================================================================
+function renderChartsHtml() {
+if (S.channelTab === 'combined') {
+return '<div class="chart-grid c2">' +
+'<div class="chart-card"><h3>Daily Volume (Calls vs WhatsApp)</h3><canvas id="ch-daily-vol"></canvas></div>' +
+'<div class="chart-card"><h3>Hourly Call Distribution</h3><canvas id="ch-hourly"></canvas></div>' +
+'</div>';
+} else if (S.channelTab === 'calls') {
+return '<div class="chart-grid c2">' +
+'<div class="chart-card"><h3>Daily Inbound vs Answered</h3><canvas id="ch-daily-vol"></canvas></div>' +
+'<div class="chart-card"><h3>Hourly Call Distribution</h3><canvas id="ch-hourly"></canvas></div>' +
+'</div>';
+} else {
+return '<div class="chart-grid c2" style="grid-template-columns:1fr;">' +
+'<div class="chart-card"><h3>Daily WhatsApp Volume</h3><canvas id="ch-daily-vol"></canvas></div>' +
+'</div>';
+}
+}
+
+function drawCharts(callRows, prevCallRows, waRows) {
+var isDark = document.body.classList.contains('dark-mode');
+var gridC = isDark ? 'rgba(255,255,255,0.05)' : '#f1f5f9';
+var tickC = isDark ? '#94a3b8' : '#64748b';
+
+var cColor1 = isDark ? '#00e5ff' : '#3b82f6';
+var cColor2 = isDark ? '#00ffaa' : '#10b981';
+
+var byDay = {};
+
+if (S.channelTab === 'combined' || S.channelTab === 'calls') {
+callRows.forEach(function(r) {
+if (r['Call Type']!=='Inbound') return;
+var d = (String(r['Call Date']||'').substring(0,10)).replace(/^\d{4}-/,'');
+if (!byDay[d]) byDay[d] = {calls:0, ans:0, wa:0};
+byDay[d].calls++;
+if (r['Status']==='Answered') byDay[d].ans++;
+});
+}
+if (S.channelTab === 'combined' || S.channelTab === 'whatsapp') {
+waRows.forEach(function(r) {
+var dtStr = String(r['Created date']||'');
+var p = parseDate(dtStr);
+if (p) {
+var d = dStr(p).replace(/^\d{4}-/,'');
+if (!byDay[d]) byDay[d] = {calls:0, ans:0, wa:0};
+byDay[d].wa++;
+}
+});
+}
+
+var days = Object.keys(byDay).sort();
+var volEl = document.getElementById('ch-daily-vol');
+if (volEl) {
+var datasets =[];
+if (S.channelTab === 'combined') {
+datasets.push({ label:'Inbound Calls', data: days.map(function(d){return byDay[d].calls;}), backgroundColor: isDark ? 'rgba(0,229,255,0.2)' : 'rgba(59,130,246,.2)', borderColor: cColor1, borderWidth:1.5 });
+datasets.push({ label:'WhatsApp', data: days.map(function(d){return byDay[d].wa;}), backgroundColor: isDark ? 'rgba(0,255,170,0.2)' : 'rgba(16,185,129,.2)', borderColor: cColor2, borderWidth:1.5 });
+} else if (S.channelTab === 'calls') {
+datasets.push({ label:'Inbound', data: days.map(function(d){return byDay[d].calls;}), backgroundColor: isDark ? 'rgba(0,229,255,0.2)' : 'rgba(59,130,246,.2)', borderColor: cColor1, borderWidth:1.5 });
+datasets.push({ type:'line', label:'Answered', data: days.map(function(d){return byDay[d].ans;}), borderColor: cColor2, backgroundColor: isDark ? 'rgba(0,255,170,0.1)' : '#10b98115', tension:.3, fill:true, pointRadius:3 });
+} else {
+datasets.push({ label:'WhatsApp Chats', data: days.map(function(d){return byDay[d].wa;}), backgroundColor: isDark ? 'rgba(0,255,170,0.2)' : 'rgba(16,185,129,.2)', borderColor: cColor2, borderWidth:1.5 });
+}
+
+S.charts['daily-vol'] = new Chart(volEl, {
+type: 'bar',
+data: { labels: days, datasets: datasets },
+options: { responsive:true, maintainAspectRatio:true, plugins:{legend:{labels:{color:tickC, font:{size:10,family:'Inter'},boxWidth:10}}}, scales:{x:{ticks:{color:tickC, font:{size:9}},grid:{display:false}},y:{ticks:{color:tickC, font:{size:9}},grid:{color:gridC}}} }
+});
+}
+
+if (S.channelTab !== 'whatsapp') {
+var byHour = {};
+for (var h=0;h<24;h++) byHour[h]=0;
+callRows.forEach(function(r) {
+if (r['Call Type']!=='Inbound') return;
+var t = String(r['Start Time']||r['Call Date']||'');
+var hm = t.match(/(\d{1,2}):(\d{2})/);
+if (hm) byHour[parseInt(hm[1],10)]++;
+});
+var hours =[];
+for (var i=0;i<24;i++) hours.push(pad(i)+':00');
+var hourEl = document.getElementById('ch-hourly');
+if (hourEl) {
+S.charts['hourly'] = new Chart(hourEl, {
+type: 'bar',
+data: { labels: hours,
+datasets:[{ label:'Inbound Calls', data: hours.map(function(_,i){return byHour[i];}), backgroundColor: hours.map(function(_,i){ return (i>=9&&i<19) ? (isDark ? 'rgba(0,229,255,0.7)' : 'rgba(29,78,216,.7)') : (isDark ? 'rgba(148,163,184,.2)' : 'rgba(148,163,184,.4)'); }), borderRadius:3 }]
+},
+options: { responsive:true, maintainAspectRatio:true, plugins:{legend:{display:false}}, scales:{x:{ticks:{color:tickC, font:{size:8},maxRotation:45},grid:{display:false}},y:{ticks:{color:tickC, font:{size:9}},grid:{color:gridC}}} }
+});
+}
+}
+}
+
+// ================================================================
+// ATTRIBUTE EXPLORER
+// ================================================================
+var ATTR_DEFS =[
+{ key:'broker', label:'RM Broker Name', field:'RM Broker Name', fallback:'Broker ID (B2B)' },
+{ key:'branch', label:'Branch / Location', field:'Branch/Location' },
+{ key:'rm', label:'RM Name', field:'RM Name', fallback:'Owners[0]' },
+{ key:'channel', label:'Channel (B2B)', field:'Channel (B2B)' },
+{ key:'issue', label:'Issue Type', field:'Issue Type (B2B)', fallback:'Subtype' },
+{ key:'subissue',label:'Sub-Issue Type', field:'Sub Issue Type (B2B)' }
+];
+
+var DRILL_ATTRS =[
+{ field:'RM Broker Name', label:'RM Broker Name' },
+{ field:'Branch/Location', label:'Branch / Location' },
+{ field:'RM Name', label:'RM Name' },
+{ field:'Channel (B2B)', label:'Channel' },
+{ field:'Issue Type (B2B)', label:'Issue Type' },
+{ field:'Sub Issue Type (B2B)', label:'Sub-Issue' }
+];
+
+function renderAttrExplorer(rows, prevRows) {
+var activeAttr = ATTR_DEFS.find(function(a){return a.key===S.attrTab;}) || ATTR_DEFS[0];
+
+var h = '<div id="attr-explorer-section">';
+h += '<div class="sec-head">🔍 Attribute Explorer <span>Horizontal Scroll | Click any attribute to drill down</span></div>';
+h += '<div class="attr-explorer">';
+
+h += '<div class="attr-tabs">';
+ATTR_DEFS.forEach(function(a) {
+h += '<button class="attr-tab'+(a.key===S.attrTab?' active':'')+'" onclick="switchAttrTab(\''+a.key+'\')">'+a.label+'</button>';
+});
+h += '</div>';
+
+h += '<div class="attr-body">';
+
+var countMap = {};
+rows.forEach(function(r) {
+var v = String(r[activeAttr.field]||r[activeAttr.fallback]||'').trim() || '(not set)';
+countMap[v] = (countMap[v]||0) + 1;
+});
+var prevCountMap = {};
+prevRows.forEach(function(r) {
+var v = String(r[activeAttr.field]||r[activeAttr.fallback]||'').trim() || '(not set)';
+prevCountMap[v] = (prevCountMap[v]||0) + 1;
+});
+
+var total = rows.length || 1;
+var sorted = Object.keys(countMap).sort(function(a,b){return countMap[b]-countMap[a];});
+
+h += '<div class="attr-values">';
+sorted.forEach(function(val) {
+var p = pct(countMap[val], total);
+var isSelected = S.attrSelected === val;
+h += '<div class="attr-value-card'+(isSelected?' selected':'')+'" onclick="selectAttrValue(\''+escAttr(val)+'\')">';
+h += '<div class="attr-value-name" title="'+escHtml(val)+'">'+escHtml(val)+'</div>';
+h += '<div class="attr-value-count">'+countMap[val]+'</div>';
+h += '<div class="attr-value-pct">'+p+'% of period &nbsp;';
+var prev = prevCountMap[val] || 0;
+if (prev) {
+var chg = Math.round((countMap[val]-prev)/prev*100);
+h += '<span style="color:'+(chg>=0?'var(--green)':'var(--red)')+';font-weight:700">'+(chg>=0?'↑':'↓')+Math.abs(chg)+'%</span>';
+}
+h += '</div></div>';
+});
+if (!sorted.length) h += '<div style="color:var(--txt3);padding:20px">No data for this attribute in the selected period.</div>';
+h += '</div>';
+
+if (S.attrSelected) {
+h += renderDrillPanel(rows, activeAttr, S.attrSelected);
+}
+
+h += '</div></div></div>';
+return h;
+}
+
+function renderDrillPanel(rows, activeAttr, selectedVal) {
+var filtered = rows.filter(function(r){ return (String(r[activeAttr.field]||r[activeAttr.fallback]||'').trim()||'(not set)') === selectedVal; });
+var total = filtered.length || 1;
+
+var h = '<div class="drill-panel">';
+h += '<div class="drill-title"><span class="chip">'+escHtml(activeAttr.label)+'</span> <strong>'+escHtml(selectedVal)+'</strong> — '+filtered.length+' records &nbsp;<span style="font-size:11px;color:var(--txt3)">(click another card to change, click same to deselect)</span></div>';
+h += '<div class="drill-grid">';
+
+DRILL_ATTRS.forEach(function(attr) {
+if (attr.field === activeAttr.field) return;
+var m = {};
+filtered.forEach(function(r) { var v=String(r[attr.field]||'').trim()||'(not set)'; m[v]=(m[v]||0)+1; });
+var keys = Object.keys(m).sort(function(a,b){return m[b]-m[a];}).slice(0,7);
+if (!keys.length) return;
+var maxV = m[keys[0]] || 1;
+
+h += '<div class="drill-card"><h4>'+attr.label+'</h4>';
+keys.forEach(function(k) {
+var w = Math.round(m[k]/maxV*100);
+var p2 = pct(m[k], total);
+h += '<div class="drill-row">' +
+'<div class="drill-row-label" title="'+escHtml(k)+'">'+escHtml(k)+'</div>' +
+'<div class="drill-row-bar"><div class="drill-row-bar-fill" style="width:'+w+'%"></div></div>' +
+'<div class="drill-row-val">'+m[k]+'<span style="color:var(--txt3);font-size:10px;margin-left:3px">'+p2+'%</span></div>' +
+'</div>';
+});
+h += '</div>';
+});
+
+var comments = filtered.map(function(r){ return String(r['Comments']||r['Body']||'').trim(); }).filter(Boolean);
+if (comments.length) {
+h += '<div class="drill-card"><h4>Sample Comments ('+comments.length+')</h4>';
+comments.slice(0,4).forEach(function(c) {
+h += '<div style="font-size:11px;color:var(--txt2);padding:5px 0;border-bottom:1px solid var(--surface2)">'+escHtml(c.substring(0,120))+(c.length>120?'…':'')+'</div>';
+});
+h += '</div>';
+}
+
+h += '</div></div>';
+return h;
+}
+
+function switchAttrTab(key) {
+S.attrTab = key;
+S.attrSelected = null;
+re_render_explorer();
+}
+
+function selectAttrValue(val) {
+S.attrSelected = (S.attrSelected === val) ? null : val;
+re_render_explorer();
+}
+
+function re_render_explorer() {
+var ctRows = filterByDate(S.callTkts, 'Created date', S.dateFrom, S.dateTo);
+var waRows = filterByDate(S.whatsapp, 'Created date', S.dateFrom, S.dateTo);
+var prevCt = filterByDate(S.callTkts,'Created date',S.prevFrom,S.prevTo);
+var prevWa = filterByDate(S.whatsapp,'Created date',S.prevFrom,S.prevTo);
+
+var devrevRows =[];
+var prevDevrev =[];
+if (S.channelTab === 'combined') {
+devrevRows = ctRows.concat(waRows);
+prevDevrev = prevCt.concat(prevWa);
+} else if (S.channelTab === 'calls') {
+devrevRows = ctRows;
+prevDevrev = prevCt;
+} else if (S.channelTab === 'whatsapp') {
+devrevRows = waRows;
+prevDevrev = prevWa;
+}
+
+var explorerHtml = renderAttrExplorer(devrevRows, prevDevrev);
+var commentsHtml = renderCommentsPanel(devrevRows);
+
+var explorerEl = document.getElementById('attr-explorer-section');
+var commentsEl = document.getElementById('comments-section');
+
+if (explorerEl) {
+var tmp = document.createElement('div');
+tmp.innerHTML = explorerHtml;
+explorerEl.replaceWith(tmp.firstChild);
+}
+if (commentsEl) {
+var tmp2 = document.createElement('div');
+tmp2.innerHTML = commentsHtml;
+commentsEl.replaceWith(tmp2.firstChild);
+}
+}
+
+// ================================================================
+// COMMENTS & AI PANEL
+// ================================================================
+function renderCommentsPanel(rows) {
+var withComments = rows.filter(function(r){ return String(r['Comments']||r['Body']||'').trim().length>0; });
+withComments.sort(function(a,b){ return String(b['Created date']||'').localeCompare(String(a['Created date']||'')); });
+
+var h = '<div id="comments-section">';
+h += '<div class="sec-head">💬 Comments & Sentiment</div>';
+h += '<div class="comments-panel">';
+h += '<div class="comments-panel-head">';
+h += '<h3>'+withComments.length+' records with comments</h3>';
+h += '<button class="ai-btn" id="ai-run-btn" onclick="runAISummary()" '+(S.aiRunning?'disabled':'')+'>'+
+(S.aiRunning ? '<span>⏳ Analysing…</span>' : '✨ Summarise with AI') +
+'</button>';
+h += '</div>';
+
+if (S.aiResult && !S.aiResult.error) {
+h += '<div class="ai-summary-box"><strong>🤖 AI Summary:</strong><br>'+escHtml(S.aiResult.narrative)+'</div>';
+if (S.aiResult.clusters && S.aiResult.clusters.length) {
+h += '<div class="sentiment-pills">';
+S.aiResult.clusters.forEach(function(cl) {
+h += '<span class="sentiment-pill issue">'+escHtml(cl.theme)+' ('+cl.count+')</span>';
+});
+h += '</div>';
+}
+} else if (S.aiResult && S.aiResult.error) {
+h += '<div style="padding:10px 20px;color:var(--red);font-size:12px">⚠️ AI error: '+escHtml(S.aiResult.error)+'</div>';
+}
+
+var issueCount = {};
+rows.forEach(function(r){
+var v = String(r['Issue Type (B2B)']||r['Subtype']||r['Issue']||r['Category']||'').trim();
+if (v) issueCount[v]=(issueCount[v]||0)+1;
+});
+var topIssues = Object.keys(issueCount).sort(function(a,b){return issueCount[b]-issueCount[a];}).slice(0,8);
+if (topIssues.length) {
+h += '<div style="padding:12px 20px;border-bottom:1px solid var(--border)">' +
+'<span style="font-size:10px;font-weight:700;color:var(--txt3);text-transform:uppercase;letter-spacing:.6px;margin-right:10px">Top Issues:</span>';
+topIssues.forEach(function(iss) {
+h += '<span class="sentiment-pill issue" style="margin-right:6px">'+escHtml(iss)+' ×'+issueCount[iss]+'</span>';
+});
+h += '</div>';
+}
+
+h += '<div class="comment-list">';
+if (!withComments.length) {
+h += '<div style="padding:24px;text-align:center;color:var(--txt3)">No comments in this period.</div>';
+} else {
+withComments.slice(0,50).forEach(function(r) {
+var comment = String(r['Comments']||r['Body']||'').trim();
+var rm = String(r['RM Name']||r['Owners[0]']||r['Created by']||'').trim() || '—';
+var broker = String(r['RM Broker Name']||r['Broker ID (B2B)']||'').trim() || '—';
+var issue = String(r['Issue Type (B2B)']||r['Subtype']||r['Issue']||r['Category']||'').trim();
+var date = String(r['Created date']||'').substring(0,10);
+
+var isWA = S.whatsapp.indexOf(r) !== -1;
+var srcColor = isWA ? 'var(--teal)' : 'var(--blue-d)';
+var srcLabel = isWA ? 'WA' : 'CT';
+
+h += '<div class="comment-item">';
+h += '<div class="comment-meta">';
+h += '<div class="comment-date">'+date+'</div>';
+h += '<div class="comment-rm">'+escHtml(rm)+'</div>';
+h += '<div class="comment-broker">'+escHtml(broker)+'</div>';
+h += '<span class="comment-badge" style="background:'+srcColor+'20;color:'+srcColor+'">'+srcLabel+'</span>';
+h += '</div>';
+h += '<div>';
+if (issue) h += '<div class="comment-issue-tag">'+escHtml(issue)+'</div>';
+h += '<div class="comment-text">'+escHtml(comment.substring(0,250))+(comment.length>250?'…':'')+'</div>';
+h += '</div></div>';
+});
+if (withComments.length > 50) {
+h += '<div style="padding:12px 20px;text-align:center;font-size:11px;color:var(--txt3)">Showing 50 of '+withComments.length+' comments.</div>';
+}
+}
+h += '</div></div></div>';
+return h;
+}
+
+// ================================================================
+// AI SUMMARY via Apps Script proxy
+// ================================================================
+function runAISummary() {
+if (S.aiRunning) return;
+S.aiRunning = true;
+S.aiResult = null;
+
+var ctRows = filterByDate(S.callTkts, 'Created date', S.dateFrom, S.dateTo);
+var waRows = filterByDate(S.whatsapp, 'Created date', S.dateFrom, S.dateTo);
+
+var rows =[];
+if (S.channelTab === 'combined') rows = ctRows.concat(waRows);
+else if (S.channelTab === 'calls') rows = ctRows;
+else if (S.channelTab === 'whatsapp') rows = waRows;
+
+// Extract just the text comments
+var comments = rows
+.map(function(r){ return String(r['Comments']||r['Body']||'').trim(); })
+.filter(Boolean);
+
+if (!comments.length) {
+S.aiRunning = false; S.aiResult = { error:'No comments found for this period.' };
+re_render_explorer(); return;
+}
+
+var wkLabel = dStr(S.dateFrom) + ' to ' + dStr(S.dateTo);
+
+re_render_explorer(); // Show loading state
+
+// Calling proxy function in Code.gs instead of direct JS fetch (solves CORS!)
+google.script.run
+.withSuccessHandler(function(data) {
+S.aiRunning = false;
+S.aiResult = data;
+re_render_explorer();
+})
+.withFailureHandler(function(e) {
+S.aiRunning = false;
+S.aiResult = { error: e.message };
+re_render_explorer();
+})
+.getAISummary(comments, wkLabel);
+}
+
+// ================================================================
+// UTILS
+// ================================================================
+function escHtml(s) {
+return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function escAttr(s) {
+return String(s||'').replace(/'/g,"\\'").replace(/"/g,'&quot;');
+}
+
+// ================================================================
+// UTILS
+// ================================================================
+
+// ADD THESE TWO BLOCKS:
+var NETWORK_ERROR_STATUSES = ['invalidnumber','networkoutoforder'];
+function excludeInvalidNumber(rows) {
+return rows.filter(function(r) {
+var ds = String(r['Dial Status']||'').trim().toLowerCase();
+return NETWORK_ERROR_STATUSES.indexOf(ds) === -1;
+});
+}
+
+function escHtml(s) {
+return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function escAttr(s) {
+return String(s||'').replace(/'/g,"\\'").replace(/"/g,'&quot;');
+}
+
+</script>
+</body>
+</html>
