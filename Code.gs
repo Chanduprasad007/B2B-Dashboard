@@ -9,9 +9,8 @@
 // ============================================================
 
 // ── API KEYS ─────────────────────────────────────────────────
-var CLAUDE_API_KEY = "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";
-var DEVREV_PAT = "eyJhbGciOiJSUzI1NiIsImlzcyI6Imh0dHBzOi8vYXV0aC10b2tlbi5kZXZyZXYuYWkvIiwia2lkIjoic3RzX2tpZF9yc2EiLCJ0eXAiOiJKV1QifQ.eyJhdWQiOlsiamFudXMiXSwiYXpwIjoiZG9uOmlkZW50aXR5OmR2cnYtaW4tMTpkZXZvLzJ0NXh2N1hQQUE6ZGV2dS8yMCIsImV4cCI6MTc5ODcxNDYyMywiaHR0cDovL2RldnJldi5haS9hdXRoMF91aWQiOiJkb246aWRlbnRpdHk6ZHZydi11cy0xOmRldm8vc3VwZXI6YXV0aDBfdXNlci9nb29nbGUtb2F1dGgyfDExNzQzNDQxMDk2MDIyOTU2NjEzNiIsImh0dHA6Ly9kZXZyZXYuYWkvYXV0aDBfdXNlcl9pZCI6Imdvb2dsZS1vYXV0aDJ8MTE3NDM0NDEwOTYwMjI5NTY2MTM2IiwiaHR0cDovL2RldnJldi5haS9kZXZvX2RvbiI6ImRvbjppZGVudGl0eTpkdnJ2LWluLTE6ZGV2by8ydDV4djdYUEFBIiwiaHR0cDovL2RldnJldi5haS9kZXZvaWQiOiJERVYtMnQ1eHY3WFBBQSIsImh0dHA6Ly9kZXZyZXYuYWkvZGV2dWlkIjoiREVWVS0yMCIsImh0dHA6Ly9kZXZyZXYuYWkvZGlzcGxheW5hbWUiOiJDaGFuZHUgUHJhc2FkIiwiaHR0cDovL2RldnJldi5haS9lbWFpbCI6ImNoYW5kdS5wcmFzYWRAc21hbGxjYXNlLmNvbSIsImh0dHA6Ly9kZXZyZXYuYWkvZnVsbG5hbWUiOiJDaGFuZHUgUHJhc2FkIiwiaHR0cDovL2RldnJldi5haS9pc192ZXJpZmllZCI6dHJ1ZSwiaHR0cDovL2RldnJldi5haS90b2tlbnR5cGUiOiJ1cm46ZGV2cmV2OnBhcmFtczpvYXV0aDp0b2tlbi10eXBlOnBhdCIsImlhdCI6MTc3NTEyNzQyMywiaXNzIjoiaHR0cHM6Ly9hdXRoLXRva2VuLmRldnJldi5haS8iLCJqdGkiOiJkb246aWRlbnRpdHk6ZHZydi1pbi0xOmRldm8vMnQ1eHY3WFBBQTp0b2tlbi9qRU45VDNwbSIsIm9yZ19pZCI6Im9yZ19vOXM5eWdoSnlFeWhFaWVuIiwic3ViIjoiZG9uOmlkZW50aXR5OmR2cnYtaW4tMTpkZXZvLzJ0NXh2N1hQQUE6ZGV2dS8yMCJ9.1mJDUFbyDWtXvq8cUIvlUFvdfQp6HqmwnLGOhmvaGrErHXioPC8ispCBacM2RJMfawvHsy2YrrXAEY8OiLSuhTHCEzGa1iekO_WRpaNEk1_uNEA27-quNUCuaSTSwLSDy6sUfikGKcTLsLU8pZraT0ESNjpYoSihIFflYQlw8_y1wxUOWudUKf1Xp1sR3J8zHImdSTcklN92mHGLHHfH2Fm7vVh_goUWoc8_xwhJS1nq1CVBdOAzp6M4F134SvFtxlR0d9qTu9uw-ETuIPevwo30MPaB4u-Frcs5UeBYuHdfrr8czZYOSut07hg1t3QQ9Q0f1KAe8zsdKvtJVUIMSw";
-var DEVREV_BASE = "https://api.devrev.ai";
+var CLAUDE_API_KEY = ";
+var DEVREV_PAT = "";
 
 // ── CACHE FILE ────────────────────────────────────────────────
 var CACHE_FILE_NAME = "smallcase_dashboard_cache.json";
