@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>smallcase · B2B Weekly Pulse</title>
+<link rel="icon" type="image/png" href="https://i.ibb.co/zWjPBDY1/sc-simple.png">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -57,6 +58,8 @@ body.dark-mode ::-webkit-scrollbar-thumb:hover { background: var(--blue); }
 
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);font-size:13px;line-height:1.5;-webkit-font-smoothing:antialiased; transition: background 0.3s, color 0.3s;}
+.link-style{color:var(--blue-d);text-decoration:none;font-weight:700}
+.link-style:hover{text-decoration:underline}
 
 /* ─── TOPBAR ─── */
 .topbar{background:var(--navy);color:#fff;height:56px;display:flex;align-items:center;padding:0 28px;gap:16px;position:sticky;top:0;z-index:200;box-shadow:0 2px 8px rgba(0,0,0,.2); transition: all 0.3s;}
@@ -85,9 +88,9 @@ body.dark-mode .channel-btn:hover {color:var(--blue);border-color:var(--blue);}
 body.dark-mode .channel-btn.active {background:var(--blue-md);color:var(--blue);border-color:var(--blue);box-shadow: 0 0 10px rgba(0, 229, 255, 0.15);}
 
 /* ─── WEEK SELECTOR ─── */
-.week-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 20px;margin-bottom:24px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;box-shadow:var(--sh)}
+.week-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:10px 18px;margin-bottom:24px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;box-shadow:var(--sh)}
 .week-bar label{font-size:11px;font-weight:700;color:var(--txt3);text-transform:uppercase;letter-spacing:.8px}
-.week-btn{padding:8px 16px;border:1px solid var(--border);border-radius:var(--r-sm);font-size:12px;font-weight:600;cursor:pointer;background:transparent;color:var(--txt2);font-family:inherit;transition:all .2s;text-align:left;line-height:1.4}
+.week-btn{padding:8px 12px;border:1px solid var(--border);border-radius:14px;font-size:11px;font-weight:700;cursor:pointer;background:var(--surface);color:var(--txt2);font-family:inherit;transition:all .2s;text-align:center;line-height:1.25;white-space:normal;min-width:176px;min-height:48px;display:flex;align-items:center;justify-content:center}
 .week-btn:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-lt)}
 .week-btn.active{background:var(--navy);color:var(--surface);border-color:var(--navy);font-weight:600}
 body.dark-mode .week-btn.active { background: var(--blue-lt); border-color: var(--blue); color: var(--blue); box-shadow: 0 0 10px rgba(0, 229, 255, 0.1); }
@@ -96,11 +99,31 @@ body.dark-mode .week-btn.active { background: var(--blue-lt); border-color: var(
 .week-custom input:focus{outline:none;border-color:var(--blue)}
 body.dark-mode .week-custom input { color-scheme: dark; }
 .apply-btn{padding:6px 16px;background:var(--blue-d);color:#fff;border:none;border-radius:var(--r-sm);cursor:pointer;font-size:12px;font-weight:600;font-family:inherit}
+.week-scroll-wrap{display:flex;gap:8px;overflow-x:auto;flex:1;min-width:280px;padding-bottom:2px;scroll-snap-type:x mandatory}
+.week-scroll-wrap::-webkit-scrollbar{height:8px}
+.week-scroll-wrap::-webkit-scrollbar-track{background:var(--surface2);border-radius:4px}
+.week-scroll-wrap::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
+.week-scroll-viewport{display:flex;align-items:center;gap:8px;max-width:760px;flex:1;min-width:280px;overflow:hidden}
+.week-nav-btn{width:28px;height:28px;border:1px solid var(--border);border-radius:999px;background:var(--surface);color:var(--txt2);cursor:pointer;font-size:14px;line-height:1;display:flex;align-items:center;justify-content:center;transition:all .2s;flex:0 0 auto}
+.week-nav-btn:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-lt)}
+.state-heat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.state-tile{border:1px solid var(--border);border-radius:10px;background:var(--surface);padding:10px;cursor:pointer;transition:all .2s}
+.state-tile:hover{border-color:var(--blue);box-shadow:0 0 0 2px var(--blue-lt)}
+.state-tile.active{border-color:var(--blue-d);background:var(--blue-lt)}
+.state-tile .nm{font-size:11px;font-weight:700;color:var(--navy)}
+.state-tile .ct{font-size:18px;font-weight:800;color:var(--blue-d);margin-top:4px}
+.month-bar{display:flex;gap:8px;flex-wrap:wrap;margin:-10px 0 24px;padding-left:2px}
+.month-btn{padding:6px 14px;border:1px solid var(--border);border-radius:999px;font-size:11px;font-weight:700;cursor:pointer;background:var(--surface);color:var(--txt2);font-family:inherit;transition:all .2s}
+.month-btn:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-lt)}
+.month-btn.active{background:var(--blue-lt);color:var(--blue-d);border-color:var(--blue-md);box-shadow:0 0 0 2px rgba(59,130,246,.08)}
+body.dark-mode .month-btn.active{background:var(--blue-lt);color:var(--blue);border-color:var(--blue)}
 
 /* ─── SECTION HEADING ─── */
 .sec-head{font-size:11px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.8px;margin:28px 0 14px;padding-left:12px;border-left:4px solid var(--blue-d);display:flex;align-items:center;justify-content:space-between; transition: color 0.3s;}
 body.dark-mode .sec-head { color: var(--blue); text-shadow: 0 0 8px rgba(0, 229, 255, 0.4); border-left-color: var(--blue); }
 .sec-head span{font-size:10px;color:var(--txt3);font-weight:500;text-transform:none;letter-spacing:0;border:none;padding:0; text-shadow:none;}
+.deepdive-indicator{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:999px;font-size:9px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;background:var(--blue-lt);color:var(--blue-d);border:1px solid var(--blue-md)}
+body.dark-mode .deepdive-indicator{color:var(--blue);border-color:var(--blue-md)}
 
 /* ─── KPI CARDS ─── */
 .kpi-grid{display:grid;gap:14px;margin-bottom:24px}
@@ -132,6 +155,8 @@ body.dark-mode .kpi-card.teal::before { background: var(--teal); box-shadow: 0 0
 .kpi-value{font-size:28px;font-weight:800;color:var(--navy);line-height:1;letter-spacing:-1px;margin-bottom:4px}
 .kpi-sub{font-size:11px;color:var(--txt3)}
 .kpi-delta{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:700;padding:2px 7px;border-radius:6px;margin-top:6px}
+.kpi-topline{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px}
+.kpi-topline .kpi-label{margin-bottom:0}
 .kpi-delta.up-good{background:var(--green-lt);color:var(--green)}
 .kpi-delta.down-good{background:var(--green-lt);color:var(--green)}
 .kpi-delta.up-bad{background:var(--red-lt);color:var(--red)}
@@ -178,6 +203,8 @@ body.dark-mode .modal-title { color: var(--blue); }
 .attr-tab:hover{color:var(--navy);background:rgba(0,0,0,.02)}
 .attr-tab.active{color:var(--blue-d);border-bottom-color:var(--blue-d);font-weight:700;background:var(--surface)}
 body.dark-mode .attr-tab.active { color: var(--blue); border-bottom-color: var(--blue); text-shadow: 0 0 8px rgba(0,229,255,0.4); }
+.attr-tab.rm-detail{box-shadow:inset 0 0 0 1px var(--border)}
+.attr-tab.rm-detail.active{box-shadow:inset 0 0 0 1px var(--blue-md)}
 .attr-body{padding:20px}
 
 .attr-values {
@@ -198,6 +225,8 @@ body.dark-mode .attr-values::-webkit-scrollbar-thumb { background: rgba(0,229,25
 body.dark-mode .attr-values::-webkit-scrollbar-thumb:hover { background: var(--blue); }
 
 .attr-value-card{border:2px solid var(--border);border-radius:var(--r-sm);padding:14px 16px;cursor:pointer;transition:all .2s;background:var(--surface); height: 100%; display: flex; flex-direction: column; justify-content: center;}
+.attr-values{scroll-behavior:smooth}
+.attr-value-card{will-change:transform}
 .attr-value-card:hover{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-md)}
 .attr-value-card.selected{border-color:var(--blue-d);background:var(--blue-lt);box-shadow:0 0 0 3px var(--blue-md)}
 
@@ -218,15 +247,51 @@ body.dark-mode .drill-panel { border-color: var(--blue-md); box-shadow: 0 0 20px
 .drill-title .chip{background:var(--blue-d);color:#fff;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600}
 body.dark-mode .drill-title .chip { background: var(--blue); color: #000; box-shadow: 0 0 10px rgba(0,229,255,0.5); }
 .drill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
-.drill-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);padding:14px;box-shadow:var(--sh)}
+.drill-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);padding:14px;box-shadow:var(--sh);min-height:0;display:flex;flex-direction:column}
 .drill-card h4{font-size:11px;font-weight:700;color:var(--txt2);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.linked-records-shell{margin-top:4px;flex:1;min-height:0;display:flex;flex-direction:column}
+.linked-records-toolbar{display:flex;justify-content:flex-end;margin-bottom:6px;flex-shrink:0}
+.linked-records-scroll{max-height:220px;overflow-y:auto;border:1px solid var(--border);border-radius:var(--r-sm);background:var(--surface2)}
 .drill-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--surface2);font-size:12px}
 .drill-row:last-child{border-bottom:none}
 .drill-row-label{color:var(--txt2);max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.drill-row-label.jumpable{cursor:pointer;color:var(--blue-d);font-weight:700}
+body.dark-mode .drill-row-label.jumpable{color:var(--blue)}
 .drill-row-bar{flex:1;margin:0 10px;background:var(--surface2);border-radius:3px;height:6px;overflow:hidden}
 .drill-row-bar-fill{height:100%;border-radius:3px;background:var(--blue-d);opacity:.7}
 body.dark-mode .drill-row-bar-fill { background: var(--blue); box-shadow: 0 0 8px rgba(0,229,255,0.8); opacity:1;}
 .drill-row-val{font-weight:700;color:var(--navy);min-width:28px;text-align:right}
+.mini-note{margin-top:12px;padding:10px 12px;border-left:3px solid var(--blue-d);background:var(--blue-lt);border-radius:0 var(--r-sm) var(--r-sm) 0;font-size:11px;color:var(--txt2);line-height:1.6}
+.agent-link{background:none;border:none;padding:0;color:var(--blue-d);font:inherit;font-weight:700;cursor:pointer;text-align:left}
+body.dark-mode .agent-link{color:var(--blue)}
+.agent-detail-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:18px 0}
+.agent-detail-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--r-sm);padding:14px}
+.agent-detail-card .lbl{font-size:10px;font-weight:800;color:var(--txt3);text-transform:uppercase;letter-spacing:.6px}
+.agent-detail-card .val{font-size:24px;font-weight:800;color:var(--navy);margin-top:6px}
+.agent-detail-card .sub{font-size:11px;color:var(--txt2);margin-top:4px}
+.detail-breakup{margin-top:16px;border:1px solid var(--border);border-radius:var(--r-sm);overflow:hidden}
+.detail-breakup-row{display:grid;grid-template-columns:minmax(130px,1.1fr) 80px 80px 1fr;gap:12px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--border);font-size:12px}
+.detail-breakup-row:last-child{border-bottom:none}
+.detail-breakup-row.head{background:var(--surface2);font-size:10px;font-weight:700;color:var(--txt3);text-transform:uppercase;letter-spacing:.6px}
+.fill-track{height:8px;background:var(--surface2);border-radius:999px;overflow:hidden}
+.fill-track span{display:block;height:100%;background:linear-gradient(90deg,#1d4ed8,#3b82f6);border-radius:999px}
+.issue-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:14px;margin-bottom:24px}
+.issue-panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden}
+.issue-panel-head{padding:14px 18px;border-bottom:1px solid var(--border);background:var(--surface2);display:flex;justify-content:space-between;align-items:center}
+.issue-panel-head h3{font-size:12px;font-weight:800;color:var(--navy)}
+.issue-panel-body{padding:16px 18px}
+.issue-row{display:grid;grid-template-columns:minmax(140px,1.2fr) 56px 1fr;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)}
+.issue-row:last-child{border-bottom:none}
+.issue-row-label{font-size:12px;font-weight:700;color:var(--navy)}
+.issue-row-meta{font-size:11px;color:var(--txt2);line-height:1.5;margin-top:4px}
+.issue-row-count{font-size:12px;font-weight:800;color:var(--blue-d);text-align:right}
+.issue-sample{font-size:11px;color:var(--txt2);line-height:1.6;background:var(--surface2);border-radius:var(--r-sm);padding:12px;margin-top:10px}
+.jump-pill{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:999px;border:1px solid var(--border2);background:var(--surface2);color:var(--blue-d);font-size:10px;font-weight:700;font-family:inherit;cursor:pointer;transition:all .2s;max-width:100%;margin:2px 6px 2px 0}
+.jump-pill:hover{border-color:var(--blue-d);background:var(--blue-lt)}
+.jump-pill.subtle{color:var(--txt2)}
+.issue-meta-jumps{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+body.dark-mode .jump-pill{color:var(--blue);border-color:var(--border2)}
+body.dark-mode .jump-pill:hover{border-color:var(--blue);background:var(--blue-lt)}
 
 /* ─── CHARTS ─── */
 .chart-grid{display:grid;gap:14px;margin-bottom:24px}
@@ -293,6 +358,7 @@ tfoot td{padding:10px 16px;font-weight:700;color:var(--navy);background:var(--su
 
 /* ─── RESPONSIVE ─── */
 @media(max-width:1100px){.kpi-grid.c5, .kpi-grid.c4{grid-template-columns:repeat(3,1fr)}.chart-grid.c2{grid-template-columns:1fr}}
+@media(max-width:900px){.issue-grid{grid-template-columns:1fr}.detail-breakup-row{grid-template-columns:1fr 70px 70px 1fr}}
 @media(max-width:780px){.kpi-grid.c5,.kpi-grid.c4{grid-template-columns:repeat(2,1fr)}.page{padding:16px}.topbar{padding:0 16px}}
 </style>
 </head>
@@ -301,14 +367,19 @@ tfoot td{padding:10px 16px;font-weight:700;color:var(--navy);background:var(--su
 <!-- TOPBAR -->
 <div class="topbar">
 <div class="topbar-brand">
-<div class="topbar-logo">sc</div>
+<div class="topbar-logo">
+<a href="https://ibb.co/W4bPXtz5">
+<img src="https://i.ibb.co/zWjPBDY1/sc-simple.png" alt="Logo" 
+style="height: 40px; width: auto; object-fit: contain; vertical-align: middle;">
+</a>
+</div>
 <h1>B2B Weekly Pulse <span class="topbar-sub">Simplified View</span></h1>
 <button onclick="window.open('https://script.google.com/a/macros/smallcase.com/s/AKfycbxa8Zr_fGMVAwL_P3HKAT9aPv0yz1KA23DfMFVW4J_yIMnqbxxA3-CVCO0XpuEHbpmm/exec','_blank')"style="background: linear-gradient(135deg, #F59E0B, #D97706); color: #fff; border: none; font-weight: 700; font-size: 12px; padding: 4px 14px; border-radius: 20px; cursor: pointer; box-shadow: 0 2px 6px rgba(245,158,11,0.4); display: flex; align-items: center; margin-left: 8px;">&#129504; Advanced View ↗</button>
 
 </div>
 <div class="topbar-right">
 <span id="status-pill">Loading…</span>
-<button class="topbar-btn" onclick="toggleTheme()">🌓 Theme</button>
+<button class="topbar-btn" id="theme-btn" onclick="toggleTheme()">🌓 Theme: Light</button>
 <button class="topbar-btn" onclick="refreshAll()">↻ Refresh</button>
 </div>
 </div>
@@ -344,18 +415,18 @@ attrSelected: null,
 aiRunning: false,
 aiResult: null,
 cacheBuiltAt: '',
-channelTab: 'combined' // 'combined', 'calls', 'whatsapp'
+channelTab: 'combined', // 'combined', 'calls', 'whatsapp'
+modalMetricType: null,
+modalAgentSelected: null,
+rmLensSelection: null,
+indiaStateSelection: null
 };
-
-var CLAUDE_API_KEY = "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";
 
 // ================================================================
 // INIT & THEME
 // ================================================================
 document.addEventListener('DOMContentLoaded', function() {
-if (localStorage.getItem('theme') === 'dark') {
-document.body.classList.add('dark-mode');
-}
+applyTheme(localStorage.getItem('theme') || 'light');
 
 google.script.run
 .withSuccessHandler(function(data) {
@@ -376,9 +447,28 @@ document.getElementById('page-root').innerHTML =
 .getAllData();
 });
 
+function getTheme() {
+if (document.body.classList.contains('dark-mode')) return 'dark';
+return 'light';
+}
+
+function applyTheme(theme) {
+var next = (theme === 'dark') ? theme : 'light';
+document.body.classList.remove('dark-mode');
+if (next === 'dark') document.body.classList.add('dark-mode');
+localStorage.setItem('theme', next);
+var btn = document.getElementById('theme-btn');
+if (btn) {
+var label = next === 'dark' ? 'Dark' : 'Light';
+btn.textContent = '🌓 Theme: ' + label;
+}
+}
+
 function toggleTheme() {
-document.body.classList.toggle('dark-mode');
-localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+var order = ['light', 'dark'];
+var cur = getTheme();
+var next = order[(order.indexOf(cur) + 1) % order.length];
+applyTheme(next);
 render(); // redraw elements & charts with proper theme colors
 }
 
@@ -447,16 +537,16 @@ function filterByDate(rows, col, from, to) {
 return rows.filter(function(r){ return inRange(r[col], from, to); });
 }
 
-function getThuWedCycle(d) {
+function getMonSunCycle(d) {
 var r = new Date(d);
 var day = r.getDay();
-var diff = day >= 4 ? day - 4 : day + 3;
+var diff = day === 0 ? 6 : day - 1;
 r.setDate(r.getDate() - diff);
 r.setHours(0,0,0,0);
-var wed = new Date(r);
-wed.setDate(wed.getDate() + 6);
-wed.setHours(23,59,59,999);
-return { thu: r, wed: wed };
+var sun = new Date(r);
+sun.setDate(sun.getDate() + 6);
+sun.setHours(23,59,59,999);
+return { mon: r, sun: sun };
 }
 
 function getLatestDate() {
@@ -472,25 +562,49 @@ if (!max) max = today;
 return max;
 }
 
-function initWeek(preset) {
-var latest = getLatestDate();
-var cycle = getThuWedCycle(latest);
-var curThu = cycle.thu;
-var curWed = cycle.wed;
-
-if (preset === 'thisweek') {
-S.dateFrom = curThu;
-S.dateTo = curWed;
-} else if (preset === 'lastweek') {
-S.dateFrom = addDays(curThu, -7);
-S.dateTo = addDays(curWed, -7);
-} else if (preset === '2weeksago') {
-S.dateFrom = addDays(curThu, -14);
-S.dateTo = addDays(curWed, -14);
-} else {
-S.dateFrom = curThu;
-S.dateTo = curWed;
+function getEarliestDate() {
+var min = null;
+function chk(v) {
+var d = parseDate(v);
+if (d && (!min || d < min)) min = d;
 }
+S.calls.forEach(function(r){ chk(r['Call Date']); });
+S.callTkts.concat(S.whatsapp).concat(S.careEmails).forEach(function(r){ chk(r['Created date']); });
+if (!min) {
+min = new Date();
+min.setHours(0,0,0,0);
+}
+return min;
+}
+
+function getAvailableWeeks() {
+var latest = getLatestDate();
+var earliest = getEarliestDate();
+var latestCycle = getMonSunCycle(latest);
+var earliestCycle = getMonSunCycle(earliest);
+var weeks = [];
+var curMon = new Date(earliestCycle.mon);
+var i = 0;
+while (curMon <= latestCycle.mon && i < 260) {
+var curSun = addDays(curMon, 6);
+curSun.setHours(23,59,59,999);
+weeks.push({ index: i, from: new Date(curMon), to: curSun, name: 'Week ' + (i + 1) });
+curMon = addDays(curMon, 7);
+i++;
+}
+return weeks;
+}
+
+function initWeek(preset) {
+var back = 0;
+if (preset === 'lastweek') back = 1;
+if (preset === '2weeksago') back = 2;
+var weeks = getAvailableWeeks();
+if (!weeks.length) return;
+var idx = Math.max(0, weeks.length - 1 - back);
+var pick = weeks[idx];
+S.dateFrom = new Date(pick.from);
+S.dateTo = new Date(pick.to);
 
 S.prevFrom = addDays(S.dateFrom, -7);
 S.prevTo = addDays(S.dateTo, -7);
@@ -560,6 +674,146 @@ if (m > 0) return m;
 return 0;
 }
 
+function normalizeMissing(v) {
+var s = String(v == null ? '' : v).trim();
+if (!s) return 'NA';
+if (/^(na|n\/a|null|undefined|-|not available)$/i.test(s)) return 'NA';
+return s;
+}
+
+function hasValue(v) {
+return normalizeMissing(v) !== 'NA';
+}
+
+function normalizeCaseInsensitiveLabel(v) {
+var s = normalizeMissing(v);
+if (s === 'NA') return 'NA';
+s = s.replace(/[._-]/g, ' ');
+s = s.replace(/\s+/g, ' ').trim().toLowerCase();
+while (/\b([a-z])\s+([a-z])\b/.test(s)) {
+s = s.replace(/\b([a-z])\s+([a-z])\b/g, '$1$2');
+}
+return s.replace(/\b[a-z]/g, function(ch){ return ch.toUpperCase(); });
+}
+
+function getDevRevOwnerName(r) {
+var owner = normalizeMissing(r['Owners[0]'] || r['Owner[0]'] || r['Owner'] || r['owned_by']);
+return owner === 'NA' ? 'AI - Agent' : owner;
+}
+
+function getCallAgentName(r) {
+return normalizeMissing(r['Agent'] || r['Agent Name'] || r['RM Name'] || r['Receiver']) === 'NA'
+? 'Unassigned'
+: normalizeMissing(r['Agent'] || r['Agent Name'] || r['RM Name'] || r['Receiver']);
+}
+
+function getAttrValue(r, attr) {
+if (attr && attr.key === 'rm') return getRmValue(r);
+if (attr && attr.key === 'branch') return getBranchValue(r);
+if (attr && attr.key === 'issue') return getIssueValue(r);
+if (attr && attr.key === 'subissue') return getSubIssueValue(r);
+if (attr && attr.key === 'broker') return getBrokerValue(r);
+if (attr && attr.key === 'channel') return getChannelValue(r);
+var primary = normalizeMissing(r[attr.field]);
+if (primary !== 'NA') return primary;
+if (attr.fallback) {
+var fallback = normalizeMissing(r[attr.fallback]);
+if (fallback !== 'NA') return fallback;
+}
+return 'NA';
+}
+
+function getIssueValue(r) {
+var v = normalizeMissing(r['Issue Type (B2B)'] || r['Subtype'] || r['Issue'] || r['Category']);
+return /^general$/i.test(v) ? 'NA' : v;
+}
+
+function getSubIssueValue(r) {
+var v = normalizeMissing(r['Sub Issue Type (B2B)'] || r['Sub-Issue']);
+return /^general$/i.test(v) ? 'NA' : v;
+}
+
+function getBrokerValue(r) {
+return normalizeMissing(r['RM Broker Name'] || r['Broker Name[0]'] || r['Broker ID (B2B)'] || r['Broker ID']);
+}
+
+function getRmValue(r) {
+return normalizeCaseInsensitiveLabel(r['RM Name']);
+}
+
+function getBranchValue(r) {
+return normalizeCaseInsensitiveLabel(r['Branch/Location']);
+}
+
+function shouldExcludeMetricsRow(r) {
+return getIssueValue(r) === 'NA' || getSubIssueValue(r) === 'NA' || getBranchValue(r) === 'NA';
+}
+
+function filterMetricsRows(rows) {
+return rows.filter(function(r){ return !shouldExcludeMetricsRow(r); });
+}
+
+function getChannelValue(r) {
+return normalizeMissing(r['Channel (B2B)']);
+}
+
+function getBrokerIdValue(r) {
+return normalizeMissing(r['Broker ID (B2B)'] || r['Broker ID']);
+}
+
+function getRecordDateKey(r) {
+var d = parseDate(r['Created date'] || r['Call Date']);
+return d ? dStr(d) : 'Unknown';
+}
+
+function uniqueDayCount(rows, dateField) {
+var seen = {};
+rows.forEach(function(r) {
+var d = parseDate(r[dateField]);
+if (d) seen[dStr(d)] = true;
+});
+return Math.max(1, Object.keys(seen).length);
+}
+
+function getMonthlyRanges() {
+var monthMap = {};
+function mark(v) {
+var d = parseDate(v);
+if (!d) return;
+var k = d.getFullYear() + '-' + pad(d.getMonth() + 1);
+if (!monthMap[k]) {
+var start = new Date(d.getFullYear(), d.getMonth(), 1);
+var end = new Date(d.getFullYear(), d.getMonth() + 1, 0);
+end.setHours(23,59,59,999);
+monthMap[k] = { key: k, start: start, end: end };
+}
+}
+S.calls.forEach(function(r){ mark(r['Call Date']); });
+S.callTkts.concat(S.whatsapp).concat(S.careEmails).forEach(function(r){ mark(r['Created date']); });
+return Object.keys(monthMap).sort(function(a,b){ return b.localeCompare(a); }).map(function(k){ return monthMap[k]; });
+}
+
+function setMonthRange(key) {
+var ranges = getMonthlyRanges();
+var target = null;
+for (var i = 0; i < ranges.length; i++) {
+if (ranges[i].key === key) { target = ranges[i]; break; }
+}
+if (!target) return;
+var start = new Date(target.start);
+var end = new Date(target.end);
+var prevStart = new Date(start.getFullYear(), start.getMonth() - 1, 1);
+var prevEnd = new Date(start.getFullYear(), start.getMonth(), 0);
+prevEnd.setHours(23,59,59,999);
+S.dateFrom = start;
+S.dateTo = end;
+S.prevFrom = prevStart;
+S.prevTo = prevEnd;
+S.attrSelected = null;
+S.aiResult = null;
+render();
+}
+
 // ================================================================
 // MAIN RENDER
 // ================================================================
@@ -576,6 +830,10 @@ var waRows = filterByDate(S.whatsapp, 'Created date', S.dateFrom, S.dateTo);
 var prevCallRows = excludeInvalidNumber(filterByDate(S.calls, 'Call Date', S.prevFrom, S.prevTo));
 var prevCtRows = filterByDate(S.callTkts, 'Created date', S.prevFrom, S.prevTo);
 var prevWaRows = filterByDate(S.whatsapp, 'Created date', S.prevFrom, S.prevTo);
+ctRows = filterMetricsRows(ctRows);
+waRows = filterMetricsRows(waRows);
+prevCtRows = filterMetricsRows(prevCtRows);
+prevWaRows = filterMetricsRows(prevWaRows);
 
 var devrevRows = [];
 var prevDevrev =[];
@@ -592,12 +850,17 @@ prevDevrev = prevWaRows;
 }
 
 var html = renderWeekBar();
+html += renderMonthBar();
 html += renderChannelToggle();
 
 html += renderCallKPIs(callRows, prevCallRows, waRows, prevWaRows);
 html += renderWeekComparison(callRows, prevCallRows, ctRows, prevCtRows, waRows, prevWaRows);
 html += '<div id="charts-section">' + renderChartsHtml() + '</div>';
+html += renderRMOpsLens(devrevRows, prevDevrev);
+html += renderRMSupportDiagnostics(devrevRows);
 html += renderAttrExplorer(devrevRows, prevDevrev);
+html += renderBusinessOpportunityPanel(devrevRows, prevDevrev);
+html += renderIndiaStateHeatMap(devrevRows);
 html += renderCommentsPanel(devrevRows);
 
 root.innerHTML = html;
@@ -608,6 +871,385 @@ setTimeout(function() { drawCharts(callRows, prevCallRows, waRows); }, 50);
 function destroyCharts() {
 Object.values(S.charts).forEach(function(c){ try{c.destroy();}catch(e){} });
 S.charts = {};
+}
+
+function renderBusinessOpportunityPanel(rows, prevRows) {
+if (!rows.length) return '';
+var brokerIssue = {};
+var brokerVolume = {};
+var locationIssue = {};
+var issueDay = {};
+var total = rows.length;
+rows.forEach(function(r) {
+var broker = getBrokerValue(r);
+var rm = getRmValue(r);
+var issue = getIssueValue(r);
+var sub = getSubIssueValue(r);
+var branch = getBranchValue(r);
+var key = rm + '||' + broker + '||' + issue + '||' + sub;
+brokerIssue[key] = (brokerIssue[key] || 0) + 1;
+brokerVolume[broker] = (brokerVolume[broker] || 0) + 1;
+locationIssue[branch] = (locationIssue[branch] || 0) + 1;
+var d = parseDate(r['Created date']);
+if (d && issue !== 'NA') {
+var w = d.getDay();
+var wk = w === 0 ? 'Sun' : w === 1 ? 'Mon' : w === 2 ? 'Tue' : w === 3 ? 'Wed' : w === 4 ? 'Thu' : w === 5 ? 'Fri' : 'Sat';
+var idk = issue + '|' + wk;
+issueDay[idk] = (issueDay[idk] || 0) + 1;
+}
+});
+var topBrokers = Object.keys(brokerVolume).sort(function(a,b){ return brokerVolume[b] - brokerVolume[a]; }).slice(0, 8);
+var topRepeats = Object.keys(brokerIssue).sort(function(a,b){ return brokerIssue[b] - brokerIssue[a]; }).slice(0, 8);
+var topLocations = Object.keys(locationIssue).sort(function(a,b){ return locationIssue[b] - locationIssue[a]; }).slice(0, 8);
+var maxBroker = topBrokers.length ? brokerVolume[topBrokers[0]] : 1;
+var maxLoc = topLocations.length ? locationIssue[topLocations[0]] : 1;
+var maxRep = topRepeats.length ? brokerIssue[topRepeats[0]] : 1;
+
+var h = '<div class="sec-head">📈 Business Opportunity Signals <span>Pain index, repeat patterns and concentration hotspots</span></div>';
+h += '<div class="issue-grid">';
+h += '<div class="issue-panel"><div class="issue-panel-head"><h3>Broker Pain Index (Top 8)</h3><span class="deepdive-indicator">Action</span></div><div class="issue-panel-body">';
+topBrokers.forEach(function(broker) {
+var score = Math.round((brokerVolume[broker] / total) * 1000) / 10;
+var w = Math.round((brokerVolume[broker] / maxBroker) * 100);
+h += '<div class="issue-row"><div><div class="issue-row-label">' + renderSummaryJump(broker, 'broker', broker) + '</div><div class="issue-row-meta">Share of contacts: '+score+'%</div></div><div class="issue-row-count">'+brokerVolume[broker]+'</div><div><div class="fill-track"><span style="width:'+w+'%"></span></div></div></div>';
+});
+h += '</div></div>';
+
+h += '<div class="issue-panel"><div class="issue-panel-head"><h3>Repeat RM/Broker/Issue Combinations</h3><span style="font-size:11px;color:var(--txt3)">Potential unresolved loops</span></div><div class="issue-panel-body">';
+topRepeats.forEach(function(key) {
+var parts = key.split('||');
+var rm = parts[0], broker = parts[1], issue = parts[2], sub = parts[3];
+var w = Math.round((brokerIssue[key] / maxRep) * 100);
+h += '<div class="issue-row"><div><div class="issue-row-label">'+renderSummaryJump(rm, 'rm', rm)+' '+renderSummaryJump(broker, 'broker', broker, true)+'</div><div class="issue-row-meta">'+renderSummaryJump(issue, 'issue', issue, true)+' '+(sub !== 'NA' ? renderSummaryJump(sub, 'subissue', sub, true) : '')+'</div></div><div class="issue-row-count">'+brokerIssue[key]+'</div><div><div class="fill-track"><span style="width:'+w+'%"></span></div></div></div>';
+});
+h += '</div></div>';
+h += '</div>';
+
+h += '<div class="issue-grid">';
+h += '<div class="issue-panel"><div class="issue-panel-head"><h3>Location Hotspots</h3><span style="font-size:11px;color:var(--txt3)">Volume by Branch/Location</span></div><div class="issue-panel-body">';
+topLocations.forEach(function(loc) {
+var w = Math.round((locationIssue[loc] / maxLoc) * 100);
+h += '<div class="issue-row"><div><div class="issue-row-label">'+renderSummaryJump(loc, 'branch', loc)+'</div></div><div class="issue-row-count">'+locationIssue[loc]+'</div><div><div class="fill-track"><span style="width:'+w+'%"></span></div></div></div>';
+});
+h += '</div></div>';
+
+h += '<div class="issue-panel"><div class="issue-panel-head"><h3>Issue Seasonality (Day of Week)</h3><span style="font-size:11px;color:var(--txt3)">Pattern finder</span></div><div class="issue-panel-body">';
+var issueDayTop = Object.keys(issueDay).sort(function(a,b){ return issueDay[b] - issueDay[a]; }).slice(0, 10);
+var maxIssueDay = issueDayTop.length ? issueDay[issueDayTop[0]] : 1;
+issueDayTop.forEach(function(k){
+var p = k.split('|');
+var label = p[0] + ' / ' + p[1];
+var w = Math.round((issueDay[k] / maxIssueDay) * 100);
+h += '<div class="issue-row"><div><div class="issue-row-label">'+escHtml(label)+'</div></div><div class="issue-row-count">'+issueDay[k]+'</div><div><div class="fill-track"><span style="width:'+w+'%"></span></div></div></div>';
+});
+h += '</div></div>';
+h += '</div>';
+return h;
+}
+
+function renderRMOpsLens(rows, prevRows) {
+if (!rows.length) return '';
+
+function deltaText(cur, prev) {
+if (!prev) return '<span style="color:var(--txt3)">new</span>';
+var chg = Math.round(((cur - prev) / prev) * 100);
+if (chg === 0) return '<span style="color:var(--txt3)">flat</span>';
+return '<span style="color:'+(chg >= 0 ? 'var(--green)' : 'var(--red)')+';font-weight:700">'+(chg >= 0 ? '+' : '')+chg+'%</span>';
+}
+
+function byKey(rowsIn, keyFn) {
+var m = {};
+rowsIn.forEach(function(r){
+var k = keyFn(r);
+m[k] = (m[k] || 0) + 1;
+});
+return m;
+}
+
+var rmNow = byKey(rows, getRmValue);
+var rmPrev = byKey(prevRows, getRmValue);
+var brokerNow = byKey(rows, getBrokerValue);
+var branchNow = byKey(rows, getBranchValue);
+var issueNow = byKey(rows, getIssueValue);
+
+var rmCount = Object.keys(rmNow).filter(function(k){ return k !== 'NA'; }).length;
+var brokerCount = Object.keys(brokerNow).filter(function(k){ return k !== 'NA'; }).length;
+var branchCount = Object.keys(branchNow).filter(function(k){ return k !== 'NA'; }).length;
+var prevRmCount = Object.keys(rmPrev).filter(function(k){ return k !== 'NA'; }).length;
+
+var rmBranchSubIssue = {};
+var repeat7 = {};
+
+rows.forEach(function(r){
+var rm = getRmValue(r), broker = getBrokerValue(r), issue = getIssueValue(r), sub = getSubIssueValue(r), branch = getBranchValue(r);
+var mixKey = rm + '||' + branch + '||' + sub;
+rmBranchSubIssue[mixKey] = (rmBranchSubIssue[mixKey] || 0) + 1;
+
+var d = parseDate(r['Created date']);
+if (d && rm !== 'NA' && broker !== 'NA' && issue !== 'NA') {
+var repKey = rm + '||' + broker + '||' + branch + '||' + issue;
+if (!repeat7[repKey]) repeat7[repKey] = [];
+repeat7[repKey].push(d);
+}
+});
+
+var loopRows = [];
+Object.keys(repeat7).forEach(function(k){
+var arr = repeat7[k].sort(function(a,b){ return a - b; });
+var c = 0;
+for (var i = 1; i < arr.length; i++) {
+if ((arr[i] - arr[i-1]) / 86400000 <= 7) c++;
+}
+if (c > 0) {
+var p = k.split('||');
+loopRows.push({ rm:p[0], broker:p[1], branch:p[2], issue:p[3], repeats:c });
+}
+});
+loopRows.sort(function(a,b){ return b.repeats - a.repeats; });
+
+var topRmIssue = Object.keys(rmBranchSubIssue).map(function(k){
+var p = k.split('||');
+return { rm:p[0], branch:p[1], subIssue:p[2], count:rmBranchSubIssue[k] };
+}).sort(function(a,b){ return b.count - a.count; }).slice(0, 10);
+
+var topIssues = Object.keys(issueNow).sort(function(a,b){ return issueNow[b] - issueNow[a]; }).slice(0, 6);
+
+var h = '<div class="sec-head">🧭 RM Operations Lens <span>Track RM behaviour, repeat loops and issue context by week/month</span></div>';
+h += '<div class="kpi-grid c4">' +
+'<div class="kpi-card blue" onclick="openRMLensMetricModal(\'rms\')"><div class="kpi-topline"><div class="kpi-label">Active RMs</div><span class="deepdive-indicator">Deepdive</span></div><div class="kpi-value">'+rmCount+'</div><div class="kpi-sub">'+deltaText(rmCount, prevRmCount)+' vs previous period</div></div>' +
+'<div class="kpi-card purple" onclick="openRMLensMetricModal(\'brokers\')"><div class="kpi-topline"><div class="kpi-label">Active Brokers</div><span class="deepdive-indicator">Deepdive</span></div><div class="kpi-value">'+brokerCount+'</div><div class="kpi-sub">'+(rmCount ? fmt1(brokerCount/rmCount) : 0)+' brokers per RM</div></div>' +
+'<div class="kpi-card teal" onclick="openRMLensMetricModal(\'branches\')"><div class="kpi-topline"><div class="kpi-label">Active Branches</div><span class="deepdive-indicator">Deepdive</span></div><div class="kpi-value">'+branchCount+'</div><div class="kpi-sub">Branch footprint in selected period</div></div>' +
+'<div class="kpi-card amber" onclick="openRMLensMetricModal(\'loops\')"><div class="kpi-topline"><div class="kpi-label">Repeat 7-day Loops</div><span class="deepdive-indicator">Deepdive</span></div><div class="kpi-value">'+loopRows.length+'</div><div class="kpi-sub">RM+Broker+Issue repeated within 7 days</div></div>' +
+'</div>';
+
+h += '<div class="issue-grid">';
+h += '<div class="issue-panel"><div class="issue-panel-head"><h3>RM + Branch - Sub Issue Intensity (Top 10)</h3><span class="deepdive-indicator">Deepdive</span></div><div class="issue-panel-body">';
+topRmIssue.forEach(function(r){
+h += '<div class="issue-row"><div><div class="issue-row-label">'+renderRMLensJump(r.rm, 'rm', r.rm)+' '+renderRMLensJump(r.branch, 'branch', r.branch, true)+'</div><div class="issue-row-meta">'+renderRMLensJump(r.subIssue, 'subissue', r.subIssue, true)+'</div></div><div class="issue-row-count">'+r.count+'</div><div><div class="fill-track"><span style="width:'+Math.round((r.count / (topRmIssue[0] ? topRmIssue[0].count : 1))*100)+'%"></span></div></div></div>';
+});
+h += '</div></div>';
+
+h += '<div class="issue-panel"><div class="issue-panel-head"><h3>Repeat Escalation Loops</h3><span class="deepdive-indicator">Deepdive</span></div><div class="issue-panel-body">';
+if (!loopRows.length) {
+h += '<div style="font-size:12px;color:var(--txt3);padding:12px 0">No meaningful repeat loops in this period.</div>';
+} else {
+loopRows.slice(0, 10).forEach(function(r){
+h += '<div class="issue-row"><div><div class="issue-row-label">'+renderRMLensJump(r.rm, 'rm', r.rm)+' '+renderRMLensJump(r.broker, 'broker', r.broker, true)+'</div><div class="issue-row-meta">'+renderRMLensJump(r.branch, 'branch', r.branch, true)+' '+renderRMLensJump(r.issue, 'issue', r.issue, true)+'</div></div><div class="issue-row-count">'+r.repeats+'</div><div><div class="fill-track"><span style="width:'+Math.min(100, r.repeats * 20)+'%"></span></div></div></div>';
+});
+}
+h += '</div></div>';
+h += '</div>';
+
+if (topIssues.length) {
+h += '<div class="mini-note"><strong>Interpretation tip:</strong> combine <strong>RM + Branch - Sub Issue Intensity</strong> + <strong>Repeat Escalation Loops</strong> to detect whether a problem is people-specific (single RM), broker-specific, or location-specific.</div>';
+}
+h += renderRMOpsDeepDive(rows);
+return h;
+}
+
+function getRMLensRowsForCurrentSelection() {
+var ctRows = filterMetricsRows(filterByDate(S.callTkts, 'Created date', S.dateFrom, S.dateTo));
+var waRows = filterMetricsRows(filterByDate(S.whatsapp, 'Created date', S.dateFrom, S.dateTo));
+if (S.channelTab === 'calls') return ctRows;
+if (S.channelTab === 'whatsapp') return waRows;
+return ctRows.concat(waRows);
+}
+
+function renderRMSupportDiagnostics(rows) {
+if (!rows.length) return '';
+var hierarchy = {};
+var rmSupportLoad = {};
+var branchIssue = {};
+var commentRows = [];
+rows.forEach(function(r){
+var branch = getBranchValue(r), rm = getRmValue(r), broker = getBrokerValue(r), issue = getIssueValue(r), brokerId = getBrokerIdValue(r);
+if (!hierarchy[branch]) hierarchy[branch] = {};
+if (!hierarchy[branch][rm]) hierarchy[branch][rm] = {};
+hierarchy[branch][rm][broker] = (hierarchy[branch][rm][broker] || 0) + 1;
+if (rm !== 'NA') {
+if (!rmSupportLoad[rm]) rmSupportLoad[rm] = {};
+if (brokerId !== 'NA') rmSupportLoad[rm][brokerId] = true;
+}
+if (branch !== 'NA' && issue !== 'NA') {
+if (!branchIssue[branch]) branchIssue[branch] = {};
+branchIssue[branch][issue] = (branchIssue[branch][issue] || 0) + 1;
+}
+var cm = String(r['Comments'] || '').trim();
+if (cm) commentRows.push({ rm:rm, branch:branch, issue:issue, comment:cm });
+});
+var rmLoadRank = Object.keys(rmSupportLoad).map(function(rm){
+return { rm:rm, uniqueBrokerIds:Object.keys(rmSupportLoad[rm]).length };
+}).sort(function(a,b){ return b.uniqueBrokerIds - a.uniqueBrokerIds; }).slice(0, 12);
+var branchRank = Object.keys(branchIssue).map(function(br){
+var topIssue = Object.keys(branchIssue[br]).sort(function(a,b){ return branchIssue[br][b] - branchIssue[br][a]; })[0] || 'NA';
+return { branch:br, topIssue:topIssue, count:topIssue === 'NA' ? 0 : branchIssue[br][topIssue] };
+}).sort(function(a,b){ return b.count - a.count; }).slice(0, 10);
+var topBranches = branchRank.slice(0, 6).map(function(x){ return x.branch; });
+var issueSet = {};
+topBranches.forEach(function(br){ Object.keys(branchIssue[br] || {}).forEach(function(is){ issueSet[is] = true; }); });
+var topIssues = Object.keys(issueSet).sort(function(a,b){
+var sa = 0, sb = 0;
+topBranches.forEach(function(br){ sa += (branchIssue[br] && branchIssue[br][a]) || 0; sb += (branchIssue[br] && branchIssue[br][b]) || 0; });
+return sb - sa;
+}).slice(0, 6);
+var h = '<div class="sec-head">🧪 RM Support Diagnostics <span>Branch → RM → Broker hierarchy with issue friction and RM support reality</span></div>';
+h += '<div class="issue-grid">';
+h += '<div class="issue-panel"><div class="issue-panel-head"><h3>RM Support Load</h3><span class="deepdive-indicator">Unique Broker IDs</span></div><div class="issue-panel-body">';
+rmLoadRank.forEach(function(r){
+h += '<div class="issue-row"><div><div class="issue-row-label">'+renderRMLensJump(r.rm, 'rm', r.rm)+'</div><div class="issue-row-meta">Unique Broker IDs served this week</div></div><div class="issue-row-count">'+r.uniqueBrokerIds+'</div><div></div></div>';
+});
+h += '</div></div>';
+h += '<div class="issue-panel"><div class="issue-panel-head"><h3>Branch Friction</h3><span class="deepdive-indicator">Training Focus</span></div><div class="issue-panel-body">';
+branchRank.forEach(function(b){
+var flag = b.count >= 3 ? ' — Branch Training Focus' : '';
+h += '<div class="issue-row"><div><div class="issue-row-label">'+renderRMLensJump(b.branch, 'branch', b.branch)+'</div><div class="issue-row-meta">Top issue: '+escHtml(b.topIssue)+' ('+b.count+')'+flag+'</div></div><div class="issue-row-count">'+b.count+'</div><div></div></div>';
+});
+h += '</div></div></div>';
+h += '<div class="issue-panel" style="margin-bottom:14px"><div class="issue-panel-head"><h3>Issue Type × Branch Heatmap (Top)</h3></div><div class="issue-panel-body"><div class="table-wrap"><table><thead><tr><th>Issue Type</th>';
+topBranches.forEach(function(br){ h += '<th>'+escHtml(br)+'</th>'; });
+h += '</tr></thead><tbody>';
+topIssues.forEach(function(is){
+h += '<tr><td><strong>'+escHtml(is)+'</strong></td>';
+topBranches.forEach(function(br){ h += '<td>'+((branchIssue[br] && branchIssue[br][is]) || 0)+'</td>'; });
+h += '</tr>';
+});
+h += '</tbody></table></div></div></div>';
+h += '<div class="issue-panel"><div class="issue-panel-head"><h3>Comment Intelligence (RM Reality)</h3><span class="deepdive-indicator">Context</span></div><div class="issue-panel-body">';
+commentRows.slice(0, 25).forEach(function(c){
+h += '<div class="issue-row"><div><div class="issue-row-label">'+escHtml(c.rm)+' · '+escHtml(c.branch)+'</div><div class="issue-row-meta">'+escHtml(c.issue)+'</div><div class="issue-sample">'+escHtml(c.comment.substring(0,180))+(c.comment.length>180?'...':'')+'</div></div><div class="issue-row-count"></div><div></div></div>';
+});
+h += '</div></div>';
+return h;
+}
+
+function renderRMOpsDeepDive(rows) {
+var selected = S.rmLensSelection;
+if (!selected) {
+return '<div class="mini-note"><strong>RM Lens Deepdive:</strong> Click RM/Branch/Broker/Issue chips in the RM Operations Lens sections above, then this panel will show full break-up including RM Name, Broker Name, Branch, Issue Type, Sub Issue, comments, and channel mix.</div>';
+}
+var parts = selected.split('||');
+var type = parts[0], val = parts[1];
+var filtered = rows.filter(function(r){
+if (type === 'rm') return getRmValue(r) === val;
+if (type === 'broker') return getBrokerValue(r) === val;
+if (type === 'branch') return getBranchValue(r) === val;
+if (type === 'issue') return getIssueValue(r) === val;
+if (type === 'subissue') return getSubIssueValue(r) === val;
+return false;
+});
+var issueMap = {}, subMap = {}, brokerMap = {}, rmMap = {}, branchMap = {};
+var waCount = 0, callCount = 0;
+filtered.forEach(function(r){
+var issue = getIssueValue(r), sub = getSubIssueValue(r), broker = getBrokerValue(r), rm = getRmValue(r), branch = getBranchValue(r);
+issueMap[issue] = (issueMap[issue] || 0) + 1;
+subMap[sub] = (subMap[sub] || 0) + 1;
+brokerMap[broker] = (brokerMap[broker] || 0) + 1;
+rmMap[rm] = (rmMap[rm] || 0) + 1;
+branchMap[branch] = (branchMap[branch] || 0) + 1;
+if (S.whatsapp.indexOf(r) !== -1) waCount++; else callCount++;
+});
+function top3(map) {
+return Object.keys(map).sort(function(a,b){ return map[b]-map[a]; }).slice(0,3).map(function(k){ return k + ' (' + map[k] + ')'; }).join(', ') || 'NA';
+}
+var samples = filtered.map(function(r){ return String(r['Comments'] || '').trim(); }).filter(Boolean).slice(0,4);
+var h = '<div class="issue-panel" style="margin-bottom:24px"><div class="issue-panel-head"><h3>RM Operations Deepdive: '+escHtml(type.toUpperCase())+' = '+escHtml(val)+'</h3><button class="jump-pill" onclick="clearRMOpsDeepDive()">Clear</button></div><div class="issue-panel-body">';
+h += '<div class="kpi-grid c4">' +
+'<div class="kpi-card blue"><div class="kpi-label">Total Contacts</div><div class="kpi-value">'+filtered.length+'</div></div>' +
+'<div class="kpi-card teal"><div class="kpi-label">WhatsApp Contacts</div><div class="kpi-value">'+waCount+'</div></div>' +
+'<div class="kpi-card purple"><div class="kpi-label">Call-ticket Contacts</div><div class="kpi-value">'+callCount+'</div></div>' +
+'<div class="kpi-card amber"><div class="kpi-label">Top Issue</div><div class="kpi-value" style="font-size:16px;line-height:1.3">'+escHtml(top3(issueMap).split(', ')[0] || 'NA')+'</div></div>' +
+'</div>';
+h += '<div class="issue-row"><div><div class="issue-row-label">Top RM Names</div><div class="issue-row-meta">'+escHtml(top3(rmMap))+'</div></div><div class="issue-row-count"></div><div></div></div>';
+h += '<div class="issue-row"><div><div class="issue-row-label">Top Brokers</div><div class="issue-row-meta">'+escHtml(top3(brokerMap))+'</div></div><div class="issue-row-count"></div><div></div></div>';
+h += '<div class="issue-row"><div><div class="issue-row-label">Top Branches</div><div class="issue-row-meta">'+escHtml(top3(branchMap))+'</div></div><div class="issue-row-count"></div><div></div></div>';
+h += '<div class="issue-row"><div><div class="issue-row-label">Top Issues</div><div class="issue-row-meta">'+escHtml(top3(issueMap))+'</div></div><div class="issue-row-count"></div><div></div></div>';
+h += '<div class="issue-row"><div><div class="issue-row-label">Top Sub Issues</div><div class="issue-row-meta">'+escHtml(top3(subMap))+'</div></div><div class="issue-row-count"></div><div></div></div>';
+if (samples.length) {
+h += '<div class="issue-sample"><strong>Comment samples:</strong><br>' + samples.map(function(s){ return '- ' + escHtml(s.substring(0,140)) + (s.length > 140 ? '...' : ''); }).join('<br>') + '</div>';
+}
+h += '<div class="issue-panel" style="margin-top:12px"><div class="issue-panel-head"><h3>Linked Ticket/Conversation Records</h3></div><div class="issue-panel-body">' + renderLinkedRecordTable(filtered, true) + '</div></div>';
+h += '</div></div>';
+return h;
+}
+
+function setRMOpsDeepDive(type, value) {
+S.rmLensSelection = type + '||' + value;
+re_render_explorer();
+}
+
+function clearRMOpsDeepDive() {
+S.rmLensSelection = null;
+re_render_explorer();
+}
+
+function detectIndianState(branch) {
+var b = String(branch || '').toLowerCase();
+var states = ['andhra pradesh','arunachal pradesh','assam','bihar','chhattisgarh','goa','gujarat','haryana','himachal pradesh','jharkhand','karnataka','kerala','madhya pradesh','maharashtra','manipur','meghalaya','mizoram','nagaland','odisha','punjab','rajasthan','sikkim','tamil nadu','telangana','tripura','uttar pradesh','uttarakhand','west bengal','delhi','jammu and kashmir','ladakh','chandigarh','dadra and nagar haveli','daman and diu','puducherry','andaman and nicobar','lakshadweep'];
+for (var i = 0; i < states.length; i++) if (b.indexOf(states[i]) !== -1) return states[i].replace(/\b\w/g, function(m){ return m.toUpperCase(); });
+if (b.indexOf('mumbai') !== -1 || b.indexOf('pune') !== -1) return 'Maharashtra';
+if (b.indexOf('bengaluru') !== -1 || b.indexOf('bangalore') !== -1) return 'Karnataka';
+if (b.indexOf('hyderabad') !== -1) return 'Telangana';
+if (b.indexOf('chennai') !== -1) return 'Tamil Nadu';
+if (b.indexOf('kolkata') !== -1) return 'West Bengal';
+if (b.indexOf('delhi') !== -1 || b.indexOf('gurgaon') !== -1 || b.indexOf('noida') !== -1) return 'Delhi';
+return 'Unknown';
+}
+
+function renderIndiaStateHeatMap(rows) {
+if (!rows.length) return '';
+var stateMap = {};
+rows.forEach(function(r){
+var state = detectIndianState(getBranchValue(r));
+if (!stateMap[state]) stateMap[state] = { total:0, wa:0, call:0 };
+stateMap[state].total++;
+if (S.whatsapp.indexOf(r) !== -1) stateMap[state].wa++; else stateMap[state].call++;
+});
+var states = Object.keys(stateMap).sort(function(a,b){ return stateMap[b].total - stateMap[a].total; });
+var maxTotal = states.length ? stateMap[states[0]].total : 1;
+var h = '<div class="sec-head">🗺️ India Query Heat Map <span>Click a state to deepdive RM, Branch, Issue and channel counts</span></div>';
+h += '<div class="issue-panel"><div class="issue-panel-head"><h3>State-wise Query Heat</h3><span style="font-size:11px;color:var(--txt3)">Pseudo-map (state tiles, clickable)</span></div><div class="issue-panel-body">';
+h += '<div class="state-heat-grid">';
+states.forEach(function(st){
+var d = stateMap[st];
+var op = Math.max(0.15, d.total / maxTotal);
+var active = S.indiaStateSelection === st ? ' active' : '';
+h += '<div class="state-tile'+active+'" onclick="setIndiaStateDeepDive(\''+escAttr(st)+'\')" style="background:rgba(59,130,246,'+op+')">' +
+'<div class="nm">'+escHtml(st)+'</div><div class="ct">'+d.total+'</div><div style="font-size:10px;color:var(--txt2)">WA '+d.wa+' | Call '+d.call+'</div></div>';
+});
+h += '</div>';
+h += renderIndiaStateDeepDive(rows);
+h += '</div></div>';
+return h;
+}
+
+function setIndiaStateDeepDive(state) {
+S.indiaStateSelection = state;
+re_render_explorer();
+}
+
+function renderIndiaStateDeepDive(rows) {
+if (!S.indiaStateSelection) return '<div class="mini-note">Select any state tile to view RM Name, Branch, Issue Type, Sub Issue Type and WhatsApp/Call contact split.</div>';
+var state = S.indiaStateSelection;
+var filtered = rows.filter(function(r){ return detectIndianState(getBranchValue(r)) === state; });
+var rm = {}, branch = {}, issue = {}, sub = {};
+var wa = 0, call = 0;
+filtered.forEach(function(r){
+var rmName = getRmValue(r), br = getBranchValue(r), is = getIssueValue(r), si = getSubIssueValue(r);
+rm[rmName] = (rm[rmName] || 0) + 1;
+branch[br] = (branch[br] || 0) + 1;
+issue[is] = (issue[is] || 0) + 1;
+sub[si] = (sub[si] || 0) + 1;
+if (S.whatsapp.indexOf(r) !== -1) wa++; else call++;
+});
+function topList(map) {
+return Object.keys(map).sort(function(a,b){ return map[b]-map[a]; }).slice(0,8).map(function(k){ return '<div class="issue-row"><div><div class="issue-row-label">'+escHtml(k)+'</div></div><div class="issue-row-count">'+map[k]+'</div><div></div></div>'; }).join('');
+}
+var h = '<div class="issue-panel" style="margin-top:14px"><div class="issue-panel-head"><h3>Deepdive: '+escHtml(state)+'</h3><button class="jump-pill" onclick="S.indiaStateSelection=null;re_render_explorer();">Clear</button></div><div class="issue-panel-body">';
+h += '<div class="kpi-grid c3"><div class="kpi-card teal"><div class="kpi-label">WhatsApp Contacts</div><div class="kpi-value">'+wa+'</div></div><div class="kpi-card blue"><div class="kpi-label">Call Contacts</div><div class="kpi-value">'+call+'</div></div><div class="kpi-card purple"><div class="kpi-label">Total</div><div class="kpi-value">'+filtered.length+'</div></div></div>';
+h += '<div class="issue-grid"><div class="issue-panel"><div class="issue-panel-head"><h3>RM Names</h3></div><div class="issue-panel-body">'+topList(rm)+'</div></div><div class="issue-panel"><div class="issue-panel-head"><h3>Branches</h3></div><div class="issue-panel-body">'+topList(branch)+'</div></div></div>';
+h += '<div class="issue-grid"><div class="issue-panel"><div class="issue-panel-head"><h3>Issue Types</h3></div><div class="issue-panel-body">'+topList(issue)+'</div></div><div class="issue-panel"><div class="issue-panel-head"><h3>Sub Issue Types</h3></div><div class="issue-panel-body">'+topList(sub)+'</div></div></div>';
+h += '</div></div>';
+return h;
 }
 
 // ================================================================
@@ -622,26 +1264,22 @@ return '<div class="channel-bar">' +
 }
 
 function renderWeekBar() {
-var latest = getLatestDate();
-var cycle = getThuWedCycle(latest);
-var curThu = cycle.thu;
-var lastThu = addDays(curThu, -7);
-var twoThu = addDays(curThu, -14);
 var curVal = dStr(S.dateFrom);
-
-function wkLabel(thu) {
-var wed = addDays(thu, 6);
-return dLabel(thu) + ' – ' + dLabel(wed);
-}
+var weeks = getAvailableWeeks().slice().reverse();
 
 var curLabel = dLabel(S.dateFrom) + ' – ' + dLabel(S.dateTo);
 var prevLabel = dLabel(S.prevFrom) + ' – ' + dLabel(S.prevTo);
+var weekBtns = '';
+weeks.forEach(function(w) {
+var active = curVal === dStr(w.from);
+weekBtns += '<button class="week-btn'+(active?' active':'')+'" onclick="setWeekRange('+w.index+')">'+w.name+'<br>'+dLabel(w.from)+' - '+dLabel(w.to)+'</button>';
+});
 
 return '<div class="week-bar">' +
 '<label>Week:</label>' +
-'<button class="week-btn'+(curVal===dStr(curThu)?' active':'')+'" onclick="initWeek(\'thisweek\')">Latest Week (Thu-Wed)<br><span style="font-size:10px;font-weight:400">'+wkLabel(curThu)+'</span></button>' +
-'<button class="week-btn'+(curVal===dStr(lastThu)?' active':'')+'" onclick="initWeek(\'lastweek\')">Previous Week<br><span style="font-size:10px;font-weight:400">'+wkLabel(lastThu)+'</span></button>' +
-'<button class="week-btn'+(curVal===dStr(twoThu)?' active':'')+'" onclick="initWeek(\'2weeksago\')">2 Weeks Ago<br><span style="font-size:10px;font-weight:400">'+wkLabel(twoThu)+'</span></button>' +
+'<button class="week-nav-btn" onclick="scrollWeekTabs(-1)" aria-label="Previous weeks">‹</button>' +
+'<div class="week-scroll-viewport"><div class="week-scroll-wrap" id="week-scroll-wrap">'+weekBtns+'</div></div>' +
+'<button class="week-nav-btn" onclick="scrollWeekTabs(1)" aria-label="Next weeks">›</button>' +
 '<div class="week-custom">' +
 '<span style="font-size:11px;color:var(--txt3)">Custom:</span>' +
 '<input type="date" id="df-week" value="'+dStr(S.dateFrom)+'">' +
@@ -656,11 +1294,51 @@ return '<div class="week-bar">' +
 '</div>';
 }
 
+function renderMonthBar() {
+var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+var ranges = getMonthlyRanges();
+var h = '<div class="month-bar">';
+ranges.forEach(function(range) {
+var active = dStr(S.dateFrom) === dStr(range.start) && dStr(S.dateTo) === dStr(range.end);
+var label = months[range.start.getMonth()] + ' ' + range.start.getFullYear();
+h += '<button class="month-btn' + (active ? ' active' : '') + '" onclick="setMonthRange(\'' + range.key + '\')">' + label + '</button>';
+});
+h += '</div>';
+return h;
+}
+
+function setWeekRange(index) {
+var weeks = getAvailableWeeks();
+var pick = weeks[index];
+if (!pick) return;
+S.dateFrom = new Date(pick.from);
+S.dateTo = new Date(pick.to);
+S.prevFrom = addDays(S.dateFrom, -7);
+S.prevTo = addDays(S.dateTo, -7);
+S.attrSelected = null;
+S.aiResult = null;
+render();
+setTimeout(function() {
+var wrap = document.querySelector('.week-scroll-wrap');
+var active = document.querySelector('.week-btn.active');
+if (wrap && active && active.scrollIntoView) active.scrollIntoView({ behavior:'smooth', inline:'center', block:'nearest' });
+}, 20);
+}
+
+function scrollWeekTabs(direction) {
+var wrap = document.getElementById('week-scroll-wrap');
+if (!wrap) return;
+var firstBtn = wrap.querySelector('.week-btn');
+var step = firstBtn ? (firstBtn.offsetWidth + 8) * 4 : 520;
+wrap.scrollBy({ left: direction * step, behavior: 'smooth' });
+}
+
 // ================================================================
 // KPI CARDS & CALCULATION
 // ================================================================
 function pct(a,b){ return b ? Math.round(a/b*1000)/10 : 0; }
 function avg(arr){ return arr.length ? arr.reduce(function(a,b){return a+b},0)/arr.length : 0; }
+function fmt1(n){ return Math.round((Number(n) || 0) * 10) / 10; }
 
 function minsToHMS(m) {
 if (!m || isNaN(m)) return '-';
@@ -699,7 +1377,7 @@ var waResTimeArr = waRows.map(function(r){ return getFirstValidTime(r, waResFiel
 var prevWaAvgTimeArr = prevWaRows.map(function(r){ return getFirstValidTime(r, waAvgFields); }).filter(function(v){return v>0;});
 var prevWaResTimeArr = prevWaRows.map(function(r){ return getFirstValidTime(r, waResFields); }).filter(function(v){return v>0;});
 
-var h = '<div class="sec-head">📞 Key Metrics <span style="font-size:10px;color:var(--txt3);margin-left:12px;">(Click any card to deepdive Agent Performance)</span></div>';
+var h = '<div class="sec-head">📞 Key Metrics <span style="font-size:10px;color:var(--txt3);margin-left:12px;">Every card supports deepdive</span></div>';
 
 if (S.channelTab === 'whatsapp') {
 h += '<div class="kpi-grid c4">';
@@ -740,7 +1418,7 @@ return h;
 
 function kpi(label, color, value, sub, modalType) {
 return '<div class="kpi-card '+color+'" title="Click to view Agent details" onclick="openKpiModal(\''+modalType+'\')">' +
-'<div class="kpi-label">'+label+'</div>' +
+'<div class="kpi-topline"><div class="kpi-label">'+label+'</div><span class="deepdive-indicator">Deepdive</span></div>' +
 '<div class="kpi-value">'+value+'</div>' +
 '<div class="kpi-sub">'+sub+'</div>' +
 '</div>';
@@ -763,7 +1441,7 @@ return agents[ag];
 
 if (callRows) {
 callRows.forEach(function(r) {
-var agentName = r['Agent'] || r['RM Name'] || r['Agent Name'] || r['Receiver'];
+var agentName = getCallAgentName(r);
 var ag = getAg(agentName);
 if (r['Call Type'] === 'Inbound') {
 ag.ib++;
@@ -785,7 +1463,7 @@ var waAvgFields =['Average response time', 'First response time', 'Response time
 var waResFields =['Resolution time', 'Time to resolve', 'Resolution Time', 'Resolution'];
 
 waRows.forEach(function(r) {
-var agentName = r['Owners[0]'] || r['Owner[0]'] || r['Created by'] || r['RM Name'];
+var agentName = getDevRevOwnerName(r);
 var ag = getAg(agentName);
 ag.wa++;
 
@@ -800,11 +1478,9 @@ if (resT > 0) { ag.waResSum += resT; ag.waResCount++; }
 return agents;
 }
 
-function openKpiModal(metricType) {
-var title = '';
+function getModalDataForMetric(metricType) {
 var callRows = [];
-var waRows =[];
-
+var waRows = [];
 var isCall = ['inbound', 'answered', 'missed', 'progressive', 'aht'].indexOf(metricType) !== -1;
 var isWa = metricType === 'whatsapp';
 
@@ -816,28 +1492,222 @@ waRows = filterByDate(S.whatsapp, 'Created date', S.dateFrom, S.dateTo);
 callRows = excludeInvalidNumber(filterByDate(S.calls, 'Call Date', S.dateFrom, S.dateTo));
 waRows = filterByDate(S.whatsapp, 'Created date', S.dateFrom, S.dateTo);
 }
+return { callRows: callRows, waRows: waRows };
+}
 
-if(metricType === 'inbound') title = 'Total Inbound Calls';
-else if(metricType === 'answered') title = 'Answered Inbound Calls';
-else if(metricType === 'missed') title = 'Missed (Unanswered) Calls';
-else if(metricType === 'progressive') title = 'Progressive Calls';
-else if(metricType === 'aht') title = 'Answered Inbound Calls (AHT View)';
-else if(metricType === 'whatsapp') title = 'WhatsApp Chats and Time Metrics';
-else if(metricType === 'all') title = 'Total Interacted Channels';
+function getDevRevRowsForMetric(metricType) {
+var ctRows = filterByDate(S.callTkts, 'Created date', S.dateFrom, S.dateTo);
+var waRows = filterByDate(S.whatsapp, 'Created date', S.dateFrom, S.dateTo);
+if (metricType === 'whatsapp') return waRows;
+if (metricType === 'all') return ctRows.concat(waRows);
+return ctRows;
+}
 
-document.getElementById('modal-title').textContent = title + ' — Agent Breakdown';
-document.getElementById('modal-body').innerHTML = renderAgentModalData(callRows, waRows, metricType);
+function getMetricTitle(metricType) {
+if(metricType === 'inbound') return 'Total Inbound Calls';
+if(metricType === 'answered') return 'Answered Inbound Calls';
+if(metricType === 'missed') return 'Missed (Unanswered) Calls';
+if(metricType === 'progressive') return 'Progressive Calls';
+if(metricType === 'aht') return 'Answered Inbound Calls (AHT View)';
+if(metricType === 'whatsapp') return 'WhatsApp Chats and Time Metrics';
+return 'Total Interacted Channels';
+}
+
+function openRMLensMetricModal(mode) {
+var titleMap = {
+rms: 'RM Operations Lens — Active RMs',
+brokers: 'RM Operations Lens — Active Brokers',
+branches: 'RM Operations Lens — Active Branches',
+loops: 'RM Operations Lens — Repeat 7-day Loops'
+};
+var rows = getRMLensRowsForCurrentSelection();
+document.getElementById('modal-title').textContent = titleMap[mode] || 'RM Operations Lens';
+document.getElementById('modal-body').innerHTML = renderRMLensMetricModal(mode, rows);
+document.getElementById('kpi-modal').classList.add('active');
+}
+
+function renderRMLensMetricModal(mode, rows) {
+if (!rows.length) return '<div class="mini-note">No rows found for current filter selection.</div>';
+var waCount = rows.filter(function(r){ return S.whatsapp.indexOf(r) !== -1; }).length;
+var callCount = rows.length - waCount;
+var h = '<div class="kpi-grid c4">' +
+'<div class="kpi-card purple"><div class="kpi-label">Total Interactions</div><div class="kpi-value">'+rows.length+'</div></div>' +
+'<div class="kpi-card teal"><div class="kpi-label">WhatsApp Contacts</div><div class="kpi-value">'+waCount+'</div></div>' +
+'<div class="kpi-card blue"><div class="kpi-label">Call-ticket Contacts</div><div class="kpi-value">'+callCount+'</div></div>' +
+'<div class="kpi-card amber"><div class="kpi-label">Channel Mix</div><div class="kpi-value" style="font-size:16px">'+(rows.length ? Math.round((waCount/rows.length)*100) : 0)+'% WA</div></div>' +
+'</div>';
+
+if (mode === 'rms') {
+var rmMap = {};
+rows.forEach(function(r){
+var rm = getRmValue(r);
+if (rm === 'NA') return;
+if (!rmMap[rm]) rmMap[rm] = { total:0, wa:0, call:0, branch:{} };
+rmMap[rm].total++;
+if (S.whatsapp.indexOf(r) !== -1) rmMap[rm].wa++; else rmMap[rm].call++;
+var br = getBranchValue(r);
+if (br !== 'NA') rmMap[rm].branch[br] = (rmMap[rm].branch[br] || 0) + 1;
+});
+var rankedRms = Object.keys(rmMap).map(function(k){
+var bKeys = Object.keys(rmMap[k].branch).sort(function(a,b){ return rmMap[k].branch[b]-rmMap[k].branch[a]; });
+return { rm:k, total:rmMap[k].total, wa:rmMap[k].wa, call:rmMap[k].call, topBranch:bKeys[0] || 'NA' };
+}).sort(function(a,b){ return b.total - a.total; });
+h += '<div class="issue-panel"><div class="issue-panel-head"><h3>RM Name + Branch (sorted by contacts)</h3></div><div class="issue-panel-body">';
+rankedRms.slice(0, 40).forEach(function(x){
+h += '<div class="issue-row"><div><div class="issue-row-label">'+renderRMLensJump(x.rm, 'rm', x.rm)+'</div><div class="issue-row-meta">Top Branch: '+escHtml(x.topBranch)+' | WhatsApp: '+x.wa+' | Call: '+x.call+'</div></div><div class="issue-row-count">'+x.total+'</div><div></div></div>';
+});
+h += '</div></div>';
+ h += '<div class="issue-panel" style="margin-top:12px"><div class="issue-panel-head"><h3>Linked Ticket/Conversation Records</h3></div><div class="issue-panel-body">' + renderLinkedRecordTable(rows, true) + '</div></div>';
+} else if (mode === 'brokers') {
+var brokerMap = {};
+rows.forEach(function(r){
+var broker = getBrokerValue(r);
+if (broker === 'NA') return;
+brokerMap[broker] = (brokerMap[broker] || 0) + 1;
+});
+var rankedBrokers = Object.keys(brokerMap).sort(function(a,b){ return brokerMap[b] - brokerMap[a]; });
+h += '<div class="issue-panel"><div class="issue-panel-head"><h3>Brokers sorted by most contacted</h3></div><div class="issue-panel-body">';
+rankedBrokers.slice(0, 50).forEach(function(k){
+h += '<div class="issue-row"><div><div class="issue-row-label">'+renderRMLensJump(k, 'broker', k)+'</div></div><div class="issue-row-count">'+brokerMap[k]+'</div><div></div></div>';
+});
+h += '</div></div>';
+ h += '<div class="issue-panel" style="margin-top:12px"><div class="issue-panel-head"><h3>Linked Ticket/Conversation Records</h3></div><div class="issue-panel-body">' + renderLinkedRecordTable(rows, true) + '</div></div>';
+} else if (mode === 'branches') {
+var branchMap = {};
+rows.forEach(function(r){
+var branch = getBranchValue(r);
+if (branch === 'NA') return;
+branchMap[branch] = (branchMap[branch] || 0) + 1;
+});
+var rankedBranches = Object.keys(branchMap).sort(function(a,b){ return branchMap[b] - branchMap[a]; });
+h += '<div class="issue-panel"><div class="issue-panel-head"><h3>Branches sorted by query volume</h3></div><div class="issue-panel-body">';
+rankedBranches.slice(0, 50).forEach(function(k){
+h += '<div class="issue-row"><div><div class="issue-row-label">'+renderRMLensJump(k, 'branch', k)+'</div></div><div class="issue-row-count">'+branchMap[k]+'</div><div></div></div>';
+});
+h += '</div></div>';
+ h += '<div class="issue-panel" style="margin-top:12px"><div class="issue-panel-head"><h3>Linked Ticket/Conversation Records</h3></div><div class="issue-panel-body">' + renderLinkedRecordTable(rows, true) + '</div></div>';
+} else if (mode === 'loops') {
+var repeat7 = {};
+rows.forEach(function(r){
+var rm = getRmValue(r), broker = getBrokerValue(r), branch = getBranchValue(r), issue = getIssueValue(r);
+var d = parseDate(r['Created date']);
+if (d && rm !== 'NA' && broker !== 'NA' && issue !== 'NA') {
+var repKey = rm + '||' + broker + '||' + branch + '||' + issue;
+if (!repeat7[repKey]) repeat7[repKey] = [];
+repeat7[repKey].push(d);
+}
+});
+var loopRows = [];
+Object.keys(repeat7).forEach(function(k){
+var arr = repeat7[k].sort(function(a,b){ return a - b; });
+var c = 0;
+for (var i = 1; i < arr.length; i++) if ((arr[i] - arr[i-1]) / 86400000 <= 7) c++;
+if (c > 0) {
+var p = k.split('||');
+loopRows.push({ rm:p[0], broker:p[1], branch:p[2], issue:p[3], repeats:c });
+}
+});
+loopRows.sort(function(a,b){ return b.repeats - a.repeats; });
+h += '<div class="issue-panel"><div class="issue-panel-head"><h3>RM + Broker + Branch loops (sorted)</h3></div><div class="issue-panel-body">';
+if (!loopRows.length) {
+h += '<div class="mini-note">No repeat loops in this period.</div>';
+} else {
+loopRows.slice(0, 50).forEach(function(r){
+h += '<div class="issue-row"><div><div class="issue-row-label">'+renderRMLensJump(r.rm, 'rm', r.rm)+' '+renderRMLensJump(r.broker, 'broker', r.broker, true)+'</div><div class="issue-row-meta">'+renderRMLensJump(r.branch, 'branch', r.branch, true)+' '+renderRMLensJump(r.issue, 'issue', r.issue, true)+'</div></div><div class="issue-row-count">'+r.repeats+'</div><div></div></div>';
+});
+}
+h += '</div></div>';
+ h += '<div class="issue-panel" style="margin-top:12px"><div class="issue-panel-head"><h3>Linked Ticket/Conversation Records</h3></div><div class="issue-panel-body">' + renderLinkedRecordTable(rows, true) + '</div></div>';
+}
+return h;
+}
+
+function openKpiModal(metricType) {
+S.modalMetricType = metricType;
+S.modalAgentSelected = null;
+var modalData = getModalDataForMetric(metricType);
+document.getElementById('modal-title').textContent = getMetricTitle(metricType) + ' — Agent Breakdown';
+document.getElementById('modal-body').innerHTML = renderAgentModalData(modalData.callRows, modalData.waRows, metricType);
 document.getElementById('kpi-modal').classList.add('active');
 }
 
 function closeKpiModal() {
+S.modalAgentSelected = null;
 document.getElementById('kpi-modal').classList.remove('active');
+}
+
+function selectMetricAgent(agentName) {
+S.modalAgentSelected = S.modalAgentSelected === agentName ? null : agentName;
+var modalData = getModalDataForMetric(S.modalMetricType);
+document.getElementById('modal-body').innerHTML = renderAgentModalData(modalData.callRows, modalData.waRows, S.modalMetricType);
+}
+
+function renderAgentUpdateDetail(agentName, metricType) {
+var rows = getDevRevRowsForMetric(metricType).filter(function(r) {
+return getDevRevOwnerName(r) === agentName;
+});
+if (!rows.length) {
+return '<div class="mini-note">No owned DevRev records found for <strong>' + escHtml(agentName) + '</strong> in this selection. Empty owners are grouped under <strong>AI - Agent</strong>.</div>';
+}
+
+var defs = [
+{ label:'RM Name', getter:getRmValue },
+{ label:'RM Broker Name', getter:getBrokerValue },
+{ label:'Branch / Location', getter:getBranchValue },
+{ label:'Channel (B2B)', getter:getChannelValue },
+{ label:'Broker ID', getter:getBrokerIdValue }
+];
+
+var total = rows.length;
+var coverage = [];
+defs.forEach(function(def) {
+var filled = rows.filter(function(r) { return hasValue(def.getter(r)); }).length;
+coverage.push({ label:def.label, filled:filled, missing:total - filled, pct:pct(filled, total) });
+});
+
+var avgCoverage = Math.round(avg(coverage.map(function(c) { return c.pct; })));
+var activeDays = uniqueDayCount(rows, 'Created date');
+var topMissing = coverage.slice().sort(function(a,b){ return b.missing - a.missing; })[0];
+
+var issueMap = {};
+rows.forEach(function(r) {
+var issueKey = getIssueValue(r) + (getSubIssueValue(r) !== 'NA' ? ' / ' + getSubIssueValue(r) : '');
+issueMap[issueKey] = (issueMap[issueKey] || 0) + 1;
+});
+var topIssue = Object.keys(issueMap).sort(function(a,b){ return issueMap[b]-issueMap[a]; })[0] || 'NA';
+
+var h = '<div style="margin-top:20px">';
+h += '<div class="sec-head" style="margin-top:0">🧾 Detail Update Quality <span>Click another agent to compare</span></div>';
+h += '<div class="agent-detail-grid">';
+h += '<div class="agent-detail-card"><div class="lbl">Owned Records</div><div class="val">' + total + '</div><div class="sub">DevRev records owned in the selected period</div></div>';
+h += '<div class="agent-detail-card"><div class="lbl">Active Days</div><div class="val">' + activeDays + '</div><div class="sub">Days with at least one owned record</div></div>';
+h += '<div class="agent-detail-card"><div class="lbl">Avg Field Coverage</div><div class="val">' + avgCoverage + '%</div><div class="sub">Across RM, broker, branch, channel, broker ID</div></div>';
+h += '<div class="agent-detail-card"><div class="lbl">Biggest Gap</div><div class="val">' + escHtml(topMissing.label) + '</div><div class="sub">' + topMissing.missing + ' records still marked NA</div></div>';
+h += '</div>';
+
+h += '<div class="detail-breakup">';
+h += '<div class="detail-breakup-row head"><div>Field</div><div>Filled</div><div>NA</div><div>Coverage</div></div>';
+coverage.forEach(function(item) {
+h += '<div class="detail-breakup-row">';
+h += '<div><strong>' + escHtml(item.label) + '</strong></div>';
+h += '<div>' + item.filled + '</div>';
+h += '<div>' + item.missing + '</div>';
+h += '<div><div class="fill-track"><span style="width:' + item.pct + '%"></span></div><div style="font-size:11px;color:var(--txt2);margin-top:4px">' + item.pct + '% updated</div></div>';
+h += '</div>';
+});
+h += '</div>';
+
+h += '<div class="mini-note"><strong>Most common owned issue:</strong> ' + escHtml(topIssue) + '. Empty values and literal <strong>NA</strong> are both treated as missing.</div>';
+h += '<div class="issue-panel" style="margin-top:14px"><div class="issue-panel-head"><h3>Linked Records Deepdive</h3><span class="deepdive-indicator">Ticket + Chat Links</span></div><div class="issue-panel-body">';
+h += renderLinkedRecordTable(rows, metricType !== 'whatsapp');
+h += '</div></div>';
+h += '</div>';
+return h;
 }
 
 function renderAgentModalData(callRows, waRows, metricType) {
 var agents = computeAgentStats(callRows, waRows);
-
-var isCall =['inbound', 'answered', 'missed', 'progressive', 'aht'].indexOf(metricType) !== -1;
+var isCall = ['inbound', 'answered', 'missed', 'progressive', 'aht'].indexOf(metricType) !== -1;
 var isWa = metricType === 'whatsapp';
 
 var mode = 'combined';
@@ -869,14 +1739,11 @@ h += '<thead><tr><th>Agent</th><th>Total Interactions</th><th>Inbound</th><th>An
 }
 
 var highlight = function(val, isTarget) { return isTarget ? '<strong style="color:var(--blue)">'+val+'</strong>' : val; };
-
 var rowsRendered = 0;
 
 sorted.forEach(function(ag) {
 var d = agents[ag];
 var tot = d.ib + d.wa;
-
-// Strict skip logic to ensure 0-data agents never leak into other metric views
 if (metricType === 'inbound' && d.ib === 0) return;
 if (metricType === 'answered' && d.ans === 0) return;
 if (metricType === 'missed' && d.miss === 0) return;
@@ -886,13 +1753,13 @@ if (metricType === 'aht' && d.ans === 0) return;
 if (metricType === 'all' && tot === 0 && d.pg === 0) return;
 
 rowsRendered++;
-
 var rate = pct(d.ans, d.ib);
 var aht = d.ahtCount ? minsToHMS(d.ahtSum / d.ahtCount) : '-';
 var rateColor = rate >= 80 ? 'var(--green)' : (rate >= 50 ? 'var(--amber)' : 'var(--red)');
+var agentCell = '<button class="agent-link" onclick="selectMetricAgent(\'' + escAttr(ag) + '\')">' + escHtml(ag) + '</button><div style="margin-top:6px"><span class="deepdive-indicator">Details</span></div>';
 
 h += '<tr>';
-h += '<td><strong style="color:var(--navy)">'+escHtml(ag)+'</strong></td>';
+h += '<td>' + agentCell + '</td>';
 
 if (mode === 'whatsapp') {
 h += '<td>'+highlight(d.wa, true)+'</td>';
@@ -917,7 +1784,6 @@ h += '<td><span class="badge badge-blue" style="background:var(--teal-lt); color
 h += '<td><span style="font-family:monospace;font-size:11px;">'+(d.waAvgCount ? minsToHMS(d.waAvgSum/d.waAvgCount) : '-')+'</span></td>';
 h += '<td><span style="font-family:monospace;font-size:11px;">'+(d.waResCount ? minsToHMS(d.waResSum/d.waResCount) : '-')+'</span></td>';
 }
-
 h += '</tr>';
 });
 
@@ -927,6 +1793,9 @@ h += '<tr><td colspan="'+colSpan+'" style="text-align:center; padding: 20px; col
 }
 
 h += '</tbody></table></div></div>';
+if (S.modalAgentSelected) {
+h += renderAgentUpdateDetail(S.modalAgentSelected, metricType);
+}
 return h;
 }
 
@@ -982,12 +1851,12 @@ function renderChartsHtml() {
 if (S.channelTab === 'combined') {
 return '<div class="chart-grid c2">' +
 '<div class="chart-card"><h3>Daily Volume (Calls vs WhatsApp)</h3><canvas id="ch-daily-vol"></canvas></div>' +
-'<div class="chart-card"><h3>Hourly Call Distribution</h3><canvas id="ch-hourly"></canvas></div>' +
+'<div class="chart-card"><h3>Avg Hourly Call Distribution</h3><canvas id="ch-hourly"></canvas></div>' +
 '</div>';
 } else if (S.channelTab === 'calls') {
 return '<div class="chart-grid c2">' +
 '<div class="chart-card"><h3>Daily Inbound vs Answered</h3><canvas id="ch-daily-vol"></canvas></div>' +
-'<div class="chart-card"><h3>Hourly Call Distribution</h3><canvas id="ch-hourly"></canvas></div>' +
+'<div class="chart-card"><h3>Avg Hourly Call Distribution</h3><canvas id="ch-hourly"></canvas></div>' +
 '</div>';
 } else {
 return '<div class="chart-grid c2" style="grid-template-columns:1fr;">' +
@@ -997,7 +1866,8 @@ return '<div class="chart-grid c2" style="grid-template-columns:1fr;">' +
 }
 
 function drawCharts(callRows, prevCallRows, waRows) {
-var isDark = document.body.classList.contains('dark-mode');
+var theme = getTheme();
+var isDark = theme === 'dark';
 var gridC = isDark ? 'rgba(255,255,255,0.05)' : '#f1f5f9';
 var tickC = isDark ? '#94a3b8' : '#64748b';
 
@@ -1051,12 +1921,16 @@ options: { responsive:true, maintainAspectRatio:true, plugins:{legend:{labels:{c
 if (S.channelTab !== 'whatsapp') {
 var byHour = {};
 for (var h=0;h<24;h++) byHour[h]=0;
+var activeCallDays = {};
 callRows.forEach(function(r) {
 if (r['Call Type']!=='Inbound') return;
 var t = String(r['Start Time']||r['Call Date']||'');
 var hm = t.match(/(\d{1,2}):(\d{2})/);
 if (hm) byHour[parseInt(hm[1],10)]++;
+var callDay = parseDate(r['Call Date']);
+if (callDay) activeCallDays[dStr(callDay)] = true;
 });
+var recordedDays = Math.max(1, Object.keys(activeCallDays).length);
 var hours =[];
 for (var i=0;i<24;i++) hours.push(pad(i)+':00');
 var hourEl = document.getElementById('ch-hourly');
@@ -1064,7 +1938,7 @@ if (hourEl) {
 S.charts['hourly'] = new Chart(hourEl, {
 type: 'bar',
 data: { labels: hours,
-datasets:[{ label:'Inbound Calls', data: hours.map(function(_,i){return byHour[i];}), backgroundColor: hours.map(function(_,i){ return (i>=9&&i<19) ? (isDark ? 'rgba(0,229,255,0.7)' : 'rgba(29,78,216,.7)') : (isDark ? 'rgba(148,163,184,.2)' : 'rgba(148,163,184,.4)'); }), borderRadius:3 }]
+datasets:[{ label:'Avg Inbound / Active Day', data: hours.map(function(_,i){return Math.round((byHour[i] / recordedDays) * 10) / 10;}), backgroundColor: hours.map(function(_,i){ return (i>=9&&i<19) ? (isDark ? 'rgba(0,229,255,0.7)' : 'rgba(29,78,216,.7)') : (isDark ? 'rgba(148,163,184,.2)' : 'rgba(148,163,184,.4)'); }), borderRadius:3 }]
 },
 options: { responsive:true, maintainAspectRatio:true, plugins:{legend:{display:false}}, scales:{x:{ticks:{color:tickC, font:{size:8},maxRotation:45},grid:{display:false}},y:{ticks:{color:tickC, font:{size:9}},grid:{color:gridC}}} }
 });
@@ -1076,10 +1950,10 @@ options: { responsive:true, maintainAspectRatio:true, plugins:{legend:{display:f
 // ATTRIBUTE EXPLORER
 // ================================================================
 var ATTR_DEFS =[
-{ key:'broker', label:'RM Broker Name', field:'RM Broker Name', fallback:'Broker ID (B2B)' },
-{ key:'branch', label:'Branch / Location', field:'Branch/Location' },
-{ key:'rm', label:'RM Name', field:'RM Name', fallback:'Owners[0]' },
-{ key:'channel', label:'Channel (B2B)', field:'Channel (B2B)' },
+{ key:'broker', label:'RM Broker Name', field:'RM Broker Name', fallback:'Broker ID (B2B)', highlight:true },
+{ key:'branch', label:'Branch / Location', field:'Branch/Location', highlight:true },
+{ key:'rm', label:'RM Name', field:'RM Name', fallback:'Owners[0]', highlight:true },
+{ key:'channel', label:'Channel (B2B)', field:'Channel (B2B)', highlight:true },
 { key:'issue', label:'Issue Type', field:'Issue Type (B2B)', fallback:'Subtype' },
 { key:'subissue',label:'Sub-Issue Type', field:'Sub Issue Type (B2B)' }
 ];
@@ -1093,6 +1967,13 @@ var DRILL_ATTRS =[
 { field:'Sub Issue Type (B2B)', label:'Sub-Issue' }
 ];
 
+function getAttrDefByField(field) {
+for (var i = 0; i < ATTR_DEFS.length; i++) {
+if (ATTR_DEFS[i].field === field) return ATTR_DEFS[i];
+}
+return null;
+}
+
 function renderAttrExplorer(rows, prevRows) {
 var activeAttr = ATTR_DEFS.find(function(a){return a.key===S.attrTab;}) || ATTR_DEFS[0];
 
@@ -1102,7 +1983,7 @@ h += '<div class="attr-explorer">';
 
 h += '<div class="attr-tabs">';
 ATTR_DEFS.forEach(function(a) {
-h += '<button class="attr-tab'+(a.key===S.attrTab?' active':'')+'" onclick="switchAttrTab(\''+a.key+'\')">'+a.label+'</button>';
+h += '<button class="attr-tab'+(a.highlight?' rm-detail':'')+(a.key===S.attrTab?' active':'')+'" onclick="switchAttrTab(\''+a.key+'\')">'+a.label+'</button>';
 });
 h += '</div>';
 
@@ -1110,12 +1991,12 @@ h += '<div class="attr-body">';
 
 var countMap = {};
 rows.forEach(function(r) {
-var v = String(r[activeAttr.field]||r[activeAttr.fallback]||'').trim() || '(not set)';
+var v = getAttrValue(r, activeAttr);
 countMap[v] = (countMap[v]||0) + 1;
 });
 var prevCountMap = {};
 prevRows.forEach(function(r) {
-var v = String(r[activeAttr.field]||r[activeAttr.fallback]||'').trim() || '(not set)';
+var v = getAttrValue(r, activeAttr);
 prevCountMap[v] = (prevCountMap[v]||0) + 1;
 });
 
@@ -1127,7 +2008,10 @@ sorted.forEach(function(val) {
 var p = pct(countMap[val], total);
 var isSelected = S.attrSelected === val;
 h += '<div class="attr-value-card'+(isSelected?' selected':'')+'" onclick="selectAttrValue(\''+escAttr(val)+'\')">';
+h += '<div style="display:flex;justify-content:space-between;gap:8px;align-items:flex-start">';
 h += '<div class="attr-value-name" title="'+escHtml(val)+'">'+escHtml(val)+'</div>';
+h += '<span class="deepdive-indicator">Deepdive</span>';
+h += '</div>';
 h += '<div class="attr-value-count">'+countMap[val]+'</div>';
 h += '<div class="attr-value-pct">'+p+'% of period &nbsp;';
 var prev = prevCountMap[val] || 0;
@@ -1143,13 +2027,14 @@ h += '</div>';
 if (S.attrSelected) {
 h += renderDrillPanel(rows, activeAttr, S.attrSelected);
 }
+h += renderAttrTabInsights(rows, activeAttr, countMap);
 
 h += '</div></div></div>';
 return h;
 }
 
 function renderDrillPanel(rows, activeAttr, selectedVal) {
-var filtered = rows.filter(function(r){ return (String(r[activeAttr.field]||r[activeAttr.fallback]||'').trim()||'(not set)') === selectedVal; });
+var filtered = rows.filter(function(r){ return getAttrValue(r, activeAttr) === selectedVal; });
 var total = filtered.length || 1;
 
 var h = '<div class="drill-panel">';
@@ -1159,23 +2044,55 @@ h += '<div class="drill-grid">';
 DRILL_ATTRS.forEach(function(attr) {
 if (attr.field === activeAttr.field) return;
 var m = {};
-filtered.forEach(function(r) { var v=String(r[attr.field]||'').trim()||'(not set)'; m[v]=(m[v]||0)+1; });
+filtered.forEach(function(r) {
+var def = getAttrDefByField(attr.field) || { field: attr.field };
+var v = def.field ? getAttrValue(r, def) : normalizeMissing(r[attr.field]);
+if (!v) v = 'NA';
+m[v]=(m[v]||0)+1;
+});
 var keys = Object.keys(m).sort(function(a,b){return m[b]-m[a];}).slice(0,7);
 if (!keys.length) return;
 var maxV = m[keys[0]] || 1;
+var jumpAttr = getAttrDefByField(attr.field);
 
 h += '<div class="drill-card"><h4>'+attr.label+'</h4>';
 keys.forEach(function(k) {
 var w = Math.round(m[k]/maxV*100);
 var p2 = pct(m[k], total);
+var clickable = jumpAttr ? ' jumpable' : '';
+var clickOpen = jumpAttr ? ' onclick="jumpToAttrValue(\''+jumpAttr.key+'\', \''+escAttr(k)+'\')"' : '';
 h += '<div class="drill-row">' +
-'<div class="drill-row-label" title="'+escHtml(k)+'">'+escHtml(k)+'</div>' +
+'<div class="drill-row-label'+clickable+'" title="'+escHtml(k)+'"'+clickOpen+'>'+escHtml(k)+'</div>' +
 '<div class="drill-row-bar"><div class="drill-row-bar-fill" style="width:'+w+'%"></div></div>' +
 '<div class="drill-row-val">'+m[k]+'<span style="color:var(--txt3);font-size:10px;margin-left:3px">'+p2+'%</span></div>' +
 '</div>';
 });
 h += '</div>';
 });
+
+if (['broker','branch','rm'].indexOf(activeAttr.key) !== -1) {
+var freq = {};
+filtered.forEach(function(r) {
+var day = getRecordDateKey(r);
+freq[day] = (freq[day] || 0) + 1;
+});
+var days = Object.keys(freq).sort();
+var maxFreq = days.reduce(function(max, day) { return Math.max(max, freq[day]); }, 1);
+var avgPerDay = Math.round((filtered.length / Math.max(1, days.length)) * 10) / 10;
+var peakDay = days.slice().sort(function(a,b){ return freq[b]-freq[a]; })[0] || 'NA';
+
+h += '<div class="drill-card"><h4>Contact Frequency</h4>';
+h += '<div style="font-size:11px;color:var(--txt2);margin-bottom:10px">Avg ' + avgPerDay + ' contacts per active day. Peak day: <strong>' + escHtml(peakDay) + '</strong>' + (peakDay !== 'NA' ? ' (' + freq[peakDay] + ')' : '') + '.</div>';
+days.slice(0, 10).forEach(function(day) {
+var w2 = Math.round(freq[day] / maxFreq * 100);
+h += '<div class="drill-row">' +
+'<div class="drill-row-label">' + escHtml(day) + '</div>' +
+'<div class="drill-row-bar"><div class="drill-row-bar-fill" style="width:' + w2 + '%"></div></div>' +
+'<div class="drill-row-val">' + freq[day] + '</div>' +
+'</div>';
+});
+h += '</div>';
+}
 
 var comments = filtered.map(function(r){ return String(r['Comments']||r['Body']||'').trim(); }).filter(Boolean);
 if (comments.length) {
@@ -1186,6 +2103,40 @@ h += '<div style="font-size:11px;color:var(--txt2);padding:5px 0;border-bottom:1
 h += '</div>';
 }
 
+h += '<div class="drill-card"><h4>Linked Ticket/Conversation Deepdive</h4>' + renderLinkedRecordTable(filtered, S.attrTab !== 'whatsapp') + '</div>';
+
+h += '</div></div>';
+return h;
+}
+
+function renderAttrTabInsights(rows, activeAttr, countMap) {
+var keys = Object.keys(countMap).sort(function(a,b){ return countMap[b] - countMap[a]; });
+if (!keys.length) return '';
+var topValue = keys[0];
+var topCount = countMap[topValue];
+var total = rows.length || 1;
+var topShare = Math.round((topCount / total) * 100);
+var filtered = rows.filter(function(r){ return getAttrValue(r, activeAttr) === topValue; });
+var topIssues = {};
+var topSubIssues = {};
+var topBranches = {};
+filtered.forEach(function(r) {
+var issue = getIssueValue(r);
+var subIssue = getSubIssueValue(r);
+var branch = getBranchValue(r);
+if (issue !== 'NA') topIssues[issue] = (topIssues[issue] || 0) + 1;
+if (subIssue !== 'NA') topSubIssues[subIssue] = (topSubIssues[subIssue] || 0) + 1;
+if (branch !== 'NA') topBranches[branch] = (topBranches[branch] || 0) + 1;
+});
+function topN(map, n) {
+return Object.keys(map).sort(function(a,b){ return map[b] - map[a]; }).slice(0, n).map(function(k){ return k + ' (' + map[k] + ')'; }).join(', ') || 'NA';
+}
+var h = '<div class="issue-panel" style="margin-top:12px"><div class="issue-panel-head"><h3>Tab Deepdive: ' + escHtml(activeAttr.label) + '</h3><span class="deepdive-indicator">Insights</span></div><div class="issue-panel-body">';
+h += '<div class="issue-row"><div><div class="issue-row-label">Top ' + escHtml(activeAttr.label) + '</div><div class="issue-row-meta">' + escHtml(topValue) + ' dominates with ' + topShare + '% share.</div></div><div class="issue-row-count">' + topCount + '</div><div><div class="fill-track"><span style="width:' + topShare + '%"></span></div></div></div>';
+h += '<div class="issue-row"><div><div class="issue-row-label">Top Issue Types</div><div class="issue-row-meta">' + escHtml(topN(topIssues, 3)) + '</div></div><div class="issue-row-count"></div><div></div></div>';
+h += '<div class="issue-row"><div><div class="issue-row-label">Top Sub Issue Types</div><div class="issue-row-meta">' + escHtml(topN(topSubIssues, 3)) + '</div></div><div class="issue-row-count"></div><div></div></div>';
+h += '<div class="issue-row"><div><div class="issue-row-label">Top Branches</div><div class="issue-row-meta">' + escHtml(topN(topBranches, 3)) + '</div></div><div class="issue-row-count"></div><div></div></div>';
+h += '<div class="issue-sample">Tip: click any card above to open a record-level drilldown for this tab.</div>';
 h += '</div></div>';
 return h;
 }
@@ -1201,41 +2152,38 @@ S.attrSelected = (S.attrSelected === val) ? null : val;
 re_render_explorer();
 }
 
+function jumpToAttrValue(attrKey, val) {
+S.attrTab = attrKey;
+S.attrSelected = val;
+re_render_explorer();
+}
+
+function openExplorerFromSummary(attrKey, val) {
+S.attrTab = attrKey;
+S.attrSelected = val;
+re_render_explorer();
+setTimeout(function() {
+var el = document.getElementById('attr-explorer-section');
+if (el && el.scrollIntoView) el.scrollIntoView({ behavior:'smooth', block:'start' });
+}, 30);
+}
+
+function renderSummaryJump(label, attrKey, val, subtle) {
+if (!val || val === 'NA') return '<span class="jump-pill subtle">NA</span>';
+return '<button class="jump-pill'+(subtle?' subtle':'')+'" onclick="openExplorerFromSummary(\''+attrKey+'\', \''+escAttr(val)+'\')" title="Open deepdive for '+escHtml(label)+'">'+escHtml(label)+'</button>';
+}
+
+function renderRMLensJump(label, type, val, subtle) {
+if (!val || val === 'NA') return '<span class="jump-pill subtle">NA</span>';
+return '<button class="jump-pill'+(subtle?' subtle':'')+'" onclick="setRMOpsDeepDive(\''+type+'\', \''+escAttr(val)+'\')" title="Open RM lens deepdive for '+escHtml(label)+'">'+escHtml(label)+'</button>';
+}
+
 function re_render_explorer() {
-var ctRows = filterByDate(S.callTkts, 'Created date', S.dateFrom, S.dateTo);
-var waRows = filterByDate(S.whatsapp, 'Created date', S.dateFrom, S.dateTo);
-var prevCt = filterByDate(S.callTkts,'Created date',S.prevFrom,S.prevTo);
-var prevWa = filterByDate(S.whatsapp,'Created date',S.prevFrom,S.prevTo);
-
-var devrevRows =[];
-var prevDevrev =[];
-if (S.channelTab === 'combined') {
-devrevRows = ctRows.concat(waRows);
-prevDevrev = prevCt.concat(prevWa);
-} else if (S.channelTab === 'calls') {
-devrevRows = ctRows;
-prevDevrev = prevCt;
-} else if (S.channelTab === 'whatsapp') {
-devrevRows = waRows;
-prevDevrev = prevWa;
-}
-
-var explorerHtml = renderAttrExplorer(devrevRows, prevDevrev);
-var commentsHtml = renderCommentsPanel(devrevRows);
-
-var explorerEl = document.getElementById('attr-explorer-section');
-var commentsEl = document.getElementById('comments-section');
-
-if (explorerEl) {
-var tmp = document.createElement('div');
-tmp.innerHTML = explorerHtml;
-explorerEl.replaceWith(tmp.firstChild);
-}
-if (commentsEl) {
-var tmp2 = document.createElement('div');
-tmp2.innerHTML = commentsHtml;
-commentsEl.replaceWith(tmp2.firstChild);
-}
+var y = window.scrollY || window.pageYOffset || 0;
+render();
+window.requestAnimationFrame(function() {
+window.scrollTo(0, y);
+});
 }
 
 // ================================================================
@@ -1270,8 +2218,8 @@ h += '<div style="padding:10px 20px;color:var(--red);font-size:12px">⚠️ AI e
 
 var issueCount = {};
 rows.forEach(function(r){
-var v = String(r['Issue Type (B2B)']||r['Subtype']||r['Issue']||r['Category']||'').trim();
-if (v) issueCount[v]=(issueCount[v]||0)+1;
+var v = getIssueValue(r);
+if (v !== 'NA') issueCount[v]=(issueCount[v]||0)+1;
 });
 var topIssues = Object.keys(issueCount).sort(function(a,b){return issueCount[b]-issueCount[a];}).slice(0,8);
 if (topIssues.length) {
@@ -1289,9 +2237,9 @@ h += '<div style="padding:24px;text-align:center;color:var(--txt3)">No comments 
 } else {
 withComments.slice(0,50).forEach(function(r) {
 var comment = String(r['Comments']||r['Body']||'').trim();
-var rm = String(r['RM Name']||r['Owners[0]']||r['Created by']||'').trim() || '—';
-var broker = String(r['RM Broker Name']||r['Broker ID (B2B)']||'').trim() || '—';
-var issue = String(r['Issue Type (B2B)']||r['Subtype']||r['Issue']||r['Category']||'').trim();
+var rm = getRmValue(r) === 'NA' ? '—' : getRmValue(r);
+var broker = getBrokerValue(r) === 'NA' ? '—' : getBrokerValue(r);
+var issue = getIssueValue(r) === 'NA' ? '' : getIssueValue(r);
 var date = String(r['Created date']||'').substring(0,10);
 
 var isWA = S.whatsapp.indexOf(r) !== -1;
@@ -1315,6 +2263,125 @@ h += '<div style="padding:12px 20px;text-align:center;font-size:11px;color:var(-
 }
 }
 h += '</div></div></div>';
+return h;
+}
+
+function renderCommonIssues(rows) {
+if (!rows.length) return '';
+
+var issueMap = {};
+rows.forEach(function(r) {
+var issue = getIssueValue(r);
+var subIssue = getSubIssueValue(r);
+var broker = getBrokerValue(r);
+var rm = getRmValue(r);
+var branch = getBranchValue(r);
+var channel = getChannelValue(r);
+var comment = String(r['Comments'] || r['Body'] || '').trim();
+var key = issue === 'NA' ? 'NA' : issue + (subIssue !== 'NA' ? ' / ' + subIssue : '');
+if (!issueMap[key]) {
+issueMap[key] = { count:0, brokers:{}, rms:{}, branches:{}, channels:{}, issue:issue, subIssue:subIssue, samples:[] };
+}
+issueMap[key].count++;
+if (broker !== 'NA') issueMap[key].brokers[broker] = (issueMap[key].brokers[broker] || 0) + 1;
+if (rm !== 'NA') issueMap[key].rms[rm] = (issueMap[key].rms[rm] || 0) + 1;
+if (branch !== 'NA') issueMap[key].branches[branch] = (issueMap[key].branches[branch] || 0) + 1;
+if (channel !== 'NA') issueMap[key].channels[channel] = (issueMap[key].channels[channel] || 0) + 1;
+if (comment && issueMap[key].samples.length < 2) issueMap[key].samples.push(comment);
+});
+
+var topIssueKeys = Object.keys(issueMap).filter(function(k){ return k !== 'NA'; }).sort(function(a,b) {
+return issueMap[b].count - issueMap[a].count;
+}).slice(0, 10);
+
+if (!topIssueKeys.length) return '';
+
+function topLabel(map) {
+var keys = Object.keys(map).sort(function(a,b){ return map[b]-map[a]; });
+return keys.length ? keys[0] + ' (' + map[keys[0]] + ')' : 'NA';
+}
+function topKeyOnly(map) {
+var keys = Object.keys(map).sort(function(a,b){ return map[b]-map[a]; });
+return keys.length ? keys[0] : 'NA';
+}
+
+var branchFreq = {};
+var rmFreq = {};
+var brokerFreq = {};
+var channelFreq = {};
+rows.forEach(function(r) {
+var branch = getBranchValue(r);
+var rm = getRmValue(r);
+var broker = getBrokerValue(r);
+var channel = getChannelValue(r);
+if (branch !== 'NA') branchFreq[branch] = (branchFreq[branch] || 0) + 1;
+if (rm !== 'NA') rmFreq[rm] = (rmFreq[rm] || 0) + 1;
+if (broker !== 'NA') brokerFreq[broker] = (brokerFreq[broker] || 0) + 1;
+if (channel !== 'NA') channelFreq[channel] = (channelFreq[channel] || 0) + 1;
+});
+
+var topBranches = Object.keys(branchFreq).sort(function(a,b){ return branchFreq[b]-branchFreq[a]; }).slice(0, 8);
+var topRms = Object.keys(rmFreq).sort(function(a,b){ return rmFreq[b]-rmFreq[a]; }).slice(0, 8);
+var topBrokers = Object.keys(brokerFreq).sort(function(a,b){ return brokerFreq[b]-brokerFreq[a]; }).slice(0, 8);
+var topChannels = Object.keys(channelFreq).sort(function(a,b){ return channelFreq[b]-channelFreq[a]; }).slice(0, 8);
+var maxBranch = topBranches.reduce(function(max, key){ return Math.max(max, branchFreq[key]); }, 1);
+var maxRm = topRms.reduce(function(max, key){ return Math.max(max, rmFreq[key]); }, 1);
+var maxBroker = topBrokers.reduce(function(max, key){ return Math.max(max, brokerFreq[key]); }, 1);
+var maxChannel = topChannels.reduce(function(max, key){ return Math.max(max, channelFreq[key]); }, 1);
+
+var h = '<div id="common-issues-section">';
+h += '<div class="sec-head">📌 Most Common Issues <span>Combined using issue, sub-issue, broker, RM, branch and comments</span></div>';
+h += '<div class="issue-grid">';
+
+h += '<div class="issue-panel"><div class="issue-panel-head"><h3>Issue Patterns</h3><span class="deepdive-indicator">New</span></div><div class="issue-panel-body">';
+topIssueKeys.forEach(function(key) {
+var info = issueMap[key];
+var topBroker = topKeyOnly(info.brokers);
+var topRm = topKeyOnly(info.rms);
+var topBranch = topKeyOnly(info.branches);
+var topChannel = topKeyOnly(info.channels);
+h += '<div class="issue-row">';
+h += '<div><div class="issue-row-label">' + renderSummaryJump(info.issue, 'issue', info.issue) + (info.subIssue !== 'NA' ? renderSummaryJump(info.subIssue, 'subissue', info.subIssue) : '') + '</div>';
+h += '<div class="issue-row-meta">Open deepdives for the issue, sub-issue, broker, RM, branch and channel directly from here.</div>';
+h += '<div class="issue-meta-jumps">' +
+renderSummaryJump('Broker: ' + topLabel(info.brokers), 'broker', topBroker, true) +
+renderSummaryJump('RM: ' + topLabel(info.rms), 'rm', topRm, true) +
+renderSummaryJump('Branch: ' + topLabel(info.branches), 'branch', topBranch, true) +
+renderSummaryJump('Channel: ' + topLabel(info.channels), 'channel', topChannel, true) +
+'</div></div>';
+h += '<div class="issue-row-count">' + info.count + '</div>';
+h += '<div><div class="fill-track"><span style="width:' + Math.min(100, info.count / issueMap[topIssueKeys[0]].count * 100) + '%"></span></div>';
+if (info.samples.length) {
+h += '<div class="issue-sample">' + escHtml(info.samples[0].substring(0, 140)) + (info.samples[0].length > 140 ? '…' : '') + '</div>';
+}
+h += '</div></div>';
+});
+h += '</div></div>';
+
+h += '<div class="issue-panel"><div class="issue-panel-head"><h3>Contact Frequency Hotspots</h3><span style="font-size:11px;color:var(--txt3)">Who is contacting most</span></div><div class="issue-panel-body">';
+h += '<div style="font-size:11px;font-weight:800;color:var(--txt3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px">Top Branches</div>';
+topBranches.forEach(function(key) {
+var pctWidth = Math.round(branchFreq[key] / maxBranch * 100);
+h += '<div class="issue-row"><div><div class="issue-row-label">' + renderSummaryJump(key, 'branch', key) + '</div></div><div class="issue-row-count">' + branchFreq[key] + '</div><div><div class="fill-track"><span style="width:' + pctWidth + '%"></span></div></div></div>';
+});
+h += '<div style="font-size:11px;font-weight:800;color:var(--txt3);text-transform:uppercase;letter-spacing:.6px;margin:18px 0 8px">Top RMs</div>';
+topRms.forEach(function(key) {
+var pctWidth2 = Math.round(rmFreq[key] / maxRm * 100);
+h += '<div class="issue-row"><div><div class="issue-row-label">' + renderSummaryJump(key, 'rm', key) + '</div></div><div class="issue-row-count">' + rmFreq[key] + '</div><div><div class="fill-track"><span style="width:' + pctWidth2 + '%"></span></div></div></div>';
+});
+h += '<div style="font-size:11px;font-weight:800;color:var(--txt3);text-transform:uppercase;letter-spacing:.6px;margin:18px 0 8px">Top Brokers</div>';
+topBrokers.forEach(function(key) {
+var pctWidth3 = Math.round(brokerFreq[key] / maxBroker * 100);
+h += '<div class="issue-row"><div><div class="issue-row-label">' + renderSummaryJump(key, 'broker', key) + '</div></div><div class="issue-row-count">' + brokerFreq[key] + '</div><div><div class="fill-track"><span style="width:' + pctWidth3 + '%"></span></div></div></div>';
+});
+h += '<div style="font-size:11px;font-weight:800;color:var(--txt3);text-transform:uppercase;letter-spacing:.6px;margin:18px 0 8px">Top Channels</div>';
+topChannels.forEach(function(key) {
+var pctWidth4 = Math.round(channelFreq[key] / maxChannel * 100);
+h += '<div class="issue-row"><div><div class="issue-row-label">' + renderSummaryJump(key, 'channel', key) + '</div></div><div class="issue-row-count">' + channelFreq[key] + '</div><div><div class="fill-track"><span style="width:' + pctWidth4 + '%"></span></div></div></div>';
+});
+h += '</div></div>';
+
+h += '</div></div>';
 return h;
 }
 
@@ -1373,24 +2440,204 @@ function escAttr(s) {
 return String(s||'').replace(/'/g,"\\'").replace(/"/g,'&quot;');
 }
 
-// ================================================================
-// UTILS
-// ================================================================
+function parseDateTimeVal(v) {
+if (v == null || v === '') return null;
+if (typeof v === 'number') { var d0 = new Date(v); return isNaN(d0.getTime()) ? null : d0; }
+var t = new Date(String(v).trim());
+if (!isNaN(t.getTime())) return t;
+return parseDate(v);
+}
 
-// ADD THESE TWO BLOCKS:
+function formatShortTsVal(v) {
+var d = parseDateTimeVal(v);
+if (!d) return '';
+return d.toLocaleString('en-IN', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit', hour12: true });
+}
+
+function generateDevRevLink(id) {
+if (!id) return '-';
+var clean = String(id).trim();
+if (!clean) return '-';
+var baseUrl = "https://app.devrev.ai/smallcasebp/";
+return clean.indexOf('TKT-') === 0
+? '<a href="' + baseUrl + 'works/' + clean + '" target="_blank" class="link-style">' + clean + '</a>'
+: '<a href="' + baseUrl + 'inbox/' + clean + '" target="_blank" class="link-style">' + clean + '</a>';
+}
+
+function generateDevRevLinkWithTime(id, createdVal) {
+if (!id) return '-';
+var link = generateDevRevLink(id);
+var ts = formatShortTsVal(createdVal);
+if (!ts) return link;
+return link + ' <span style="font-size:10px;color:var(--txt3);white-space:nowrap">' + ts + '</span>';
+}
+
+function ticketTypeS(r) {
+var t = String(r['Title'] || '').toLowerCase();
+if (t.indexOf('missed') !== -1) return 'Missed';
+if (t.indexOf('aoh') !== -1) return 'AOH';
+if (t.indexOf('answered') !== -1) return 'Answered';
+return 'Other';
+}
+
+function last10DigitsS(str) {
+var dig = String(str || '').replace(/\D/g, '');
+if (dig.length < 10) return '';
+return dig.slice(-10);
+}
+
+function extractPhoneFromTicketS(tkt) {
+var t = last10DigitsS(tkt['Title'] || '');
+if (t.length === 10) return t;
+var r = last10DigitsS(tkt['Reported by[0]'] || '');
+return r.length >= 10 ? r.slice(-10) : '';
+}
+
+function ticketCreatedMsVal(r) {
+var d = parseDateTimeVal(r['Created date']);
+return d ? d.getTime() : NaN;
+}
+
+function ozonetelCallMsVal(r) {
+var d = parseDate(r['Call Date']);
+if (!d) return NaN;
+var st = String(r['Start Time'] || '').trim();
+var m = st.match(/(\d{1,2}):(\d{2})(?::(\d{2}))?/);
+if (m) d.setHours(parseInt(m[1], 10), parseInt(m[2], 10), m[3] ? parseInt(m[3], 10) : 0, 0);
+return d.getTime();
+}
+
+function getRawRecordingUrlS(r) {
+if (!r) return '';
+var keys = ['Recording URL', 'Recording_URL', 'Ozonetel_Link', 'Ozonetel Link', 'Audio URL', 'Call Recording URL'];
+for (var i = 0; i < keys.length; i++) {
+var v = String(r[keys[i]] || '').trim();
+if (v) return v;
+}
+return '';
+}
+
+function findInboundForTicketS(tkt, calls) {
+var phone = extractPhoneFromTicketS(tkt);
+if (phone.length !== 10) return null;
+var ticketMs = ticketCreatedMsVal(tkt);
+if (isNaN(ticketMs)) return null;
+var candidates = calls.filter(function(c) {
+return last10DigitsS(c['Caller No']) === phone && String(c['Call Type'] || '') === 'Inbound';
+});
+var best = null, bestScore = Infinity;
+candidates.forEach(function(c) {
+var cm = ozonetelCallMsVal(c);
+if (isNaN(cm)) return;
+var delta = ticketMs - cm;
+if (delta < 1000 || delta > 120000) return;
+var score = Math.abs(delta - 15000);
+if (score < bestScore) { bestScore = score; best = c; }
+});
+return best;
+}
+
+function findNextProgressiveRecordingS(inboundRow, calls, phone) {
+var t0 = ozonetelCallMsVal(inboundRow);
+if (isNaN(t0)) return '';
+var prog = calls.filter(function(c) {
+return String(c['Call Type'] || '') === 'Progressive' && last10DigitsS(c['Caller No']) === phone && ozonetelCallMsVal(c) > t0;
+}).sort(function(a, b){ return ozonetelCallMsVal(a) - ozonetelCallMsVal(b); });
+for (var i = 0; i < prog.length; i++) {
+var url = getRawRecordingUrlS(prog[i]);
+if (url) return url;
+}
+return '';
+}
+
+function resolveRecordingForCallTicketS(tkt) {
+var direct = getRawRecordingUrlS(tkt);
+if (direct) return direct;
+var calls = excludeInvalidNumber(S.calls || []);
+if (!calls.length) return '';
+var inbound = findInboundForTicketS(tkt, calls);
+if (!inbound) return '';
+var tt = ticketTypeS(tkt);
+if (tt === 'Answered') return getRawRecordingUrlS(inbound) || '';
+if (tt === 'Missed' || tt === 'AOH') {
+var phone = last10DigitsS(inbound['Caller No']);
+var pg = findNextProgressiveRecordingS(inbound, calls, phone);
+if (pg) return pg;
+return getRawRecordingUrlS(inbound) || '';
+}
+return getRawRecordingUrlS(inbound) || '';
+}
+
+function recordingUrlToAnchorS(url) {
+if (!url) return '-';
+return '<a href="' + url + '" target="_blank" class="link-style">▶ Listen</a>';
+}
+
+function getRowDeepDiveId(r) {
+return String(r['Work ID'] || r['WorkID'] || r['ID'] || r['Conversation ID'] || r['Ticket ID'] || '').trim();
+}
+
+function getRowRecordingLink(r) {
+var wid = String(r['Work ID'] || '').trim();
+if (wid.indexOf('TKT-') === 0) {
+return recordingUrlToAnchorS(resolveRecordingForCallTicketS(r));
+}
+var keys = ['Recording URL', 'Recording_URL', 'Ozonetel_Link', 'Ozonetel Link', 'Audio URL', 'Call Recording URL'];
+for (var i = 0; i < keys.length; i++) {
+var v = String(r[keys[i]] || '').trim();
+if (v) return '<a href="' + v + '" target="_blank" class="link-style">▶ Listen</a>';
+}
+return '-';
+}
+
+function renderLinkedRecordTableInner(rows, showRecordingCol, maxRows) {
+var lim = maxRows || 120;
+var h = '<div class="table-wrap"><table><thead><tr><th>Ticket/Conv ID</th><th>Created</th><th>RM Name</th><th>RM Broker Name</th><th>Branch</th><th>Issue Type</th><th>Sub-Issue</th>';
+if (showRecordingCol) h += '<th>Recording</th>';
+h += '</tr></thead><tbody>';
+rows.slice(0, lim).forEach(function(r){
+var id = getRowDeepDiveId(r);
+h += '<tr><td>' + (id ? generateDevRevLinkWithTime(id, r['Created date']) : '-') + '</td>' +
+'<td style="font-size:10px;color:var(--txt3);white-space:nowrap">' + (formatShortTsVal(r['Created date']) || '—') + '</td>' +
+'<td>' + escHtml(getRmValue(r)) + '</td>' +
+'<td>' + escHtml(getBrokerValue(r)) + '</td>' +
+'<td>' + escHtml(getBranchValue(r)) + '</td>' +
+'<td>' + escHtml(getIssueValue(r)) + '</td>' +
+'<td>' + escHtml(getSubIssueValue(r)) + '</td>';
+if (showRecordingCol) h += '<td>' + getRowRecordingLink(r) + '</td>';
+h += '</tr>';
+});
+h += '</tbody></table></div>';
+return h;
+}
+
+function renderLinkedRecordTable(rows, showRecordingCol) {
+if (!rows.length) return '<div class="mini-note">No linked ticket/chat records in this slice.</div>';
+window._linkedRecordSnap = { rows: rows, showRecording: showRecordingCol };
+return '<div class="linked-records-shell"><div class="linked-records-toolbar"><button type="button" class="apply-btn" style="padding:5px 12px;font-size:11px" onclick="expandLinkedRecordsModal()">Expand</button></div><div class="linked-records-scroll">' + renderLinkedRecordTableInner(rows, showRecordingCol, 120) + '</div></div>';
+}
+
+window.expandLinkedRecordsModal = function() {
+if (!window._linkedRecordSnap) return;
+var snap = window._linkedRecordSnap;
+var inner = renderLinkedRecordTableInner(snap.rows, snap.showRecording, 500);
+var ov = document.createElement('div');
+ov.style.cssText = 'position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:600;display:flex;align-items:center;justify-content:center;padding:20px';
+ov.onclick = function(e){ if(e.target===ov) ov.remove(); };
+var panel = document.createElement('div');
+panel.style.cssText = 'background:var(--surface);border-radius:12px;padding:18px;max-width:1100px;width:96%;max-height:90vh;overflow:auto;box-shadow:var(--sh-lg)';
+panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><strong style="font-size:14px">Linked ticket / conversation records</strong><button type="button" style="border:none;background:transparent;font-size:22px;cursor:pointer;line-height:1">&times;</button></div>' + inner;
+panel.querySelector('button').onclick = function(){ ov.remove(); };
+ov.appendChild(panel);
+document.body.appendChild(ov);
+};
+
 var NETWORK_ERROR_STATUSES = ['invalidnumber','networkoutoforder'];
 function excludeInvalidNumber(rows) {
 return rows.filter(function(r) {
 var ds = String(r['Dial Status']||'').trim().toLowerCase();
 return NETWORK_ERROR_STATUSES.indexOf(ds) === -1;
 });
-}
-
-function escHtml(s) {
-return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-function escAttr(s) {
-return String(s||'').replace(/'/g,"\\'").replace(/"/g,'&quot;');
 }
 
 </script>
