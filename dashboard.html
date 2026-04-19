@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>smallcase B2B Growth Dashboard</title>
+<link rel="icon" type="image/png" href="https://i.ibb.co/kgmD6R7s/sc-advanced.png">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -60,6 +61,8 @@
 }
 
 body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--c-bg); color: var(--c-text); font-size: 13px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+.link-style { color: var(--c-blue); text-decoration: none; font-weight: 600; }
+.link-style:hover { text-decoration: underline; }
 .app { display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
 .topbar { background: #0F172A; color: #F8FAFC; padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; border-bottom: 1px solid #1E293B; box-shadow: 0 1px 3px rgba(0,0,0,0.1); z-index: 10; }
 .topbar-left { display: flex; align-items: center; gap: 14px; }
@@ -199,6 +202,45 @@ tfoot tr { background: transparent; }
 .focus-pill.amber { background: var(--c-amber-lt); color: var(--c-amber); }
 .focus-pill.green { background: var(--c-green-lt); color: var(--c-green); }
 .focus-pill:hover { transform: translateY(-1px); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+.daily-front-grid { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr); gap: 14px; align-items: start; }
+.daily-stack { display: grid; gap: 12px; }
+.daily-mini-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.daily-note { font-size: 12px; color: var(--c-text2); line-height: 1.55; }
+.daily-hero-meta { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; justify-content: flex-end; }
+.daily-hero-banner { background:
+linear-gradient(135deg, rgba(10,15,27,0.96) 0%, rgba(22,34,57,0.94) 32%, rgba(13,74,73,0.9) 66%, rgba(78,31,110,0.88) 100%);
+border: 1px solid rgba(148,163,184,0.28);
+box-shadow: 0 14px 34px rgba(15,23,42,0.14); }
+.daily-hero-banner .daily-note,
+.daily-hero-banner .daily-hero-label { color: rgba(226,232,240,0.84); }
+.daily-hero-banner .daily-hero-title { color: #F8FAFC; }
+.daily-tight-card .table-wrap table thead th { padding: 10px 12px; font-size: 10px; }
+.daily-tight-card .table-wrap table tbody td,
+.daily-tight-card .table-wrap table tfoot td { padding: 10px 12px; }
+.modal-panel { background: var(--c-surface); border: 1px solid var(--c-border); border-radius: 14px; padding: 20px 22px; max-height: 85vh; overflow-y: auto; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.14); }
+.modal-panel.compact { padding: 16px 18px; border-radius: 12px; }
+.modal-panel h2 { color: var(--c-navy); }
+.modal-table { width: 100%; border-collapse: collapse; font-size: 12px; text-align: left; }
+.modal-table thead tr { background: var(--c-surface2); border-bottom: 1px solid var(--c-border); }
+.modal-table th { padding: 9px 10px; color: var(--c-text2); font-size: 11px; }
+.modal-table td { padding: 9px 10px; border-bottom: 1px solid var(--c-border); color: var(--c-text); }
+.modal-table tr:last-child td { border-bottom: none; }
+.modal-muted { color: var(--c-text3); }
+.trend-summary { background: var(--c-surface2); border: 1px solid var(--c-border); border-radius: 12px; padding: 12px 14px; margin-bottom: 14px; font-size: 12px; color: var(--c-text2); line-height: 1.6; }
+.compact-drill-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:10px; }
+.compact-drill-card { padding:14px 14px 12px; }
+.compact-drill-card h3 { margin-bottom:12px; padding-bottom:10px; font-size:11px; }
+.compact-bar-row { display:flex; align-items:center; gap:10px; margin-bottom:8px; font-size:11px; }
+.compact-bar-row .bar-label { min-width:90px; font-size:11px; }
+.compact-bar-row .bar-track { height:14px; }
+.compact-bar-row .bar-val, .compact-bar-row .bar-pct { min-width:34px; font-size:10px; }
+.scroll-panel-10 { max-height: 430px; overflow: auto; border:1px solid var(--c-border); border-radius: var(--radius); box-shadow: var(--shadow-sm); background: var(--c-surface); }
+.scroll-panel-10 table { margin:0; }
+.agent-modal-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:10px; margin-bottom:14px; }
+.agent-modal-stat { background:var(--c-surface2); border:1px solid var(--c-border); border-radius:10px; padding:10px 12px; }
+.agent-modal-stat .lbl { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.6px; color:var(--c-text3); }
+.agent-modal-stat .val { font-size:22px; font-weight:800; color:var(--c-navy); margin-top:4px; }
+.agent-modal-stat .sub { font-size:11px; color:var(--c-text2); margin-top:3px; }
 .bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; font-size: 12px; }
 .bar-row .bar-label { min-width: 140px; color: var(--c-text); font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .bar-row .bar-track { flex: 1; background: var(--c-surface2); border-radius: 6px; height: 16px; overflow: hidden; }
@@ -219,7 +261,7 @@ tfoot tr { background: transparent; }
 .info-banner { background: var(--c-surface); border: 1px solid var(--c-border); border-left: 4px solid var(--c-blue); border-radius: var(--radius-sm); padding: 14px 20px; margin-bottom: 20px; font-size: 12px; color: var(--c-text2); display: flex; align-items: center; gap: 12px; box-shadow: var(--shadow-sm); }
 .info-banner strong { color: var(--c-navy); }
 .table-card table tbody tr { background: transparent; }
-@media(max-width:1200px){ .ins-grid.cols-3 { grid-template-columns: 1fr 1fr; } }
+@media(max-width:1200px){ .ins-grid.cols-3 { grid-template-columns: 1fr 1fr; } .daily-front-grid, .daily-mini-grid { grid-template-columns: 1fr; } .daily-hero-meta { justify-content: flex-start; } }
 @media(max-width:900px){ .daily-grid, .two-col, .two-col.wide-left, .charts-row.cols-3, .intel-grid, .ins-grid.cols-2, .ins-grid.cols-3 { grid-template-columns: 1fr; } .kpi-row.cols-5, .kpi-row.cols-6 { grid-template-columns: repeat(3, 1fr); } .topbar { padding: 0 16px; } .content { padding: 16px; } }
 @media(max-width:600px){ .kpi-row.cols-4, .kpi-row.cols-5, .kpi-row.cols-6 { grid-template-columns: repeat(2, 1fr); } }
 </style>
@@ -230,7 +272,12 @@ tfoot tr { background: transparent; }
 <!-- Top bar -->
 <div class="topbar">
 <div class="topbar-left">
-<img src="data:image/png;base64,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" class="topbar-logo" alt="smallcase logo" style="object-fit:contain;background:none;box-shadow:none;height:32px;width:32px;">
+<div class="topbar-logo">
+<a href="https://ibb.co/W4bPXtz5">
+<a href="https://ibb.co/kgmD6R7s"><img src="https://i.ibb.co/kgmD6R7s/sc-advanced.png" alt="Logo" 
+style="height: 40px; width: auto; object-fit: contain; vertical-align: middle;">
+</a>
+</div>
 <h1>smallcase B2B Growth Dashboard</h1>
 <button onclick="window.open('https://script.google.com/a/macros/smallcase.com/s/AKfycbxa8Zr_fGMVAwL_P3HKAT9aPv0yz1KA23DfMFVW4J_yIMnqbxxA3-CVCO0XpuEHbpmm/exec?page=simple', '_blank')" style="background: linear-gradient(135deg, #F59E0B, #D97706); color: #fff; border: none; font-weight: 700; font-size: 12px; padding: 4px 14px; border-radius: 20px; cursor: pointer; box-shadow: 0 2px 6px rgba(245,158,11,0.4); display: flex; align-items: center; margin-left: 8px;">&#128640; B2B Weekly Pulse ↗</button>
 </div>
@@ -257,13 +304,12 @@ tfoot tr { background: transparent; }
 <button class="tab-btn" onclick="showTab('calls')">Calls</button>
 <button class="tab-btn" onclick="showTab('whatsapp')">WhatsApp</button>
 <button class="tab-btn" onclick="showTab('calltkts')">Call Tickets</button>
-<button class="tab-btn" onclick="showTab('caller')">Caller Intelligence</button>
+<button class="tab-btn" onclick="showTab('intelligence')">&#128269; Intelligence Hub</button>
 <button class="tab-btn" onclick="showTab('emails')">Care Emails</button>
-<button class="tab-btn" onclick="showTab('insights')">Insights</button>
-<button class="tab-btn" onclick="showTab('insightsnew')">&#128200; Insights New</button>
 <button class="tab-btn" onclick="showTab('comments')">&#128172; Comments</button>
 <button class="tab-btn" onclick="showTab('monthly')">Monthly View</button>
 <button class="tab-btn" onclick="showTab('agentperf')">Agent Performance</button>
+<button class="tab-btn" onclick="showTab('strategy')">Strategy</button>
 <button class="tab-btn" onclick="showTab('ai')">AI Summary</button>
 <button class="tab-btn" onclick="showTab('guide')">&#128203; Dashboard Guide</button>
 </div>
@@ -467,7 +513,7 @@ return rows.filter(function(r) { return inRange(r[dateCol]); });
 function showTab(name) {
 G.activeTab = name;
 document.querySelectorAll('.tab-btn').forEach(function(b,i) {
-var tabs =['daily','calls','whatsapp','calltkts','caller','emails','insights','insightsnew','comments','monthly','agentperf','ai','guide'];
+var tabs =['daily','calls','whatsapp','calltkts','intelligence','emails','comments','monthly','agentperf','strategy','ai','guide'];
 b.classList.toggle('active', tabs[i] === name);
 });
 renderTab(name);
@@ -481,15 +527,212 @@ if (name === 'daily') renderDaily(c);
 else if (name === 'calls') renderCalls(c);
 else if (name === 'whatsapp') renderWhatsapp(c);
 else if (name === 'calltkts') renderCallTkts(c);
-else if (name === 'caller') renderCaller(c);
+else if (name === 'intelligence' || name === 'caller') renderIntelligence(c);
 else if (name === 'emails') renderEmails(c);
-else if (name === 'insights') renderInsights(c);
-else if (name === 'insightsnew') renderInsightsNew(c);
 else if (name === 'comments') renderComments(c);
 else if (name === 'monthly') renderMonthly(c);
 else if (name === 'agentperf') renderAgentPerf(c);
+else if (name === 'strategy') renderStrategy(c);
 else if (name === 'ai') renderAI(c);
 else if (name === 'guide') renderGuide(c);
+}
+
+function renderIntelligence(c) {
+renderInsightsNew(c);
+}
+
+function renderStrategy(c) {
+var ctRows = filterByDate(G.callTkts, 'Created date');
+var waRows = filterByDate(G.whatsapp, 'Created date');
+var emRows = filterByDate(G.careEmails, 'Created date');
+var calls = excludeInvalidNumber(filterByDate(G.calls, 'Call Date'));
+var all = ctRows.concat(waRows).concat(emRows);
+var html = filterBarHTML('strategy');
+if (!all.length) {
+c.innerHTML = html + '<div class="table-card" style="padding:18px;color:var(--c-text3)">No records available in selected period.</div>';
+return;
+}
+
+function stageName(r) { return String(r['Stage'] || '').toLowerCase(); }
+function isOpen(r) { var s = stageName(r); return s && ['resolved','archived','cancelled','canceled'].indexOf(s) === -1; }
+function getIssue(r) { return String(r['Issue Type (B2B)'] || r['Issue'] || r['Subtype'] || 'NA').trim() || 'NA'; }
+function getBroker(r) { return String(r['RM Broker Name'] || r['Broker Name[0]'] || r['Broker ID (B2B)'] || r['Broker ID'] || 'NA').trim() || 'NA'; }
+function getBranch(r) { return String(r['Branch/Location'] || 'NA').trim() || 'NA'; }
+function toNum(v){ var n=parseFloat(v); return isNaN(n)?0:n; }
+
+var backlog = { d01:0, d23:0, d47:0, d8:0 };
+var now = new Date();
+var sevIssue = {};
+var pain = {};
+var repeat = {};
+all.forEach(function(r){
+var created = parseDate(r['Created date']);
+if (isOpen(r) && created) {
+var age = Math.floor((now.getTime() - created.getTime()) / 86400000);
+if (age <= 1) backlog.d01++;
+else if (age <= 3) backlog.d23++;
+else if (age <= 7) backlog.d47++;
+else backlog.d8++;
+}
+var sev = String(r['Severity.label'] || 'Unspecified').trim() || 'Unspecified';
+var issue = getIssue(r);
+var si = sev + '||' + issue;
+sevIssue[si] = (sevIssue[si] || 0) + 1;
+var broker = getBroker(r), branch = getBranch(r);
+if (!pain[broker]) pain[broker] = { volume:0, slaMiss:0, escal:0, repeat:0, branch: branch };
+pain[broker].volume++;
+if (String(r['Metric Status[0]'] || '').toLowerCase() === 'breached') pain[broker].slaMiss++;
+if (toNum(r['Escalation threat (AI)']) > 0) pain[broker].escal++;
+var rk = broker + '||' + issue;
+repeat[rk] = (repeat[rk] || 0) + 1;
+});
+Object.keys(repeat).forEach(function(k){
+if (repeat[k] < 2) return;
+var b = k.split('||')[0];
+if (pain[b]) pain[b].repeat += repeat[k] - 1;
+});
+var painRows = Object.keys(pain).map(function(b){
+var p = pain[b];
+var score = p.volume * 1 + p.slaMiss * 2 + p.escal * 2 + p.repeat * 1.5;
+return { broker:b, score:Math.round(score*10)/10, volume:p.volume, slaMiss:p.slaMiss, escal:p.escal, repeat:p.repeat, branch:p.branch };
+}).sort(function(a,b){ return b.score - a.score; }).slice(0, 12);
+
+var mix = [
+{label:'Inbound Calls', val:calls.filter(function(r){return r['Call Type']==='Inbound';}).length, color:'var(--c-blue)'},
+{label:'Call Tickets', val:ctRows.length, color:'var(--c-purple)'},
+{label:'WhatsApp', val:waRows.length, color:'var(--c-teal)'},
+{label:'Care Emails', val:emRows.length, color:'var(--c-amber)'}
+];
+var maxMix = Math.max.apply(null, mix.map(function(m){return m.val;})) || 1;
+var topSevIssue = Object.keys(sevIssue).sort(function(a,b){ return sevIssue[b]-sevIssue[a]; }).slice(0,10);
+var maxSev = topSevIssue.length ? sevIssue[topSevIssue[0]] : 1;
+
+html += '<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;max-width:760px;margin-bottom:18px;align-items:stretch">' +
+kpiCard('Open Backlog 0-1d','green', backlog.d01,'Fresh open items') +
+kpiCard('Open Backlog 2-3d','amber', backlog.d23,'Needs close monitoring') +
+kpiCard('Open Backlog 4-7d','red', backlog.d47,'Escalation risk') +
+kpiCard('Open Backlog 8d+','red', backlog.d8,'Critical aging bucket') +
+'</div>';
+
+html += '<div class="table-card"><h3>Channel Mix Funnel</h3><div style="padding:12px 14px">';
+mix.forEach(function(m){
+var w = Math.round((m.val / maxMix) * 100);
+html += '<div style="display:grid;grid-template-columns:180px 1fr 70px;gap:10px;align-items:center;padding:6px 0">' +
+'<div style="font-size:12px;font-weight:600;color:var(--c-navy)">'+m.label+'</div>' +
+'<div class="compare-track"><div class="compare-fill-cur" style="width:'+w+'%;background:'+m.color+'"></div></div>' +
+'<div style="text-align:right;font-weight:700">'+m.val+'</div></div>';
+});
+html += '</div></div>';
+
+html += '<div class="table-card"><h3>Broker Pain Index (top 12)</h3><div class="table-wrap"><table><thead><tr>' +
+'<th>Broker</th><th>Branch</th><th>Pain Score</th><th>Volume</th><th>SLA Miss</th><th>Escalation Risk</th><th>Repeat Issues</th>' +
+'</tr></thead><tbody>';
+painRows.forEach(function(r){
+html += '<tr><td>'+r.broker+'</td><td>'+r.branch+'</td><td><strong>'+r.score+'</strong></td><td>'+r.volume+'</td><td>'+r.slaMiss+'</td><td>'+r.escal+'</td><td>'+r.repeat+'</td></tr>';
+});
+html += '</tbody></table></div></div>';
+
+html += '<div class="table-card"><h3>Severity x Issue Heat Signals</h3><div style="padding:10px 14px">';
+topSevIssue.forEach(function(k){
+var p = k.split('||');
+var w = Math.round((sevIssue[k] / maxSev) * 100);
+html += '<div style="display:grid;grid-template-columns:160px 1fr 50px;gap:12px;align-items:center;padding:6px 0">' +
+'<div><span class="badge badge-gray">'+p[0]+'</span> <span style="font-size:12px">'+p[1]+'</span></div>' +
+'<div class="compare-track"><div class="compare-fill-cur" style="width:'+w+'%;background:var(--c-red)"></div></div>' +
+'<div style="text-align:right;font-weight:700">'+sevIssue[k]+'</div></div>';
+});
+html += '</div></div>';
+
+var breached = 0, atRisk = 0, healthy = 0;
+var repeat7 = {};
+var agentPerf = {};
+all.forEach(function(r){
+var m0 = String(r['Metric Status[0]'] || '').toLowerCase();
+var m1 = String(r['Metric Status[1]'] || '').toLowerCase();
+if (m0 === 'breached' || m1 === 'breached') breached++;
+else {
+var c0 = toNum(r['Completed In[0]']);
+var c1 = toNum(r['Completed In[1]']);
+if ((c0 > 0 && c0 <= 240) || (c1 > 0 && c1 <= 240)) atRisk++;
+else healthy++;
+}
+
+var broker = getBroker(r);
+var issue = getIssue(r);
+var cd = parseDate(r['Created date']);
+if (broker !== 'NA' && issue !== 'NA' && cd) {
+var rk = broker + '||' + issue;
+if (!repeat7[rk]) repeat7[rk] = [];
+repeat7[rk].push(cd);
+}
+
+var ag = String(r['Owner[0]'] || r['Owners[0]'] || 'Unassigned').trim() || 'Unassigned';
+if (!agentPerf[ag]) agentPerf[ag] = {vol:0, qa:[], speed:[], sla:0};
+agentPerf[ag].vol++;
+var qa = toNum(r['Overall Score (45)']);
+if (qa > 0) agentPerf[ag].qa.push(qa);
+var sp = toNum(r['Completed In[1]']) || toNum(r['Completed In[0]']);
+if (sp > 0) agentPerf[ag].speed.push(sp);
+if (String(r['Metric Status[0]'] || '').toLowerCase() !== 'breached') agentPerf[ag].sla++;
+});
+
+var repeat7Rows = [];
+Object.keys(repeat7).forEach(function(k){
+var arr = repeat7[k].sort(function(a,b){ return a - b; });
+var count = 0;
+for (var i = 1; i < arr.length; i++) {
+if ((arr[i] - arr[i-1]) / 86400000 <= 7) count++;
+}
+if (count > 0) {
+var p = k.split('||');
+repeat7Rows.push({ broker:p[0], issue:p[1], count:count });
+}
+});
+repeat7Rows.sort(function(a,b){ return b.count - a.count; });
+repeat7Rows = repeat7Rows.slice(0, 12);
+
+var agentRows = Object.keys(agentPerf).map(function(a){
+var x = agentPerf[a];
+return {
+agent: a,
+vol: x.vol,
+qa: x.qa.length ? fmt1(avg(x.qa)) : 0,
+speed: x.speed.length ? fmt1(avg(x.speed)) : 0,
+sla: x.vol ? fmt1((x.sla / x.vol) * 100) : 0
+};
+}).filter(function(r){ return r.vol >= 5; }).sort(function(a,b){ return b.vol - a.vol; }).slice(0, 20);
+
+html += '<div class="kpi-grid c3">' +
+kpiCard('SLA Breached','red', breached,'Immediate action') +
+kpiCard('SLA At Risk (<4h)','amber', atRisk,'Proactive follow-up') +
+kpiCard('SLA Healthy','green', healthy,'No immediate risk') +
+'</div>';
+
+html += '<div class="table-card"><h3>Issue Reopen Loops (for process correction, not customer retention)</h3><div class="table-wrap"><table><thead><tr>' +
+'<th>Broker</th><th>Issue</th><th>Repeat Count</th></tr></thead><tbody>';
+if (!repeat7Rows.length) {
+html += '<tr><td colspan="3" style="text-align:center;color:var(--c-text3)">No significant issue reopen loops in selected period.</td></tr>';
+} else {
+repeat7Rows.forEach(function(r){
+html += '<tr><td>'+r.broker+'</td><td>'+r.issue+'</td><td><strong>'+r.count+'</strong></td></tr>';
+});
+}
+html += '</tbody></table></div></div>';
+
+html += '<div class="table-card"><h3>Agent Quality vs Speed Matrix (table view)</h3><div class="table-wrap"><table><thead><tr>' +
+'<th>Agent</th><th>Volume</th><th>Avg QA (/45)</th><th>Avg Resolution (mins)</th><th>SLA Hit %</th><th>Quadrant</th>' +
+'</tr></thead><tbody>';
+agentRows.forEach(function(r){
+var q = 'Balanced';
+if (r.qa >= 30 && r.speed <= 240) q = 'High quality + Fast';
+else if (r.qa >= 30 && r.speed > 240) q = 'High quality + Slow';
+else if (r.qa < 30 && r.speed <= 240) q = 'Fast + Quality risk';
+else q = 'Needs coaching';
+html += '<tr><td>'+r.agent+'</td><td>'+r.vol+'</td><td>'+r.qa+'</td><td>'+r.speed+'</td><td>'+r.sla+'%</td><td><span class="badge badge-gray">'+q+'</span></td></tr>';
+});
+html += '</tbody></table></div></div>';
+
+c.innerHTML = html;
 }
 
 function destroyCharts() {
@@ -656,30 +899,31 @@ else if(mn==='Resolution time') waRes.push(ci);
 var frt = emRows.map(function(r){return parseFloat(r['Completed In[0]']);}).filter(function(v){return !isNaN(v)&&v>=0;});
 
 var html = filterBarHTML('daily');
-html += '<div style="display:grid;grid-template-columns:minmax(0,3fr) minmax(0,5fr);gap:24px;margin-bottom:12px;align-items:start">';
+html += '<div class="daily-hero-banner" style="border-radius:18px;padding:18px 20px;margin-bottom:14px">';
+html += '<div style="display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap">';
+html += '<div><div class="daily-hero-label" style="font-size:11px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;margin-bottom:6px">Daily Report</div><div class="daily-hero-title" style="font-size:24px;font-weight:800;letter-spacing:-.6px;margin-bottom:6px">' + dateLabel + '</div><div class="daily-note" style="max-width:760px">Inbound, progressive, WhatsApp, care emails, breaks and DevRev issue patterns in one front page. The layout below is compressed for quick scan without the large blank zones from the older view.</div></div>';
+html += '<div class="daily-hero-meta">';
+html += '<span class="badge badge-blue" style="padding:7px 12px">Inbound ' + inbound.length + '</span>';
+html += '<span class="badge badge-green" style="padding:7px 12px">Answered ' + answered_ib.length + '</span>';
+html += '<span class="badge badge-amber" style="padding:7px 12px">Progressive ' + progressive.length + '</span>';
+html += '<span class="badge badge-blue" style="padding:7px 12px;background:var(--c-teal-lt);color:var(--c-teal)">WhatsApp ' + waRows.length + '</span>';
+html += '<span class="badge badge-amber" style="padding:7px 12px">Emails ' + emRows.length + '</span>';
+html += '</div></div></div>';
 
 function buildSection(title, color, rowsHtml) {
-return '<div class="metrics-table-card" style="border-left:4px solid '+color+';margin-bottom:10px">' +
-'<div class="section-label" style="background:transparent;color:var(--c-navy);border-bottom:1px solid var(--c-border);padding:9px 12px;font-size:11px">'+title+'</div>' +
-'<table style="font-size:11px"><colgroup><col style="width:65%"><col style="width:35%"></colgroup>'+rowsHtml.replace(/<td/g,'<td style="padding:7px 12px"')+'</table></div>';
+return '<div class="metrics-table-card" style="border-top:4px solid '+color+';margin-bottom:0;background:var(--c-surface)">' +
+'<div class="section-label" style="background:transparent;color:var(--c-navy);border-bottom:1px solid var(--c-border);padding:10px 14px;font-size:11px">'+title+'</div>' +
+'<table style="font-size:11px"><colgroup><col style="width:65%"><col style="width:35%"></colgroup>'+rowsHtml.replace(/<td/g,'<td style="padding:8px 14px"')+'</table></div>';
 }
 
 var callsConnected = answered_ib.length + progAns.length;
 var callsAbandoned = abandoned.length;
-
-var leftHtml = '<div style="margin-bottom:16px;font-size:14px;font-weight:700;color:var(--c-navy);letter-spacing:0.5px">DAILY REPORT &mdash; '+dateLabel+'</div>';
-
-// LEFT COLUMN: Total Calls | Inbound | Progressive
-// RIGHT COLUMN: WhatsApp | Care Emails | AHT / Timing
-leftHtml += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:0">';
-
-// Column 1
-leftHtml += '<div style="display:flex;flex-direction:column;gap:12px">';
-leftHtml += buildSection('Total Calls', 'var(--c-navy)',
+var coreCards = '';
+coreCards += buildSection('Total Calls', 'var(--c-navy)',
 '<tr><td>Inbound + Progressive</td><td><strong>' + (inbound.length + progressive.length) + '</strong></td></tr>' +
 '<tr><td>Calls Connected</td><td><strong style="color:var(--c-green)">' + callsConnected + '</strong></td></tr>' +
 '<tr><td>Calls Abandoned</td><td><strong style="color:var(--c-red)">' + callsAbandoned + '</strong></td></tr>');
-leftHtml += buildSection('Inbound', 'var(--c-blue)',
+coreCards += buildSection('Inbound', 'var(--c-blue)',
 '<tr><td>Inbound Calls</td><td><div style="display:flex;align-items:center;justify-content:flex-end">' + inbound.length + inboundDelta + '</div></td></tr>' +
 '<tr><td>AOH Calls</td><td>' + aoh.length + '</td></tr>' +
 '<tr><td>Abandoned</td><td>' + abandoned.length + '</td></tr>' +
@@ -687,25 +931,7 @@ leftHtml += buildSection('Inbound', 'var(--c-blue)',
 '<tr><td>Abandoned by Agent</td><td>' + abandoned.filter(function(r){ var d=String(r["Agent Dial Status"]||"").toLowerCase(); return d==="noanswer"||d==="user_disconnected"||d==="maxdialtimeexceeded"; }).length + '</td></tr>' +
 '<tr><td>Abandoned by User</td><td>' + abandoned.filter(function(r){ var d=String(r["Customer Dial Status"]||"").toLowerCase(); return d==="user_disconnected"||d==="normalunspecified"||d==="noanswer"; }).length + '</td></tr>' +
 '<tr><td>Abandoned %</td><td>' + (inbound.length ? pct(abandoned.length, inbound.length)+'%' : '-') + '</td></tr>');
-leftHtml += buildSection('Progressive', 'var(--c-green)',
-'<tr><td>Progressive Attempted</td><td>' + progressive.length + '</td></tr>' +
-'<tr><td>PG Answered</td><td>' + progAns.length + '</td></tr>' +
-'<tr><td>PG Unanswered (Agent)</td><td>' + pgAgMiss + '</td></tr>' +
-'<tr><td>PG Unanswered (User)</td><td>' + pgUsrMiss + '</td></tr>' +
-'<tr><td>PG Unanswered (Other)</td><td>' + pgOtherReasons + '</td></tr>' +
-'<tr><td>Progressive Avg AHT</td><td>' + (progAhtArr.length ? minsToHMS(avg(progAhtArr)) : '-') + '</td></tr>');
-leftHtml += '</div>';
-
-// Column 2
-leftHtml += '<div style="display:flex;flex-direction:column;gap:12px">';
-leftHtml += buildSection('WhatsApp', 'var(--c-teal)',
-'<tr><td>Total Chats</td><td>' + waRows.length + '</td></tr>' +
-'<tr><td>Avg FRT</td><td>'+(waFrt.length?fmt1(avg(waFrt))+' min':'-')+'</td></tr>' +
-'<tr><td>Avg Resolution</td><td>'+(waRes.length?fmt1(avg(waRes))+' min':'-')+'</td></tr>');
-leftHtml += buildSection('Care Emails', 'var(--c-amber)',
-'<tr><td>Total Tickets</td><td>' + emRows.length + '</td></tr>' +
-'<tr><td>Avg FRT</td><td>' + (frt.length ? fmt1(avg(frt))+' min' : '-') + '</td></tr>');
-leftHtml += buildSection('AHT / Timing', 'var(--c-purple)',
+coreCards += buildSection('AHT / Timing', 'var(--c-purple)',
 '<tr><td>Average AHT</td><td><div style="display:flex;align-items:center;justify-content:flex-end">' + (ahtAnswered.length ? minsToHMS(avg(ahtAnswered)) : '-') + ahtDelta + '</div></td></tr>' +
 '<tr><td>Median AHT</td><td>' + (ahtArr.length ? minsToHMS(median(ahtArr)) : '-') + '</td></tr>' +
 '<tr><td>90th Percentile AHT</td><td>' + (ahtArr.length ? minsToHMS(percentile(ahtArr,90)) : '-') + '</td></tr>' +
@@ -713,15 +939,33 @@ leftHtml += buildSection('AHT / Timing', 'var(--c-purple)',
 '<tr><td>Average Hold Time</td><td>' + (holdArr.length ? minsToHMS(avg(holdArr)) : '-') + '</td></tr>' +
 '<tr><td>Avg Queue (Answered)</td><td>' + (queueAns.length ? minsToHMS(avg(queueAns)) : '-') + '</td></tr>' +
 '<tr><td>Avg Queue (Unanswered)</td><td>' + (queueUnans.length ? minsToHMS(avg(queueUnans)) : '-') + '</td></tr>');
-leftHtml += '</div>';
-
-leftHtml += '</div>'; // end 2-col grid
-
-html += '<div style="flex:1; min-width:0; font-size:11.5px;">' + leftHtml + '</div>';
-
-html += '<div style="display:flex;flex-direction:column;gap:12px;min-width:0">';
-
-html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start">';
+coreCards += buildSection('Progressive', 'var(--c-green)',
+'<tr><td>Progressive Attempted</td><td>' + progressive.length + '</td></tr>' +
+'<tr><td>PG Answered</td><td>' + progAns.length + '</td></tr>' +
+'<tr><td>PG Unanswered (Agent)</td><td>' + pgAgMiss + '</td></tr>' +
+'<tr><td>PG Unanswered (User)</td><td>' + pgUsrMiss + '</td></tr>' +
+'<tr><td>PG Unanswered (Other)</td><td>' + pgOtherReasons + '</td></tr>' +
+'<tr><td>Progressive Avg AHT</td><td>' + (progAhtArr.length ? minsToHMS(avg(progAhtArr)) : '-') + '</td></tr>');
+coreCards += buildSection('WhatsApp', 'var(--c-teal)',
+'<tr><td>Total Chats</td><td>' + waRows.length + '</td></tr>' +
+'<tr><td>Avg FRT</td><td>'+(waFrt.length?fmt1(avg(waFrt))+' min':'-')+'</td></tr>' +
+'<tr><td>Avg Resolution</td><td>'+(waRes.length?fmt1(avg(waRes))+' min':'-')+'</td></tr>');
+coreCards += buildSection('Care Emails', 'var(--c-amber)',
+'<tr><td>Total Tickets</td><td>' + emRows.length + '</td></tr>' +
+'<tr><td>Avg FRT</td><td>' + (frt.length ? fmt1(avg(frt))+' min' : '-') + '</td></tr>');
+html += '<div class="daily-front-grid">';
+html += '<div class="daily-stack">';
+html += '<div class="section-head" style="margin:0 0 10px">Core Operations Snapshot</div>';
+html += '<div class="daily-mini-grid">' + coreCards + '</div>';
+html += '<div>';
+html += '<div class="section-head" style="margin:14px 0 10px">DevRev Daily Top 3</div>';
+html += '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px">';
+html += buildDailyCompactCard('Call Tickets', filterByDate(G.callTkts,'Created date'), 'ct');
+html += buildDailyCompactCard('WhatsApp', waRows, 'wa');
+html += '</div>';
+html += '</div>';
+html += '</div>';
+html += '<div class="daily-stack">';
 var ibMap2={}, ibTA=0, ibTU=0;
 inbound.forEach(function(r){
 var a=r['Agent']||'Missed in Queue';
@@ -737,7 +981,7 @@ if (x.a === 'Missed in Queue') return -1;
 if (y.a === 'Missed in Queue') return 1;
 return y.rate-x.rate;
 });
-html += '<div class="table-card"><h3>Inbound — Agent Breakdown</h3><div class="table-wrap">' +
+html += '<div class="table-card daily-tight-card"><h3>Inbound — Agent Breakdown</h3><div class="table-wrap">' +
 '<table><thead><tr><th>Agent</th><th>Ans</th><th>Unans</th><th>Total</th><th>Rate</th></tr></thead><tbody>';
 ibAgRows.forEach(function(ag){
 var isMissed = ag.a === 'Missed in Queue';
@@ -765,7 +1009,7 @@ var ag=pgMap2[a],tot=ag.ans+ag.ua+ag.uu;
 pgTA+=ag.ans; pgTUA+=ag.ua; pgTUU+=ag.uu;
 return {a:a,ans:ag.ans,ua:ag.ua,uu:ag.uu,tot:tot,rate:pct(ag.ans,tot)};
 }).sort(function(x,y){return y.rate-x.rate;});
-html += '<div class="table-card"><h3>Progressive — Agent Breakdown</h3><div class="table-wrap">' +
+html += '<div class="table-card daily-tight-card"><h3>Progressive — Agent Breakdown</h3><div class="table-wrap">' +
 '<table><thead><tr><th>Agent</th><th>Ans</th><th>UA(Ag)</th><th>UA(User)</th><th>Total</th><th>Rate</th></tr></thead><tbody>';
 pgAgRows.forEach(function(ag){
 html+='<tr><td><strong>'+ag.a+'</strong></td><td>'+ag.ans+'</td><td>'+(ag.ua||'-')+'</td><td>'+(ag.uu||'-')+'</td><td>'+ag.tot+'</td>'+
@@ -775,15 +1019,7 @@ var pgTot=pgTA+pgTUA+pgTUU;
 html+='</tbody><tfoot><tr><td><strong>Total</strong></td><td>'+pgTA+'</td><td>'+(pgTUA||'-')+'</td><td>'+(pgTUU||'-')+'</td><td>'+pgTot+'</td>'+
 '<td><strong>'+pct(pgTA,pgTot)+'%</strong></td></tr></tfoot></table></div></div>';
 
-html += '</div>';
-
-html += '<div style="margin-top:12px;margin-bottom:12px">' + buildBreaksTable(filterByDate(G.breaks ||[], 'Date')) + '</div>';
-
-html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">';
-html += buildDailyCompactCard('Call Tickets', filterByDate(G.callTkts,'Created date'), 'ct');
-html += buildDailyCompactCard('WhatsApp', waRows, 'wa');
-html += '</div>';
-
+html += '<div style="margin-top:0">' + buildBreaksTable(filterByDate(G.breaks ||[], 'Date')) + '</div>';
 html += '</div>';
 html += '</div>';
 
@@ -865,10 +1101,10 @@ overlay.id = 'dd-overlay';
 overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:999;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)';
 overlay.onclick = function(e){ if(e.target===overlay) overlay.remove(); };
 
-var html = '<div style="background:#fff;border-radius:12px;padding:24px;width:600px;max-height:80vh;overflow-y:auto;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1)">';
-html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><h2 style="margin:0;font-size:16px;color:#0F172A">'+metric+' (Agent Breakdown)</h2><button onclick="document.getElementById(\'dd-overlay\').remove()" style="background:none;border:none;font-size:24px;color:#94A3B8;cursor:pointer">&times;</button></div>';
-html += '<table style="width:100%;border-collapse:collapse;font-size:12px;text-align:left"><thead><tr style="background:#f1f5f9;border-bottom:1px solid #cbd5e1">';
-html += '<th style="padding:10px 12px;color:#475569">Agent</th><th style="padding:10px 12px;text-align:right;color:#475569">Value</th></tr></thead><tbody>';
+var sliceRows = ozonetelRowsForCallsMetric(metric, rows);
+var html = '<div class="modal-panel compact" style="width:min(520px,90vw)">';
+html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><h2 style="margin:0;font-size:15px">'+metric+' (Agent Breakdown)</h2><button onclick="document.getElementById(\'dd-overlay\').remove()" style="background:none;border:none;font-size:22px;color:var(--c-text3);cursor:pointer">&times;</button></div>';
+html += '<table class="modal-table"><thead><tr><th>Agent</th><th style="text-align:right">Value</th></tr></thead><tbody>';
 
 var body =[];
 Object.keys(m).forEach(function(a) {
@@ -892,14 +1128,17 @@ if (v > 0 || String(txt) !== '-') body.push({a:a, v:v, txt:txt});
 
 body.sort(function(a,b){return b.v - a.v;});
 if (body.length === 0) {
-html += '<tr><td colspan="2" style="padding:16px;text-align:center;color:#64748B">No agent data available for '+metric+' in this period.</td></tr>';
+html += '<tr><td colspan="2" style="padding:14px;text-align:center" class="modal-muted">No agent data available for '+metric+' in this period.</td></tr>';
 } else {
 body.forEach(function(b) {
-html += '<tr style="border-bottom:1px solid #e2e8f0"><td style="padding:10px 12px;font-weight:500">'+b.a+'</td><td style="padding:10px 12px;text-align:right;font-weight:600">'+b.txt+'</td></tr>';
+html += '<tr><td><button onclick="showAgentTrendDeepDive(\'calls\', \''+b.a.replace(/'/g, "\\'")+'\')" style="background:none;border:none;padding:0;color:var(--c-blue-hover);font:inherit;font-weight:700;cursor:pointer">'+b.a+'</button></td><td style="text-align:right;font-weight:600">'+b.txt+'</td></tr>';
 });
 }
 
 html += '</tbody></table></div>';
+html += '<div class="modal-panel" style="width:min(1100px,96vw);max-height:78vh;overflow-y:auto;margin-top:12px;padding:16px 18px">';
+html += renderDeepDiveSliceTable(sliceRows, 'calls');
+html += '</div>';
 overlay.innerHTML = html;
 document.body.appendChild(overlay);
 }
@@ -1007,6 +1246,7 @@ html += '<div class="charts-row cols-2">' +
 '</div>';
 
 html += '<div class="section-head">Agent Performance</div>';
+var ctForPeriod = filterByDate(G.callTkts, 'Created date');
 var agentMap = {};
 rows.forEach(function(r) {
 var a = r['Agent']||(r['Call Type']==='Inbound' ? 'Missed in Queue' : 'Unknown'), ct = r['Call Type'];
@@ -1031,27 +1271,42 @@ html += '<div class="table-card"><h3>All Agents — Call Metrics</h3><div class=
 '<th>Agent</th><th>IB Total</th><th>IB Ans</th><th>IB Unans</th><th>IB Rate</th>' +
 '<th>PG Total</th><th>PG Ans</th><th>PG Unans(Agent)</th><th>PG Unans(User)</th><th>PG Rate</th>' +
 '<th>Avg AHT</th><th>Avg Talk</th><th>Avg Hold</th><th>Avg Queue</th>' +
+'<th>DevRev call tickets</th><th>Ozonetel recordings</th>' +
 '</tr></thead><tbody>';
 
 var totals = {ibT:0,ibA:0,ibU:0,pgT:0,pgA:0,pgUA:0,pgUU:0};
-Object.keys(agentMap).sort().forEach(function(a) {
+Object.keys(agentMap).sort(function(a,b) {
+if (a === 'Missed in Queue') return -1;
+if (b === 'Missed in Queue') return 1;
+return a.localeCompare(b);
+}).forEach(function(a) {
 var ag = agentMap[a];
 var ibRate = pct(ag.ibAns, ag.ibTotal);
 var pgRate = pct(ag.pgAns, ag.pgTotal);
 totals.ibT+=ag.ibTotal; totals.ibA+=ag.ibAns; totals.ibU+=ag.ibUnans;
 totals.pgT+=ag.pgTotal; totals.pgA+=ag.pgAns; totals.pgUA+=ag.pgUnansAgent; totals.pgUU+=ag.pgUnansUser;
-html += '<tr><td><strong>'+a+'</strong></td>' +
+var isMissedQueue = a === 'Missed in Queue';
+var agentTkts = ctForPeriod.filter(function(r){ return (r['Owner[0]']||'Unassigned') === a; });
+var recParts = [];
+agentTkts.forEach(function(t) {
+var url = resolveRecordingForCallTicket(t);
+if (url && recParts.indexOf(url) === -1) recParts.push(url);
+});
+var recCell = recParts.slice(0, 6).map(function(u){ return recordingUrlToAnchor(u); }).join(' ') || '—';
+html += '<tr'+(isMissedQueue?' style="background:rgba(239,68,68,0.08)"':'')+'><td><button onclick="showAgentTrendDeepDive(\'calls\', \''+a.replace(/'/g, "\\'")+'\')" style="background:none;border:none;padding:0;color:'+(isMissedQueue?'var(--c-red)':'var(--c-blue-hover)')+';font:inherit;font-weight:700;cursor:pointer;text-align:left">'+a+'</button></td>' +
 '<td>'+ag.ibTotal+'</td><td>'+ag.ibAns+'</td><td>'+(ag.ibUnans||'')+'</td>' +
 '<td><span class="badge '+(ibRate>=90?'badge-green':ibRate>=70?'badge-amber':'badge-red')+'">'+ibRate+'%</span></td>' +
 '<td>'+ag.pgTotal+'</td><td>'+ag.pgAns+'</td><td>'+(ag.pgUnansAgent||'')+'</td><td>'+(ag.pgUnansUser||'')+'</td>' +
 '<td><span class="badge '+(pgRate>=80?'badge-green':pgRate>=50?'badge-amber':'badge-red')+'">'+pgRate+'%</span></td>' +
 '<td>'+minsToHMS(avg(ag.ahtArr))+'</td><td>'+minsToHMS(avg(ag.talkArr))+'</td>' +
-'<td>'+minsToHMS(avg(ag.holdArr))+'</td><td>'+minsToHMS(avg(ag.queueArr))+'</td></tr>';
+'<td>'+minsToHMS(avg(ag.holdArr))+'</td><td>'+minsToHMS(avg(ag.queueArr))+'</td>' +
+'<td><button onclick="showAgentTrendDeepDive(\'calltkts\', \''+a.replace(/'/g, "\\'")+'\')" style="background:none;border:none;padding:0;color:var(--c-blue-hover);font:inherit;font-weight:700;cursor:pointer">'+agentTkts.length+'</button></td>' +
+'<td style="max-width:260px;font-size:10px;line-height:1.35">'+recCell+'</td></tr>';
 });
 html += '</tbody><tfoot><tr><td>Grand Total</td>' +
 '<td>'+totals.ibT+'</td><td>'+totals.ibA+'</td><td>'+(totals.ibU||'')+'</td><td><strong>'+pct(totals.ibA,totals.ibT)+'%</strong></td>' +
 '<td>'+totals.pgT+'</td><td>'+totals.pgA+'</td><td>'+(totals.pgUA||'')+'</td><td>'+(totals.pgUU||'')+'</td><td><strong>'+pct(totals.pgA,totals.pgT)+'%</strong></td>' +
-'<td colspan="4"></td></tr></tfoot></table></div></div>';
+'<td colspan="4"></td><td>—</td><td>—</td></tr></tfoot></table></div></div>';
 
 c.innerHTML = html;
 
@@ -1128,14 +1383,16 @@ if (v > 0 || String(txt) !== '-') body.push({a:a, v:v, txt:txt});
 
 body.sort(function(a,b){return b.v - a.v;});
 if (body.length === 0) {
-html += '<tr><td colspan="2" style="padding:16px;text-align:center;color:#64748B">No agent data available for '+metric+' in this period.</td></tr>';
+html += '<tr><td colspan="2" style="padding:14px;text-align:center" class="modal-muted">No agent data available for '+metric+' in this period.</td></tr>';
 } else {
 body.forEach(function(b) {
-html += '<tr style="border-bottom:1px solid #e2e8f0"><td style="padding:10px 12px;font-weight:500">'+b.a+'</td><td style="padding:10px 12px;text-align:right;font-weight:600">'+b.txt+'</td></tr>';
+html += '<tr><td><button onclick="showAgentTrendDeepDive(\'whatsapp\', \''+b.a.replace(/'/g, "\\'")+'\')" style="background:none;border:none;padding:0;color:var(--c-blue-hover);font:inherit;font-weight:700;cursor:pointer">'+b.a+'</button></td><td style="text-align:right;font-weight:600">'+b.txt+'</td></tr>';
 });
 }
 
 html += '</tbody></table></div>';
+html += '<div class="modal-panel" style="width:min(1100px,96vw);max-height:78vh;overflow-y:auto;margin-top:12px;padding:16px 18px">';
+html += renderDeepDiveSliceTable(rows, 'whatsapp') + '</div>';
 overlay.innerHTML = html;
 document.body.appendChild(overlay);
 }
@@ -1192,20 +1449,20 @@ html += '<div class="table-card"><div class="table-wrap"><table><thead><tr>' +
 '</tr></thead><tbody>';
 Object.keys(agMap).sort().forEach(function(a) {
 var ag=agMap[a];
-html += '<tr><td><strong>'+a+'</strong></td><td>'+ag.total+'</td>' +
+html += '<tr><td><button onclick="showAgentTrendDeepDive(\'whatsapp\', \''+a.replace(/'/g, "\\'")+'\')" style="background:none;border:none;padding:0;color:var(--c-blue-hover);font:inherit;font-weight:700;cursor:pointer;text-align:left">'+a+'</button></td><td>'+ag.total+'</td>' +
 '<td>'+fmt1(avg(ag.frt))+'</td><td>'+fmt1(median(ag.frt))+'</td>' +
 '<td>'+fmt1(avg(ag.rt))+'</td><td>'+fmt1(median(ag.rt))+'</td>' +
 '<td>'+fmt1(percentile(ag.rt,90))+'</td></tr>';
 });
 html += '</tbody></table></div></div>';
-
-html += '<div class="section-head">Issue Type Breakdown</div>';
-html += issueBreakdownTable(rows, 'Issue Type (B2B)', 'Sub Issue Type (B2B)');
-
-html += '<div class="two-col">';
-html += topNTable(rows,'Channel (B2B)','Channel Distribution');
-html += topNTable(rows,'RM Broker Name','Broker Volume');
-html += '</div>';
+html += buildAttributeExplorerDashboard(rows, [
+{ key:'broker', label:'RM Broker Name', field:'RM Broker Name' },
+{ key:'rm', label:'RM Name', field:'RM Name', fallback:'Owners[0]' },
+{ key:'branch', label:'Branch', field:'Branch/Location' },
+{ key:'channel', label:'Channel', field:'Channel (B2B)' },
+{ key:'issue', label:'Issue Type', field:'Issue Type (B2B)', fallback:'Subtype' },
+{ key:'subissue', label:'Sub Issue Type', field:'Sub Issue Type (B2B)' }
+], 'wa_explorer', 'WhatsApp Attribute Explorer', 'Simple-dashboard style drilldown');
 
 c.innerHTML = html;
 
@@ -1249,16 +1506,16 @@ overlay.id = 'dd-overlay';
 overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:999;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)';
 overlay.onclick = function(e){ if(e.target===overlay) overlay.remove(); };
 
-var html = '<div style="background:#fff;border-radius:12px;padding:24px;width:700px;max-height:80vh;overflow-y:auto;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1)">';
-html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><h2 style="margin:0;font-size:16px;color:#0F172A">'+metric+' Breakdown</h2><button onclick="document.getElementById(\'dd-overlay\').remove()" style="background:none;border:none;font-size:24px;color:#94A3B8;cursor:pointer">&times;</button></div>';
+var html = '<div class="modal-panel compact" style="width:min(560px,90vw)">';
+html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><h2 style="margin:0;font-size:15px">'+metric+' Breakdown</h2><button onclick="document.getElementById(\'dd-overlay\').remove()" style="background:none;border:none;font-size:22px;color:var(--c-text3);cursor:pointer">&times;</button></div>';
 
 if (metric === 'Missed') {
 var missed = rows.filter(function(r){ return ticketType(r)==='Missed'; });
-html += '<table style="width:100%;border-collapse:collapse;font-size:12px;text-align:left"><thead><tr style="background:#f1f5f9;border-bottom:1px solid #cbd5e1"><th style="padding:10px;color:#475569">Call Date/Time</th><th style="padding:10px;color:#475569">Reported By / Number</th><th style="padding:10px;color:#475569">Owner</th></tr></thead><tbody>';
+html += '<table class="modal-table"><thead><tr><th>Call Date/Time</th><th>Reported By / Number</th><th>Owner</th></tr></thead><tbody>';
 missed.forEach(function(m) {
-html += '<tr style="border-bottom:1px solid #e2e8f0"><td style="padding:10px">'+(m['Created date']||'-')+'</td><td style="padding:10px">'+(m['Reported by[0]']||'-')+'</td><td style="padding:10px">'+(m['Owner[0]']||'Unassigned')+'</td></tr>';
+html += '<tr><td>'+(m['Created date']||'-')+'</td><td>'+(m['Reported by[0]']||'-')+'</td><td>'+(m['Owner[0]']||'Unassigned')+'</td></tr>';
 });
-if(!missed.length) html += '<tr><td colspan="3" style="padding:16px;text-align:center;color:#64748B">No missed calls.</td></tr>';
+if(!missed.length) html += '<tr><td colspan="3" style="padding:14px;text-align:center" class="modal-muted">No missed calls.</td></tr>';
 html += '</tbody></table>';
 } else {
 var agMap = {};
@@ -1273,7 +1530,7 @@ if(r['Metric Status[0]']==='hit'||r['Metric Status[1]']==='hit') agMap[a].slaHit
 for(var i=0;i<=1;i++){if(r['Metric Name['+i+']']==='Resolution time'){var v=parseFloat(r['Completed In['+i+']']);if(!isNaN(v))agMap[a].rt.push(v);}}
 });
 
-html += '<table style="width:100%;border-collapse:collapse;font-size:12px;text-align:left"><thead><tr style="background:#f1f5f9;border-bottom:1px solid #cbd5e1"><th style="padding:10px;color:#475569">Agent</th><th style="padding:10px;text-align:right;color:#475569">Value</th></tr></thead><tbody>';
+html += '<table class="modal-table"><thead><tr><th>Agent</th><th style="text-align:right">Value</th></tr></thead><tbody>';
 var body =[];
 Object.keys(agMap).forEach(function(a) {
 var ag = agMap[a], v=0, txt='-';
@@ -1286,12 +1543,13 @@ if(v>0 || String(txt)!=='-') body.push({a:a,v:v,txt:txt});
 });
 body.sort(function(x,y){return y.v - x.v;});
 body.forEach(function(b) {
-html += '<tr style="border-bottom:1px solid #e2e8f0"><td style="padding:10px">'+b.a+'</td><td style="padding:10px;text-align:right;font-weight:600">'+b.txt+'</td></tr>';
+html += '<tr><td><button onclick="showAgentTrendDeepDive(\'calltkts\', \''+b.a.replace(/'/g, "\\'")+'\')" style="background:none;border:none;padding:0;color:var(--c-blue-hover);font:inherit;font-weight:700;cursor:pointer">'+b.a+'</button></td><td style="text-align:right;font-weight:600">'+b.txt+'</td></tr>';
 });
-if(!body.length) html += '<tr><td colspan="2" style="padding:16px;text-align:center;color:#64748B">No data available.</td></tr>';
+if(!body.length) html += '<tr><td colspan="2" style="padding:14px;text-align:center" class="modal-muted">No data available.</td></tr>';
 html += '</tbody></table>';
 }
 
+html += '<div style="margin-top:12px">' + renderDeepDiveSliceTable(rows, 'calltkts') + '</div>';
 html += '</div>';
 overlay.innerHTML = html;
 document.body.appendChild(overlay);
@@ -1308,9 +1566,12 @@ var html = '<div style="background:#fff;border-radius:12px;padding:24px;width:70
 html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><h2 style="margin:0;font-size:16px;color:#0F172A">Broker Deepdive: '+brokerName+' ('+rows.length+' tickets)</h2><button onclick="document.getElementById(\'dd-overlay\').remove()" style="background:none;border:none;font-size:24px;color:#94A3B8;cursor:pointer">&times;</button></div>';
 
 html += '<table style="width:100%;border-collapse:collapse;font-size:12px;text-align:left"><thead><tr style="background:#f1f5f9;border-bottom:1px solid #cbd5e1">';
-html += '<th style="padding:8px">Location</th><th style="padding:8px">Issue Type</th><th style="padding:8px">Sub Issue</th><th style="padding:8px">Channel</th><th style="padding:8px">Status</th></tr></thead><tbody>';
+html += '<th style="padding:8px">Ticket ID</th><th style="padding:8px">RM Name</th><th style="padding:8px">Location</th><th style="padding:8px">Issue Type</th><th style="padding:8px">Sub Issue</th><th style="padding:8px">Channel</th><th style="padding:8px">Status</th></tr></thead><tbody>';
 rows.forEach(function(r) {
+var id = String(r['Work ID'] || r['WorkID'] || '').trim();
 html += '<tr style="border-bottom:1px solid #e2e8f0">';
+html += '<td style="padding:8px">'+(id ? generateDevRevLinkWithTime(id, r['Created date']) : '-')+'</td>';
+html += '<td style="padding:8px">'+(r['RM Name']||'-')+'</td>';
 html += '<td style="padding:8px">'+(r['Branch/Location']||'-')+'</td>';
 html += '<td style="padding:8px">'+(r['Issue Type (B2B)']||'-')+'</td>';
 html += '<td style="padding:8px">'+(r['Sub Issue Type (B2B)']||'-')+'</td>';
@@ -1383,9 +1644,9 @@ kpiCard('SLA Hit Rate','teal',pct(slaHit,rows.length)+'%',slaHit+' of '+rows.len
 
 html += '<div class="kpi-row cols-4">' +
 kpiCard('Avg Resolution','blue',fmt1(avg(rtArr))+' min','Answered calls', "showCtDeepDive('Avg Resolution')") +
-kpiCard('Median Resolution','teal',fmt1(median(rtArr))+' min','','') +
+kpiCard('Median Resolution','teal',fmt1(median(rtArr))+' min','', "showCtDeepDive('Avg Resolution')") +
 kpiCard('Avg QA Score','amber','<span style="cursor:pointer;text-decoration:underline dotted" onclick="showQADeepDive()">' + fmt1(avg(overallArr))+' / 45</span>','Click to see breakdown', "showQADeepDive()") +
-kpiCard('Avg Grammar','purple',fmt1(avg(grammarArr))+' / 5','','') +
+kpiCard('Avg Grammar','purple',fmt1(avg(grammarArr))+' / 5','', "showQADeepDive()") +
 '</div>';
 
 var byDate3 = groupBy(rows, function(r){ return String(r['Created date']).substring(0,10); });
@@ -1419,21 +1680,20 @@ html += '<div class="table-card"><div class="table-wrap"><table><thead><tr>' +
 Object.keys(agMap2).sort().forEach(function(a) {
 var ag=agMap2[a];
 var slaR = pct(ag.slaHit,ag.total);
-html += '<tr><td><strong>'+a+'</strong></td><td>'+ag.total+'</td><td>'+ag.ans+'</td><td>'+(ag.missed||'')+'</td><td>'+(ag.aoh||'')+'</td>' +
+html += '<tr><td><button onclick="showAgentTrendDeepDive(\'calltkts\', \''+a.replace(/'/g, "\\'")+'\')" style="background:none;border:none;padding:0;color:var(--c-blue-hover);font:inherit;font-weight:700;cursor:pointer;text-align:left">'+a+'</button></td><td>'+ag.total+'</td><td>'+ag.ans+'</td><td>'+(ag.missed||'')+'</td><td>'+(ag.aoh||'')+'</td>' +
 '<td>'+fmt1(avg(ag.rt))+'</td>' +
 '<td><span class="badge '+(slaR>=90?'badge-green':slaR>=70?'badge-amber':'badge-red')+'">'+slaR+'%</span></td>' +
 '<td>'+fmt1(avg(ag.qa))+'</td><td>'+fmt1(avg(ag.grammar))+'</td></tr>';
 });
 html += '</tbody></table></div></div>';
-
-html += '<div class="section-head">Broker Volume & Channels</div>';
-html += '<div style="display:flex;gap:16px;margin-bottom:20px;">';
-html += brokerVolumeTable(rows);
-html += '<div style="flex:1">' + topNTable(rows, 'Channel (B2B)', 'Channel') + '</div>';
-html += '</div>';
-
-html += '<div class="section-head">Issue Type Breakdown</div>';
-html += issueBreakdownTable(rows, 'Issue Type (B2B)', 'Sub Issue Type (B2B)');
+html += buildAttributeExplorerDashboard(rows, [
+{ key:'broker', label:'RM Broker Name', field:'RM Broker Name' },
+{ key:'rm', label:'RM Name', field:'RM Name' },
+{ key:'branch', label:'Branch', field:'Branch/Location' },
+{ key:'channel', label:'Channel', field:'Channel (B2B)' },
+{ key:'issue', label:'Issue Type', field:'Issue Type (B2B)' },
+{ key:'subissue', label:'Sub Issue Type', field:'Sub Issue Type (B2B)' }
+], 'ct_explorer', 'Call Ticket Explorer', 'Broker, branch, channel, issue and sub-issue drilldown');
 
 c.innerHTML = html;
 setTimeout(function() {
@@ -1528,10 +1788,7 @@ document.body.appendChild(overlay);
 // CALLER INTELLIGENCE TAB
 // ================================================================
 function renderCaller(c) {
-if (!G.callerSubTab) G.callerSubTab = 'combined';
-var ctRows = filterByDate(G.callTkts, 'Created date');
-var waRows = filterByDate(G.whatsapp, 'Created date');
-renderCallerContent(c, ctRows, waRows, G.callerSubTab);
+renderInsightsNew(c);
 }
 
 function renderCallerContent(c, ctRows, waRows, subTab) {
@@ -1593,10 +1850,10 @@ var countCells = subTab === 'combined'
 ? '<td>'+(caller.callCount||'-')+'</td><td>'+(caller.waCount||'-')+'</td><td><span class="badge badge-blue">'+caller.count+'</span></td>'
 : '<td><span class="badge badge-blue">'+caller.count+'</span></td>';
 html += '<tr>' +
-'<td><strong>'+(caller.name||'-')+'</strong></td>' +
+'<td>'+(caller.name ? '<button onclick="showEntityTrendDeepDive(\'calltkts\', \'RM Name\', \''+caller.name.replace(/'/g, "\\'")+'\', \'RM Name\')" style="background:none;border:none;padding:0;color:var(--c-blue-hover);font:inherit;font-weight:700;cursor:pointer;text-align:left">'+caller.name+'</button>' : '-')+'</td>' +
 '<td style="color:var(--c-text2);font-size:10px">'+caller.num+'</td>' +
-'<td>'+(caller.broker||'-')+'</td>' +
-'<td>'+(caller.branch||'-')+'</td>' +
+'<td>'+(caller.broker ? '<button onclick="showEntityTrendDeepDive(\'calltkts\', \'RM Broker Name\', \''+caller.broker.replace(/'/g, "\\'")+'\', \'Broker\')" style="background:none;border:none;padding:0;color:var(--c-blue-hover);font:inherit;cursor:pointer">'+caller.broker+'</button>' : '-')+'</td>' +
+'<td>'+(caller.branch ? '<button onclick="showEntityTrendDeepDive(\'calltkts\', \'Branch/Location\', \''+caller.branch.replace(/'/g, "\\'")+'\', \'Branch\')" style="background:none;border:none;padding:0;color:var(--c-blue-hover);font:inherit;cursor:pointer">'+caller.branch+'</button>' : '-')+'</td>' +
 '<td>'+(caller.channel ? '<span class="badge badge-gray">'+caller.channel+'</span>' : '-')+'</td>' +
 countCells +
 '<td><span class="badge badge-amber">'+topIss+'</span></td></tr>';
@@ -1650,7 +1907,7 @@ overlay.id = 'dd-overlay';
 overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:999;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)';
 overlay.onclick = function(e){ if(e.target===overlay) overlay.remove(); };
 
-var html = '<div style="background:#fff;border-radius:12px;padding:24px;width:600px;max-height:80vh;overflow-y:auto;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1)">';
+var html = '<div class="modal-panel" style="width:min(960px,94vw);max-height:88vh;overflow-y:auto">';
 html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><h2 style="margin:0;font-size:16px;color:#0F172A">'+metric+' Breakdown</h2><button onclick="document.getElementById(\'dd-overlay\').remove()" style="background:none;border:none;font-size:24px;color:#94A3B8;cursor:pointer">&times;</button></div>';
 html += '<table style="width:100%;border-collapse:collapse;font-size:12px;text-align:left"><thead><tr style="background:#f1f5f9;border-bottom:1px solid #cbd5e1"><th style="padding:10px;color:#475569">Agent</th><th style="padding:10px;text-align:right;color:#475569">Value</th></tr></thead><tbody>';
 
@@ -1676,7 +1933,9 @@ body.forEach(function(b) {
 html += '<tr style="border-bottom:1px solid #e2e8f0"><td style="padding:10px">'+b.a+'</td><td style="padding:10px;text-align:right;font-weight:600">'+b.txt+'</td></tr>';
 });
 }
-html += '</tbody></table></div>';
+html += '</tbody></table>';
+html += '<div style="margin-top:14px">' + renderDeepDiveSliceTable(rows, 'emails') + '</div>';
+html += '</div>';
 overlay.innerHTML = html;
 document.body.appendChild(overlay);
 };
@@ -1781,22 +2040,19 @@ html += '<div class="table-card"><div class="table-wrap"><table><thead><tr>' +
 Object.keys(agMap3).sort().forEach(function(a) {
 var ag=agMap3[a];
 var slaR = pct(ag.slaHit,ag.total);
-html += '<tr><td><strong>'+a+'</strong></td><td>'+ag.total+'</td><td>'+ag.resolved+'</td>' +
+html += '<tr><td><button onclick="showAgentTrendDeepDive(\'emails\', \''+a.replace(/'/g, "\\'")+'\')" style="background:none;border:none;padding:0;color:var(--c-blue-hover);font:inherit;font-weight:700;cursor:pointer;text-align:left">'+a+'</button></td><td>'+ag.total+'</td><td>'+ag.resolved+'</td>' +
 '<td>'+fmt1(avg(ag.frt))+'</td><td>'+fmt1(median(ag.frt))+'</td>' +
 '<td><span class="badge '+(slaR>=90?'badge-green':slaR>=70?'badge-amber':'badge-red')+'">'+slaR+'%</span></td>' +
 '<td>'+fmt1(avg(ag.qa))+'</td>' +
 '<td>'+(ag.escalations>0?'<span class="badge badge-red">'+ag.escalations+'</span>':'0')+'</td></tr>';
 });
 html += '</tbody></table></div></div>';
-
-html += '<div class="section-head">Reported By & Account</div>';
-html += '<div class="two-col">';
-html += topNTable(rows, 'Account.display_name', 'By Broker (Account)');
-html += topNTable(rows, 'Reported by[0]', 'By Reporter');
-html += '</div>';
-
-html += '<div class="section-head">Issue → Sub-Issue Breakdown</div>';
-html += issueBreakdownTable(rows, 'Issue', 'Sub-Issue');
+html += buildAttributeExplorerDashboard(rows, [
+{ key:'account', label:'Account', field:'Account.display_name' },
+{ key:'reporter', label:'Reported By', field:'Reported by[0]' },
+{ key:'issue', label:'Issue', field:'Issue' },
+{ key:'subissue', label:'Sub-Issue', field:'Sub-Issue' }
+], 'email_explorer', 'Care Email Explorer', 'Account, reporter and issue drilldown');
 
 c.innerHTML = html;
 setTimeout(function() {
@@ -1830,8 +2086,7 @@ type:'line', data:{ labels:labels4, datasets:[
 // INSIGHTS TAB
 // ================================================================
 function renderInsights(c) {
-if (!G.insightsSub) G.insightsSub = 'combined';
-renderInsightsContent(c, G.insightsSub);
+renderInsightsNew(c);
 }
 
 function insightsSwitchSub(sub) {
@@ -3112,7 +3367,6 @@ function buildDailyCompactCard(title, rows, prefix) {
 var isCT = prefix === 'ct';
 var isCE = prefix === 'ce';
 var accentColor = isCT ? '#2563EB' : isCE ? '#B45309' : '#059669';
-var accentLight = isCT ? '#EFF6FF' : isCE ? '#FFFBEB' : '#ECFDF5';
 var icon = isCT ? '&#128222;' : isCE ? '&#128231;' : '&#128172;';
 
 function top3(field) {
@@ -3127,28 +3381,29 @@ return {k:k, n:map[k]};
 });
 }
 
-var issues = top3('Issue Type (B2B)');
-var subIss = top3('Sub Issue Type (B2B)');
-var brokers = top3('RM Broker Name');
-var rms = top3('RM Name');
-var channels = top3('Channel (B2B)');
-var branches = top3('Branch/Location');
+var groups = [
+{ label:'Broker', items: top3('RM Broker Name') },
+{ label:'RM', items: top3('RM Name') },
+{ label:'Branch', items: top3('Branch/Location') },
+{ label:'Channel', items: top3('Channel (B2B)') },
+{ label:'Issue', items: top3('Issue Type (B2B)') },
+{ label:'Sub-Issue', items: top3('Sub Issue Type (B2B)') }
+];
 
-function pill(k, n, accent) {
-var bg = accent ? accent+'18' : 'var(--c-surface)';
-var clr = accent ? accent : 'var(--c-text)';
-var bdg = accent ? accent : 'var(--c-text3)';
-return '<span style="display:inline-flex;align-items:center;gap:5px;background:'+bg+';border:1px solid '+bdg+'40;border-radius:20px;padding:4px 12px;font-size:11px;margin:2px 3px 2px 0;white-space:nowrap;font-weight:600;color:'+clr+';box-shadow:var(--shadow-sm)">'
-+ k
-+ '<span style="background:var(--c-surface);color:'+bdg+';border:1px solid '+bdg+'80;border-radius:12px;padding:3px 10px;margin-left:4px;font-size:12px;font-weight:900;box-shadow:inset 0 1px 2px rgba(0,0,0,0.05)">'+n+'</span>'
-+ '</span>';
+function statRow(item) {
+return '<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--c-border);font-size:11px;gap:10px">'
++ '<div style="color:var(--c-text);font-weight:600;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+item.k+'</div>'
++ '<span style="display:inline-flex;align-items:center;justify-content:center;min-width:28px;padding:2px 8px;border-radius:999px;background:'+accentColor+'18;color:'+accentColor+';font-weight:800">'+item.n+'</span>'
++ '</div>';
 }
 
-function rowBlock(label, items, accent) {
-if (!items || !items.length) return '';
-return '<div style="margin-bottom:4px">'
-+ '<div style="font-size:9px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.6px;margin-bottom:2px">'+label+'</div>'
-+ '<div style="display:flex;flex-wrap:wrap">'+items.map(function(d){return pill(d.k,d.n,accent);}).join('')+'</div>'
+function metricBox(group) {
+var body = group.items && group.items.length
+? group.items.map(statRow).join('')
+: '<div style="font-size:11px;color:var(--c-text3);padding:10px 0">No data</div>';
+return '<div style="background:var(--c-surface);border:1px solid var(--c-border);border-top:3px solid '+accentColor+';border-radius:12px;padding:10px 12px;box-shadow:var(--shadow-sm)">'
++ '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><div style="font-size:10px;font-weight:800;color:var(--c-text2);text-transform:uppercase;letter-spacing:.7px">'+group.label+'</div><span style="display:inline-flex;align-items:center;padding:2px 8px;border-radius:999px;background:'+accentColor+'12;color:'+accentColor+';font-size:9px;font-weight:800">Top 3</span></div>'
++ body
 + '</div>';
 }
 
@@ -3156,8 +3411,8 @@ var noData = !rows || !rows.length;
 var header = '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;padding-bottom:8px;border-bottom:2px solid '+accentColor+'">'
 + '<div style="display:flex;align-items:center;gap:6px">'
 + '<span style="font-size:16px">'+icon+'</span>'
-+ '<div><div style="font-size:12px;font-weight:700;color:#0F2952">'+title+'</div>'
-+ '<div style="font-size:10px;color:#94A3B8;margin-top:2px">'+(noData?'No data':'Top 3 by volume')+'</div></div>'
++ '<div><div style="font-size:12px;font-weight:700;color:var(--c-navy)">'+title+'</div>'
++ '<div style="font-size:10px;color:var(--c-text3);margin-top:2px">'+(noData?'No data':'Top 3 by volume')+'</div></div>'
 + '</div>'
 + '<span style="background:var(--c-surface);color:'+accentColor+';border:2px solid '+accentColor+';border-radius:24px;padding:4px 14px;font-size:11px;font-weight:800;box-shadow:var(--shadow-sm)">'+(rows?rows.length:0)+' records</span>'
 + '</div>';
@@ -3168,17 +3423,13 @@ return '<div style="background:var(--c-surface);border:1px solid var(--c-border)
 }
 
 return '<div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:var(--radius);padding:8px 10px;box-shadow:var(--shadow-sm)">'+header
-+ rowBlock('Issue', issues, null)
-+ rowBlock('Sub-Issue', subIss, null)
-+ rowBlock('Broker', brokers, null)
-+ rowBlock('RM', rms, null)
-+ rowBlock('Channel', channels, null)
-+ rowBlock('Branch', branches, null)
++ '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px">'+groups.map(metricBox).join('')+'</div>'
 + '</div>';
 }
 
 function kpiCard(label, color, value, sub, clickStr, disableTarget) {
 var clk = clickStr ? ' cursor:pointer;transition:transform 0.15s" onclick="'+clickStr.replace(/"/g, '&quot;')+'" onmouseover="this.style.transform=\'translateY(-2px)\';this.style.boxShadow=\'0 4px 12px rgba(0,0,0,0.05)\'" onmouseout="this.style.transform=\'none\';this.style.boxShadow=\'none\'"' : '"';
+var deepDiveChip = clickStr ? '<div style="margin-bottom:8px"><span style="display:inline-flex;align-items:center;padding:3px 8px;border-radius:999px;background:var(--c-blue-lt);color:var(--c-blue-hover);font-size:9px;font-weight:800;letter-spacing:.5px;text-transform:uppercase">Deepdive</span></div>' : '';
 
 var targetInfo = '';
 var tops = {
@@ -3216,6 +3467,7 @@ targetInfo = '<div style="margin-top:12px;padding-top:10px;border-top:1px dashed
 }
 
 return '<div class="kpi-card '+color+'" style="'+clk+'><div class="kpi-label">'+label+'</div>' +
+deepDiveChip +
 '<div class="kpi-value">'+value+'</div>' +
 (sub?'<div class="kpi-sub">'+sub+'</div>':'') +
 targetInfo +
@@ -3228,14 +3480,653 @@ var k = fn(item); if (!acc[k]) acc[k] = []; acc[k].push(item); return acc;
 }, {});
 }
 
+function sectionCard(title, badge, body) {
+return '<div class="ins-card"><h3>'+title+(badge?' <span class="badge-count">'+badge+'</span>':'')+'</h3>'+body+'</div>';
+}
+
+function insightNote(text) {
+return '<div class="insight-note">'+text+'</div>';
+}
+
+function normalizeDashboardValue(v) {
+var s = String(v == null ? '' : v).trim();
+if (!s) return 'NA';
+if (/^(na|n\/a|null|undefined|-|unknown|\(unset\))$/i.test(s)) return 'NA';
+return s;
+}
+
+function parseDateTime(val) {
+if (val == null || val === '') return null;
+if (typeof val === 'number') {
+var dn = new Date(val);
+return isNaN(dn.getTime()) ? null : dn;
+}
+var s = String(val).trim();
+if (!s) return null;
+var d = new Date(s);
+if (!isNaN(d.getTime()) && d.getFullYear() >= 2000 && d.getFullYear() <= 2100) return d;
+return parseDate(val);
+}
+
+function ticketCreatedMs(r) {
+var d = parseDateTime(r['Created date']);
+return d ? d.getTime() : NaN;
+}
+
+function ozonetelCallMs(r) {
+var d = parseDate(r['Call Date']);
+if (!d) return NaN;
+var st = String(r['Start Time'] || '').trim();
+var m = st.match(/(\d{1,2}):(\d{2})(?::(\d{2}))?/);
+if (m) {
+d.setHours(parseInt(m[1], 10), parseInt(m[2], 10), m[3] ? parseInt(m[3], 10) : 0, 0);
+}
+return d.getTime();
+}
+
+function last10Digits(str) {
+var dig = String(str || '').replace(/\D/g, '');
+if (dig.length < 10) return '';
+return dig.slice(-10);
+}
+
+function extractPhoneFromTitle(title) {
+return last10Digits(title);
+}
+
+function extractPhoneFromTicket(tkt) {
+var t = extractPhoneFromTitle(tkt['Title'] || '');
+if (t.length === 10) return t;
+var r = last10Digits(tkt['Reported by[0]'] || '');
+return r.length >= 10 ? r.slice(-10) : '';
+}
+
+function getRawRecordingUrl(r) {
+if (!r) return '';
+var keys = ['Recording URL', 'Recording_URL', 'Ozonetel_Link', 'Ozonetel Link', 'Audio URL', 'Call Recording URL'];
+for (var i = 0; i < keys.length; i++) {
+var v = String(r[keys[i]] || '').trim();
+if (v) return v;
+}
+return '';
+}
+
+function findInboundForTicket(tkt, calls) {
+var phone = extractPhoneFromTicket(tkt);
+if (phone.length !== 10) return null;
+var ticketMs = ticketCreatedMs(tkt);
+if (isNaN(ticketMs)) return null;
+var candidates = calls.filter(function(c) {
+return last10Digits(c['Caller No']) === phone && String(c['Call Type'] || '') === 'Inbound';
+});
+var best = null, bestScore = Infinity;
+candidates.forEach(function(c) {
+var cm = ozonetelCallMs(c);
+if (isNaN(cm)) return;
+var delta = ticketMs - cm;
+if (delta < 1000 || delta > 120000) return;
+var score = Math.abs(delta - 15000);
+if (score < bestScore) { bestScore = score; best = c; }
+});
+return best;
+}
+
+function findNextProgressiveRecording(inboundRow, calls, phone) {
+var t0 = ozonetelCallMs(inboundRow);
+if (isNaN(t0)) return '';
+var prog = calls.filter(function(c) {
+return String(c['Call Type'] || '') === 'Progressive' && last10Digits(c['Caller No']) === phone && ozonetelCallMs(c) > t0;
+}).sort(function(a, b){ return ozonetelCallMs(a) - ozonetelCallMs(b); });
+for (var i = 0; i < prog.length; i++) {
+var url = getRawRecordingUrl(prog[i]);
+if (url) return url;
+}
+return '';
+}
+
+function resolveRecordingForCallTicket(tkt) {
+var direct = getRawRecordingUrl(tkt);
+if (direct) return direct;
+var calls = excludeInvalidNumber(G.calls || []);
+if (!calls.length) return '';
+var inbound = findInboundForTicket(tkt, calls);
+if (!inbound) return '';
+var tt = ticketType(tkt);
+if (tt === 'Answered') {
+return getRawRecordingUrl(inbound) || '';
+}
+if (tt === 'Missed' || tt === 'AOH') {
+var phone = last10Digits(inbound['Caller No']);
+var pg = findNextProgressiveRecording(inbound, calls, phone);
+if (pg) return pg;
+return getRawRecordingUrl(inbound) || '';
+}
+return getRawRecordingUrl(inbound) || '';
+}
+
+function findTicketForOzonetelCall(ozRow, tkts) {
+var ct = String(ozRow['Call Type'] || '');
+var callMs = ozonetelCallMs(ozRow);
+if (isNaN(callMs)) return null;
+var phone = last10Digits(ozRow['Caller No']);
+if (phone.length !== 10) return null;
+var calls = excludeInvalidNumber(G.calls || []);
+
+if (ct === 'Progressive') {
+var bestPg = null;
+tkts.forEach(function(tkt) {
+var tt = ticketType(tkt);
+if (tt !== 'Missed' && tt !== 'AOH') return;
+var tp = extractPhoneFromTicket(tkt);
+if (tp !== phone) return;
+var inbound = findInboundForTicket(tkt, calls);
+if (!inbound) return;
+var tIn = ozonetelCallMs(inbound);
+if (isNaN(tIn) || callMs <= tIn) return;
+var firstPg = calls.filter(function(c) {
+return String(c['Call Type'] || '') === 'Progressive' && last10Digits(c['Caller No']) === tp && ozonetelCallMs(c) > tIn;
+}).sort(function(a, b){ return ozonetelCallMs(a) - ozonetelCallMs(b); })[0];
+if (!firstPg) return;
+var a = String(firstPg['UCID'] || firstPg['Call ID'] || '');
+var b = String(ozRow['UCID'] || ozRow['Call ID'] || '');
+if (a && b && a === b) bestPg = tkt;
+});
+return bestPg;
+}
+
+var best = null, bestScore = Infinity;
+tkts.forEach(function(tkt) {
+var tp = extractPhoneFromTicket(tkt);
+if (tp !== phone) return;
+var ticketMs = ticketCreatedMs(tkt);
+if (isNaN(ticketMs)) return;
+var delta = ticketMs - callMs;
+if (delta < 1000 || delta > 120000) return;
+var score = Math.abs(delta - 15000);
+if (score < bestScore) { bestScore = score; best = tkt; }
+});
+return best;
+}
+
+function ozonetelRowsForCallsMetric(metric, rows) {
+rows = excludeInvalidNumber(rows);
+if (G.callsMode && G.callsMode !== 'Combined') {
+rows = rows.filter(function(r){ return r['Call Type'] === G.callsMode; });
+}
+var inbound = rows.filter(function(r){ return r['Call Type'] === 'Inbound'; });
+var progressive = rows.filter(function(r){ return r['Call Type'] === 'Progressive'; });
+var ibAns = inbound.filter(function(r){ return r['Status'] === 'Answered'; });
+var abandoned = inbound.filter(function(r){ return r['Status'] === 'Unanswered' && isBusinessHours(r['Start Time']); });
+var aoh = inbound.filter(function(r){ return !isBusinessHours(r['Start Time']) && r['Status'] === 'Unanswered'; });
+var pgAns = progressive.filter(function(r){ return r['Status'] === 'Answered'; });
+var pgUnans = progressive.filter(function(r){ return r['Status'] === 'Unanswered'; });
+var pgAgMiss = pgUnans.filter(function(r) {
+var ds = String(r['Agent Dial Status'] || '').toLowerCase();
+return ds === 'noanswer' || ds === 'user_disconnected' || ds === 'maxdialtimeexceeded';
+});
+var pgUsrMiss = pgUnans.filter(function(r) {
+var du = String(r['Customer Dial Status'] || '').toLowerCase();
+return du === 'user_disconnected' || du === 'noanswer';
+});
+var pgOthMiss = pgUnans.filter(function(r) {
+return pgAgMiss.indexOf(r) === -1 && pgUsrMiss.indexOf(r) === -1;
+});
+if (metric === 'Total Calls') return rows;
+if (metric === 'Inbound' || metric === 'Answer Rate') return inbound;
+if (metric === 'Abandoned') return abandoned;
+if (metric === 'AOH') return aoh;
+if (metric === 'Progressive') return progressive;
+if (metric === 'PG Answered') return pgAns;
+if (metric === 'PG Unanswered') return pgUnans;
+if (metric === 'Missed by Agent') return pgAgMiss;
+if (metric === 'Missed by User') return pgUsrMiss;
+if (metric === 'Missed (Other)') return pgOthMiss;
+if (metric === '90th % AHT' || metric === 'Avg Talk Time' || metric === 'Avg Hold Time') return ibAns;
+return rows;
+}
+
+function formatShortTs(val) {
+var d = parseDateTime(val);
+if (!d) return '';
+return d.toLocaleString('en-IN', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit', hour12: true });
+}
+
+function recordingUrlToAnchor(url) {
+if (!url) return '-';
+return '<a href="' + url + '" target="_blank" class="link-style">▶ Listen</a>';
+}
+
+function generateDevRevLink(id) {
+if (!id) return '-';
+var clean = String(id).trim();
+if (!clean) return '-';
+var baseUrl = "https://app.devrev.ai/smallcasebp/";
+return clean.indexOf('TKT-') === 0
+? '<a href="' + baseUrl + 'works/' + clean + '" target="_blank" class="link-style">' + clean + '</a>'
+: '<a href="' + baseUrl + 'inbox/' + clean + '" target="_blank" class="link-style">' + clean + '</a>';
+}
+
+function generateDevRevLinkWithTime(id, createdVal) {
+if (!id) return '-';
+var link = generateDevRevLink(id);
+var ts = formatShortTs(createdVal);
+if (!ts) return link;
+return link + ' <span style="font-size:10px;color:var(--c-text3);white-space:nowrap">' + ts + '</span>';
+}
+
+function getRecordingAnchor(r) {
+return recordingUrlToAnchor(getRawRecordingUrl(r));
+}
+
+function getDeepDiveId(r, kind) {
+if (kind === 'calltkts') return String(r['Work ID'] || r['WorkID'] || r['Ticket ID'] || '').trim();
+if (kind === 'whatsapp') return String(r['ID'] || r['Conversation ID'] || '').trim();
+if (kind === 'calls') {
+var tkts = filterByDate(G.callTkts, 'Created date');
+var tkt = findTicketForOzonetelCall(r, tkts);
+if (tkt) return String(tkt['Work ID'] || tkt['WorkID'] || '').trim();
+return String(r['Call ID'] || r['UCID'] || '').trim();
+}
+return String(r['Work ID'] || r['WorkID'] || r['Ticket ID'] || r['ID'] || r['Conversation ID'] || r['Call ID'] || '').trim();
+}
+
+function renderEmailDeepDiveSliceTable(rows) {
+if (!rows.length) return '<div class="mini-note">No email records in this slice.</div>';
+var qaArr = rows.map(function(r){ return parseFloat(r['Overall Score (45)']); }).filter(function(v){ return !isNaN(v); });
+var frtArr = rows.map(function(r){ return parseFloat(r['Completed In[0]']); }).filter(function(v){ return !isNaN(v) && v >= 0; });
+var h = '<div style="font-size:13px;font-weight:700;color:var(--c-navy);margin-bottom:8px">Email tickets — detail</div>';
+h += '<div class="table-wrap"><table><thead><tr><th>Ticket ID</th><th>Created</th><th>Stage</th><th>Issue</th><th>Sub-Issue</th><th>FRT (min)</th><th>QA (/45)</th><th>Sentiment</th></tr></thead><tbody>';
+rows.slice(0, 150).forEach(function(r) {
+var id = String(r['Work ID'] || '').trim();
+var issue = normalizeDashboardValue(r['Issue'] || r['Category']);
+var sub = normalizeDashboardValue(r['Sub-Issue']);
+var st = normalizeDashboardValue(r['Stage']);
+var frt = parseFloat(r['Completed In[0]']);
+var qa = parseFloat(r['Overall Score (45)']);
+var sent = normalizeDashboardValue(r['Sentiment.label']);
+h += '<tr><td>' + (id ? generateDevRevLinkWithTime(id, r['Created date']) : '-') + '</td>';
+h += '<td style="font-size:11px;color:var(--c-text2)">' + (formatShortTs(r['Created date']) || '-') + '</td>';
+h += '<td>' + st + '</td><td>' + issue + '</td><td>' + sub + '</td>';
+h += '<td>' + (!isNaN(frt) ? fmt1(frt) : '-') + '</td>';
+h += '<td>' + (!isNaN(qa) ? fmt1(qa) : '-') + '</td><td>' + sent + '</td></tr>';
+});
+h += '</tbody><tfoot><tr><td colspan="5"><strong>Slice summary</strong></td><td>Avg FRT: <strong>' + (frtArr.length ? fmt1(avg(frtArr)) + ' min' : '-') + '</strong></td><td>Avg QA: <strong>' + (qaArr.length ? fmt1(avg(qaArr)) : '-') + '</strong></td><td>Rows: <strong>' + rows.length + '</strong></td></tr></tfoot></table></div>';
+return h;
+}
+
+function renderDeepDiveSliceTable(rows, kind) {
+if (!rows.length) return '<div class="mini-note">No records in this slice.</div>';
+if (kind === 'emails') return renderEmailDeepDiveSliceTable(rows);
+
+if (kind === 'calls') {
+var tkts = filterByDate(G.callTkts, 'Created date');
+var h = '<div style="font-size:13px;font-weight:700;color:var(--c-navy);margin-bottom:8px">Ozonetel calls — DevRev ticket &amp; recording</div>';
+h += '<div class="table-wrap"><table><thead><tr><th>Call date</th><th>Start</th><th>Caller</th><th>Type</th><th>Agent</th><th>Status</th><th>DevRev ticket</th><th>Recording</th></tr></thead><tbody>';
+rows.slice(0, 200).forEach(function(r) {
+var tkt = findTicketForOzonetelCall(r, tkts);
+var id = tkt ? String(tkt['Work ID'] || '').trim() : '';
+var rec = getRawRecordingUrl(r);
+if (!rec && tkt) rec = resolveRecordingForCallTicket(tkt);
+h += '<tr><td style="font-size:11px">' + (r['Call Date'] || '-') + '</td><td style="font-size:11px">' + (r['Start Time'] || '-') + '</td>';
+h += '<td style="font-size:11px">' + normalizeDashboardValue(r['Caller No']) + '</td>';
+h += '<td>' + normalizeDashboardValue(r['Call Type']) + '</td><td>' + normalizeDashboardValue(r['Agent']) + '</td><td>' + normalizeDashboardValue(r['Status']) + '</td>';
+h += '<td>' + (id ? generateDevRevLinkWithTime(id, tkt ? tkt['Created date'] : '') : '-') + '</td>';
+h += '<td>' + recordingUrlToAnchor(rec) + '</td></tr>';
+});
+h += '</tbody><tfoot><tr><td colspan="8"><strong>Rows:</strong> ' + rows.length + '</td></tr></tfoot></table></div>';
+return h;
+}
+
+var answeredRows = rows.filter(function(r){ return String(r['Status'] || '').toLowerCase() === 'answered'; });
+var ahtArr = answeredRows.map(function(r){ return calcAHT(r); }).filter(function(v){ return v > 0; });
+var slaHits = rows.filter(function(r){ return String(r['Metric Status[0]'] || '').toLowerCase() === 'hit' || String(r['Metric Status[1]'] || '').toLowerCase() === 'hit'; }).length;
+var showLinkCol = kind !== 'whatsapp';
+var h = '<div style="font-size:13px;font-weight:700;color:var(--c-navy);margin-bottom:8px">Detailed Slice — Ticket / Conversation Deepdive</div>';
+h += '<div class="table-wrap"><table><thead><tr><th>Ticket/Conv ID</th><th>Created</th><th>RM Name</th><th>Branch</th><th>Broker Name</th><th>Issue Type</th><th>Sub-Issue</th>';
+if (showLinkCol) h += '<th>Recording</th>';
+h += '</tr></thead><tbody>';
+rows.slice(0, 150).forEach(function(r){
+var id = getDeepDiveId(r, kind);
+var rm = normalizeDashboardValue(r['RM Name']);
+var branch = normalizeDashboardValue(r['Branch/Location']);
+var broker = normalizeDashboardValue(r['RM Broker Name'] || r['Broker Name[0]']);
+var issue = normalizeDashboardValue(r['Issue Type (B2B)'] || r['Issue'] || r['Subtype']);
+var subIssue = normalizeDashboardValue(r['Sub Issue Type (B2B)'] || r['Sub-Issue']);
+var recCell = '-';
+if (showLinkCol) {
+if (kind === 'calltkts') recCell = recordingUrlToAnchor(resolveRecordingForCallTicket(r));
+else recCell = '-';
+}
+h += '<tr><td>' + (id ? generateDevRevLinkWithTime(id, r['Created date']) : '-') + '</td><td style="font-size:11px;color:var(--c-text2)">' + (formatShortTs(r['Created date']) || '-') + '</td><td>' + rm + '</td><td>' + branch + '</td><td>' + broker + '</td><td>' + issue + '</td><td>' + subIssue + '</td>';
+if (showLinkCol) h += '<td>' + recCell + '</td>';
+h += '</tr>';
+});
+h += '</tbody><tfoot><tr><td><strong>Focus</strong></td><td></td><td colspan="2">Avg Handle Time: <strong>' + (ahtArr.length ? minsToHMS(avg(ahtArr)) : '-') + '</strong></td><td colspan="2">SLA%: <strong>' + pct(slaHits, rows.length || 1) + '%</strong></td><td colspan="' + (showLinkCol ? 2 : 1) + '">Rows: <strong>' + rows.length + '</strong></td></tr></tfoot></table></div>';
+return h;
+}
+
+function showEntityTrendDeepDive(kind, field, value, titleLabel) {
+var source = [];
+var dateField = 'Created date';
+if (kind === 'calls') { source = excludeInvalidNumber(filterByDate(G.calls, 'Call Date')); dateField = 'Call Date'; }
+else if (kind === 'whatsapp') source = filterByDate(G.whatsapp, 'Created date');
+else if (kind === 'calltkts') source = filterByDate(G.callTkts, 'Created date');
+else if (kind === 'emails') source = filterByDate(G.careEmails, 'Created date');
+var rows = source.filter(function(r){ return normalizeDashboardValue(r[field]) === normalizeDashboardValue(value); });
+var overlay = document.createElement('div');
+overlay.id = 'dd-overlay';
+overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:999;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)';
+overlay.onclick = function(e){ if(e.target===overlay) overlay.remove(); };
+var html = '<div class="modal-panel" style="width:min(1200px,96vw)">';
+html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><h2 style="margin:0;font-size:16px;color:var(--c-navy)">' + titleLabel + ': ' + value + ' (' + rows.length + ')</h2><button onclick="document.getElementById(\'dd-overlay\').remove()" style="background:none;border:none;font-size:24px;color:var(--c-text3);cursor:pointer">&times;</button></div>';
+html += renderDeepDiveSliceTable(rows, kind);
+html += '</div>';
+overlay.innerHTML = html;
+document.body.appendChild(overlay);
+}
+
+function getExplorerState(stateKey, defs) {
+if (!G.explorerState) G.explorerState = {};
+if (!G.explorerState[stateKey]) G.explorerState[stateKey] = { tab: defs[0].key, selected: null };
+if (!G.explorerState[stateKey].tab) G.explorerState[stateKey].tab = defs[0].key;
+return G.explorerState[stateKey];
+}
+
+function setExplorerTab(stateKey, tab) {
+var state = getExplorerState(stateKey, [{ key: tab }]);
+state.tab = tab;
+state.selected = null;
+renderTab(G.activeTab);
+}
+
+function setExplorerValue(stateKey, val) {
+var state = G.explorerState && G.explorerState[stateKey];
+if (!state) return;
+state.selected = state.selected === val ? null : val;
+renderTab(G.activeTab);
+}
+
+function jumpExplorerValue(stateKey, tab, val) {
+var state = getExplorerState(stateKey, [{ key: tab }]);
+state.tab = tab;
+state.selected = val;
+renderTab(G.activeTab);
+}
+
+function explorerMetricValue(row, def) {
+var value = '';
+if (def.get) value = def.get(row);
+else {
+value = row[def.field];
+if ((!value || String(value).trim() === '') && def.fallback) value = row[def.fallback];
+}
+return normalizeDashboardValue(value);
+}
+
+function buildAttributeExplorerDashboard(rows, defs, stateKey, title, subtitle) {
+var state = getExplorerState(stateKey, defs);
+var activeDef = defs.filter(function(def){ return def.key === state.tab; })[0] || defs[0];
+var countMap = {};
+var total = rows.length || 1;
+
+rows.forEach(function(r) {
+var v = explorerMetricValue(r, activeDef);
+countMap[v] = (countMap[v] || 0) + 1;
+});
+var sorted = Object.keys(countMap).sort(function(a,b){ return countMap[b] - countMap[a]; });
+
+var html = '<div class="section-head">' + title + '<span>' + (subtitle || 'Click a tile to open deepdive') + '</span></div>';
+html += '<div class="sub-tabs" style="margin-bottom:14px">';
+defs.forEach(function(def) {
+html += '<button class="sub-tab-btn' + (def.key === activeDef.key ? ' active' : '') + '" onclick="setExplorerTab(\'' + stateKey + '\', \'' + def.key + '\')">' + def.label + '</button>';
+});
+html += '</div>';
+
+html += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin-bottom:14px">';
+sorted.slice(0, 12).forEach(function(key) {
+var selected = state.selected === key;
+html += '<div onclick="setExplorerValue(\'' + stateKey + '\', \'' + key.replace(/'/g, "\\'") + '\')" style="background:' + (selected ? 'var(--c-blue-lt)' : 'var(--c-surface)') + ';border:1px solid ' + (selected ? 'var(--c-blue)' : 'var(--c-border)') + ';border-radius:10px;padding:10px 12px;cursor:pointer;box-shadow:var(--shadow-sm)">';
+html += '<div style="display:flex;justify-content:space-between;gap:6px;align-items:flex-start;margin-bottom:6px"><div style="font-size:11px;font-weight:700;color:var(--c-navy);line-height:1.35">' + key + '</div><span style="display:inline-flex;align-items:center;padding:2px 6px;border-radius:999px;background:var(--c-blue-lt);color:var(--c-blue-hover);font-size:8px;font-weight:800;letter-spacing:.4px;text-transform:uppercase">Dive</span></div>';
+html += '<div style="font-size:22px;font-weight:800;color:var(--c-blue-hover)">' + countMap[key] + '</div>';
+html += '<div style="font-size:11px;color:var(--c-text3)">' + pct(countMap[key], total) + '% of selected range</div>';
+html += '</div>';
+});
+if (!sorted.length) {
+html += '<div style="background:var(--c-surface);border:1px dashed var(--c-border2);border-radius:12px;padding:18px;color:var(--c-text3)">No data for this attribute in the selected period.</div>';
+}
+html += '</div>';
+
+if (state.selected) {
+html += renderDashboardExplorerDrill(rows, defs, activeDef, state.selected, stateKey);
+}
+return html;
+}
+
+function renderDashboardExplorerDrill(rows, defs, activeDef, selectedVal, stateKey) {
+var filtered = rows.filter(function(r){ return explorerMetricValue(r, activeDef) === selectedVal; });
+var total = filtered.length || 1;
+var html = '<div class="table-card" style="padding:12px 14px">';
+html += '<h3>' + activeDef.label + ' · ' + selectedVal + '<span class="badge-count">' + filtered.length + ' records</span></h3>';
+html += '<div class="compact-drill-grid">';
+
+defs.forEach(function(def) {
+if (def.key === activeDef.key) return;
+var map = {};
+filtered.forEach(function(r) {
+var v = explorerMetricValue(r, def);
+map[v] = (map[v] || 0) + 1;
+});
+var keys = Object.keys(map).sort(function(a,b){ return map[b] - map[a]; }).slice(0, 5);
+if (!keys.length) return;
+var maxVal = map[keys[0]] || 1;
+html += '<div class="ins-card compact-drill-card"><h3>' + def.label + ' <span class="badge-count">click to pivot</span></h3>';
+keys.forEach(function(key) {
+var width = Math.round(map[key] / maxVal * 100);
+html += '<div class="compact-bar-row"><span class="bar-label" style="cursor:pointer;color:var(--c-blue-hover);font-weight:700" onclick="jumpExplorerValue(\'' + stateKey + '\', \'' + def.key + '\', \'' + key.replace(/'/g, "\\'") + '\')">' + key + '</span><div class="bar-track"><div class="bar-fill" style="width:' + width + '%;background:var(--c-blue)"></div></div><span class="bar-val">' + map[key] + '</span><span class="bar-pct">' + pct(map[key], total) + '%</span></div>';
+});
+html += '</div>';
+});
+
+if (['broker','branch','rm','account','reporter'].indexOf(activeDef.key) !== -1) {
+var freq = {};
+filtered.forEach(function(r) {
+var dt = String(r['Created date'] || '').substring(0,10) || 'Unknown';
+freq[dt] = (freq[dt] || 0) + 1;
+});
+var freqKeys = Object.keys(freq).sort(function(a,b){ return freq[b] - freq[a]; }).slice(0, 8);
+var maxFreq = freqKeys.reduce(function(max, key){ return Math.max(max, freq[key]); }, 1);
+html += '<div class="ins-card compact-drill-card"><h3>Contact Frequency <span class="badge-count">' + (Math.round(filtered.length / Math.max(1, Object.keys(freq).length) * 10) / 10) + ' / active day</span></h3>';
+freqKeys.forEach(function(key) {
+var width2 = Math.round(freq[key] / maxFreq * 100);
+html += '<div class="compact-bar-row"><span class="bar-label">' + key + '</span><div class="bar-track"><div class="bar-fill" style="width:' + width2 + '%;background:var(--c-purple)"></div></div><span class="bar-val">' + freq[key] + '</span><span class="bar-pct">' + pct(freq[key], total) + '%</span></div>';
+});
+html += '</div>';
+}
+
+var comments = filtered.map(function(r){ return String(r['Comments'] || '').trim(); }).filter(Boolean).slice(0, 4);
+if (comments.length) {
+html += '<div class="ins-card compact-drill-card"><h3>Sample Comments <span class="badge-count">' + comments.length + '</span></h3>';
+comments.forEach(function(comment) {
+html += '<div style="font-size:11px;color:var(--c-text2);line-height:1.6;padding:8px 0;border-bottom:1px solid var(--c-border)">' + comment.substring(0, 180) + (comment.length > 180 ? '…' : '') + '</div>';
+});
+html += '</div>';
+}
+
+html += '</div></div>';
+return html;
+}
+
+function getRecentWeeklyWindows() {
+var end = new Date(G.dateTo);
+end.setHours(23,59,59,999);
+var windows = [];
+for (var i = 0; i < 4; i++) {
+var to = addDays(end, -7 * i);
+var from = addDays(to, -6);
+windows.push({ from: from, to: to, label: dateStr(from).substring(5) + ' to ' + dateStr(to).substring(5) });
+}
+return windows.reverse();
+}
+
+function showAgentTrendDeepDive(kind, agentName) {
+var windows = getRecentWeeklyWindows();
+var metrics = [];
+var primaryLabel = 'Primary';
+var secondaryLabel = 'Secondary';
+var rateLabel = 'Rate';
+var qualityLabel = 'Quality';
+
+windows.forEach(function(window) {
+var data = [];
+if (kind === 'calls') {
+primaryLabel = 'Inbound Calls';
+secondaryLabel = 'Answered';
+rateLabel = 'Answer Rate';
+qualityLabel = 'Avg AHT';
+data = excludeInvalidNumber(G.calls).filter(function(r) {
+var d = parseDate(r['Call Date']);
+if (!d) return false;
+var agent = r['Agent'] || (r['Call Type'] === 'Inbound' ? 'Missed in Queue' : 'Unknown');
+return dateStr(d) >= dateStr(window.from) && dateStr(d) <= dateStr(window.to) && agent === agentName;
+});
+var inbound = data.filter(function(r){ return r['Call Type'] === 'Inbound'; });
+var answered = inbound.filter(function(r){ return r['Status'] === 'Answered'; });
+metrics.push({
+label: window.label,
+primary: inbound.length,
+secondary: answered.length,
+rate: pct(answered.length, inbound.length || 1),
+aux: answered.length ? minsToHMS(avg(answered.map(function(r){ return calcAHT(r); }).filter(function(v){ return v > 0; }))) : '-'
+});
+} else if (kind === 'whatsapp') {
+primaryLabel = 'Chats';
+secondaryLabel = 'Avg FRT';
+rateLabel = 'Share';
+qualityLabel = 'Avg Resolution';
+data = G.whatsapp.filter(function(r) {
+var d = parseDate(r['Created date']);
+return d && dateStr(d) >= dateStr(window.from) && dateStr(d) <= dateStr(window.to) && (r['Owners[0]'] || 'Unassigned') === agentName;
+});
+var frt = [], rt = [];
+data.forEach(function(r) {
+for (var i=0;i<=2;i++) {
+var mn = r['Metric Name['+i+']'], ci = parseFloat(r['Completed In['+i+']']);
+if (isNaN(ci)) continue;
+if (mn === 'First response') frt.push(ci);
+if (mn === 'Resolution time') rt.push(ci);
+}
+});
+var totalWeek = G.whatsapp.filter(function(r) {
+var d = parseDate(r['Created date']);
+return d && dateStr(d) >= dateStr(window.from) && dateStr(d) <= dateStr(window.to);
+}).length;
+metrics.push({
+label: window.label,
+primary: data.length,
+secondary: frt.length ? fmt1(avg(frt)) + ' min' : '-',
+rate: pct(data.length, totalWeek || 1),
+aux: rt.length ? fmt1(avg(rt)) + ' min' : '-'
+});
+} else if (kind === 'calltkts') {
+primaryLabel = 'Tickets';
+secondaryLabel = 'SLA Hit';
+rateLabel = 'SLA Rate';
+qualityLabel = 'Avg QA';
+data = G.callTkts.filter(function(r) {
+var d = parseDate(r['Created date']);
+return d && dateStr(d) >= dateStr(window.from) && dateStr(d) <= dateStr(window.to) && (r['Owner[0]'] || 'Unassigned') === agentName;
+});
+var qa = data.map(function(r){ return parseFloat(r['Overall Score (45)']); }).filter(function(v){ return !isNaN(v); });
+var slaHit = data.filter(function(r){ return r['Metric Status[0]'] === 'hit' || r['Metric Status[1]'] === 'hit'; }).length;
+metrics.push({
+label: window.label,
+primary: data.length,
+secondary: slaHit,
+rate: pct(slaHit, data.length || 1),
+aux: qa.length ? fmt1(avg(qa)) + ' /45' : '-'
+});
+} else if (kind === 'emails') {
+primaryLabel = 'Tickets';
+secondaryLabel = 'Resolved';
+rateLabel = 'Resolution Rate';
+qualityLabel = 'Avg FRT';
+data = G.careEmails.filter(function(r) {
+var d = parseDate(r['Created date']);
+return d && dateStr(d) >= dateStr(window.from) && dateStr(d) <= dateStr(window.to) && (r['Owner[0]'] || 'Unassigned') === agentName;
+});
+var resolved = data.filter(function(r){ return r['Stage'] === 'resolved'; }).length;
+var frt = data.map(function(r){ return parseFloat(r['Completed In[0]']); }).filter(function(v){ return !isNaN(v) && v >= 0; });
+metrics.push({
+label: window.label,
+primary: data.length,
+secondary: resolved,
+rate: pct(resolved, data.length || 1),
+aux: frt.length ? fmt1(avg(frt)) + ' min FRT' : '-'
+});
+}
+});
+
+var latestMetric = metrics.length ? metrics[metrics.length - 1] : null;
+var prevMetric = metrics.length > 1 ? metrics[metrics.length - 2] : null;
+var bestMetric = metrics.slice().sort(function(a,b){ return b.rate - a.rate; })[0] || null;
+var worstMetric = metrics.slice().sort(function(a,b){ return a.rate - b.rate; })[0] || null;
+var summaryBits = [];
+if (latestMetric) summaryBits.push('Latest week: <strong>' + latestMetric.label + '</strong> with <strong>' + latestMetric.primary + '</strong> ' + primaryLabel.toLowerCase() + ' and <strong>' + latestMetric.rate + '%</strong> ' + rateLabel.toLowerCase() + '.');
+if (prevMetric && latestMetric) {
+var volumeDelta = latestMetric.primary - prevMetric.primary;
+var rateDelta = Math.round((latestMetric.rate - prevMetric.rate) * 10) / 10;
+summaryBits.push('Vs previous week: <strong>' + (volumeDelta >= 0 ? '+' : '') + volumeDelta + '</strong> volume and <strong>' + (rateDelta >= 0 ? '+' : '') + rateDelta + ' pts</strong> in ' + rateLabel.toLowerCase() + '.');
+}
+if (bestMetric && worstMetric && bestMetric.label !== worstMetric.label) {
+summaryBits.push('Best week: <strong>' + bestMetric.label + '</strong>; weakest week: <strong>' + worstMetric.label + '</strong>.');
+}
+
+var overlay = document.createElement('div');
+overlay.id = 'dd-overlay';
+overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:999;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)';
+overlay.onclick = function(e){ if(e.target===overlay) overlay.remove(); };
+
+var html = '<div class="modal-panel" style="width:min(760px,92vw)">';
+html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><h2 style="margin:0;font-size:16px;color:var(--c-navy)">' + agentName + ' — Weekly Consistency</h2><button onclick="document.getElementById(\'dd-overlay\').remove()" style="background:none;border:none;font-size:24px;color:var(--c-text3);cursor:pointer">&times;</button></div>';
+html += '<div style="font-size:12px;color:var(--c-text2);margin-bottom:14px">Showing the selected week plus the previous 3 weekly windows, so you can compare trend, rate and quality instead of just raw totals.</div>';
+if (summaryBits.length) html += '<div class="trend-summary">' + summaryBits.join(' ') + '</div>';
+html += '<div class="table-wrap"><table><thead><tr><th>Week</th><th>'+primaryLabel+'</th><th>'+secondaryLabel+'</th><th>'+rateLabel+'</th><th>'+qualityLabel+'</th></tr></thead><tbody>';
+metrics.forEach(function(metric) {
+var width = Math.max(6, Math.min(100, metric.rate));
+html += '<tr><td><strong>' + metric.label + '</strong></td><td>' + metric.primary + '</td><td>' + metric.secondary + '</td><td><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;background:var(--c-surface2);height:8px;border-radius:999px;overflow:hidden;min-width:90px"><div style="width:' + width + '%;height:100%;background:var(--c-blue)"></div></div><span style="font-weight:700">' + metric.rate + '%</span></div></td><td>' + metric.aux + '</td></tr>';
+});
+html += '</tbody></table></div></div>';
+
+var sliceRows = [];
+if (kind === 'calls') {
+sliceRows = excludeInvalidNumber(filterByDate(G.calls, 'Call Date')).filter(function(r) {
+var agent = r['Agent'] || (r['Call Type'] === 'Inbound' ? 'Missed in Queue' : 'Unknown');
+return agent === agentName;
+});
+} else if (kind === 'whatsapp') {
+sliceRows = filterByDate(G.whatsapp, 'Created date').filter(function(r) { return (r['Owners[0]'] || 'Unassigned') === agentName; });
+} else if (kind === 'calltkts') {
+sliceRows = filterByDate(G.callTkts, 'Created date').filter(function(r) { return (r['Owner[0]'] || 'Unassigned') === agentName; });
+}
+if (sliceRows.length) {
+html += '<div class="modal-panel" style="width:min(1200px,96vw);margin-top:14px">';
+html += renderDeepDiveSliceTable(sliceRows, kind);
+html += '</div>';
+}
+overlay.innerHTML = html;
+document.body.appendChild(overlay);
+}
+
 function topNTable(rows, field, title) {
 var map = {};
 rows.forEach(function(r){ var v=String(r[field]||'').trim()||'Unknown'; map[v]=(map[v]||0)+1; });
 var sorted = Object.keys(map).sort(function(a,b){return map[b]-map[a];}).slice(0,15);
+var kind = rows.some(function(r){ return String(r['ID']||'').trim(); }) ? 'whatsapp' : 'calltkts';
 var html = '<div class="table-card"><h3>'+title+'</h3><div class="table-wrap"><table><thead><tr>' +
 '<th>'+field+'</th><th>Count</th><th>%</th></tr></thead><tbody>';
 sorted.forEach(function(k) {
-html += '<tr><td>'+k+'</td><td>'+map[k]+'</td><td>'+pct(map[k],rows.length)+'%</td></tr>';
+var btn = '<button onclick="showEntityTrendDeepDive(\''+kind+'\', \''+field+'\', \''+k.replace(/'/g, "\\'")+'\', \''+field+'\')" style="background:none;border:none;padding:0;color:var(--c-blue-hover);font:inherit;cursor:pointer;text-align:left">'+k+'</button>';
+html += '<tr><td>'+btn+'</td><td>'+map[k]+'</td><td>'+pct(map[k],rows.length)+'%</td></tr>';
 });
 html += '</tbody></table></div></div>';
 return html;
@@ -3251,12 +4142,13 @@ var s=String(r[field2]||'').trim(); if(s) map[v].sub[s]=(map[v].sub[s]||0)+1;
 var t=String(r[field3]||'').trim(); if(t) map[v].third[t]=(map[v].third[t]||0)+1;
 });
 var sorted = Object.keys(map).sort(function(a,b){return map[b].count-map[a].count;}).slice(0,n);
+var kind = rows.some(function(r){ return String(r['ID']||'').trim(); }) ? 'whatsapp' : 'calltkts';
 var html = '<div class="table-card"><h3>By '+field+'</h3><div class="table-wrap"><table><thead><tr>' +
 '<th>'+field+'</th><th>Count</th><th>'+field2+'</th><th>Top Issue</th></tr></thead><tbody>';
 sorted.forEach(function(k) {
 var topSub = Object.keys(map[k].sub).sort(function(a,b){return map[k].sub[b]-map[k].sub[a];})[0]||'-';
 var topThird = Object.keys(map[k].third).sort(function(a,b){return map[k].third[b]-map[k].third[a];})[0]||'-';
-html += '<tr><td><strong>'+k+'</strong></td><td><span class="badge badge-blue">'+map[k].count+'</span></td><td>'+topSub+'</td><td>'+topThird+'</td></tr>';
+html += '<tr><td><button onclick="showEntityTrendDeepDive(\''+kind+'\', \''+field+'\', \''+k.replace(/'/g, "\\'")+'\', \''+field+'\')" style="background:none;border:none;padding:0;color:var(--c-blue-hover);font:inherit;font-weight:700;cursor:pointer;text-align:left">'+k+'</button></td><td><span class="badge badge-blue">'+map[k].count+'</span></td><td>'+topSub+'</td><td>'+topThird+'</td></tr>';
 });
 html += '</tbody></table></div></div>';
 return html;
@@ -3300,6 +4192,121 @@ html += '</div></div>';
 return html;
 }
 
+function showUnifiedAgentPerformanceDeepDive(agentName) {
+var callRows = filterByDate(G.calls, 'Call Date').filter(function(r) {
+var a = r['Agent'] || (r['Call Type']==='Inbound' ? 'Missed in Queue' : 'Unknown');
+return a === agentName;
+});
+var ctRows = filterByDate(G.callTkts, 'Created date').filter(function(r) { return (r['Owner[0]'] || 'Unassigned') === agentName; });
+var waRows = filterByDate(G.whatsapp, 'Created date').filter(function(r) { return (r['Owners[0]'] || 'Unassigned') === agentName; });
+var emRows = filterByDate(G.careEmails, 'Created date').filter(function(r) { return (r['Owner[0]'] || 'Unassigned') === agentName; });
+
+var inbound = callRows.filter(function(r){ return r['Call Type'] === 'Inbound'; });
+var ibAns = inbound.filter(function(r){ return r['Status'] === 'Answered'; });
+var ibUnans = inbound.filter(function(r){ return r['Status'] !== 'Answered'; });
+var progressive = callRows.filter(function(r){ return r['Call Type'] === 'Progressive'; });
+var pgAns = progressive.filter(function(r){ return r['Status'] === 'Answered'; });
+var pgMiss = progressive.length - pgAns.length;
+var ahtArr = callRows.map(calcAHT).filter(function(v){ return v > 0; });
+var talkArr = callRows.map(function(r){ return timeStrToMins(r['Talk Time']); }).filter(function(v){ return v > 0; });
+var holdArr = callRows.map(function(r){ return timeStrToMins(r['Hold Time']); }).filter(function(v){ return v > 0; });
+var qaArr = ctRows.map(function(r){ return parseFloat(r['Overall Score (45)']); }).filter(function(v){ return !isNaN(v); });
+var ctSlaHit = ctRows.filter(function(r){ return r['Metric Status[0]']==='hit' || r['Metric Status[1]']==='hit'; }).length;
+var waFrt = [], waRt = [];
+waRows.forEach(function(r) {
+for (var i=0;i<=2;i++) {
+var mn = r['Metric Name['+i+']'], ci = parseFloat(r['Completed In['+i+']']);
+if (!mn || isNaN(ci)) continue;
+if (mn === 'First response') waFrt.push(ci);
+if (mn === 'Resolution time') waRt.push(ci);
+}
+});
+var emResolved = emRows.filter(function(r){ return String(r['Stage'] || '').toLowerCase() === 'resolved'; }).length;
+var emFrt = emRows.map(function(r){ return parseFloat(r['Completed In[0]']); }).filter(function(v){ return !isNaN(v) && v >= 0; });
+
+var issueMap = {}, brokerMap = {}, branchMap = {}, rmMap = {};
+ctRows.concat(waRows).concat(emRows).forEach(function(r) {
+var issue = normalizeDashboardValue(r['Issue Type (B2B)'] || r['Issue'] || r['Category']);
+var broker = normalizeDashboardValue(r['RM Broker Name']);
+var branch = normalizeDashboardValue(r['Branch/Location']);
+var rm = normalizeDashboardValue(r['RM Name']);
+issueMap[issue] = (issueMap[issue] || 0) + 1;
+brokerMap[broker] = (brokerMap[broker] || 0) + 1;
+branchMap[branch] = (branchMap[branch] || 0) + 1;
+rmMap[rm] = (rmMap[rm] || 0) + 1;
+});
+var comments = ctRows.concat(waRows).concat(emRows).map(function(r){ return String(r['Comments']||'').trim(); }).filter(Boolean).slice(0,4);
+
+var windows = getRecentWeeklyWindows();
+var weeklyRows = windows.map(function(window) {
+var from = dateStr(window.from), to = dateStr(window.to);
+var cRows = callRows.filter(function(r){ var d = parseDate(r['Call Date']); return d && dateStr(d) >= from && dateStr(d) <= to; });
+var cIn = cRows.filter(function(r){ return r['Call Type'] === 'Inbound'; });
+var cPg = cRows.filter(function(r){ return r['Call Type'] === 'Progressive'; });
+var wCt = ctRows.filter(function(r){ var d = parseDate(r['Created date']); return d && dateStr(d) >= from && dateStr(d) <= to; });
+var wWa = waRows.filter(function(r){ var d = parseDate(r['Created date']); return d && dateStr(d) >= from && dateStr(d) <= to; });
+var wEm = emRows.filter(function(r){ var d = parseDate(r['Created date']); return d && dateStr(d) >= from && dateStr(d) <= to; });
+return {
+label: window.label,
+ibA: cIn.filter(function(r){ return r['Status']==='Answered'; }).length,
+ibU: cIn.filter(function(r){ return r['Status']!=='Answered'; }).length,
+pgA: cPg.filter(function(r){ return r['Status']==='Answered'; }).length,
+pgM: cPg.filter(function(r){ return r['Status']!=='Answered'; }).length,
+ct: wCt.length,
+wa: wWa.length,
+em: wEm.length
+};
+});
+
+function topBars(map, color) {
+var keys = Object.keys(map).sort(function(a,b){ return map[b] - map[a]; }).slice(0,5);
+if (!keys.length) return '<div class="modal-muted">No data</div>';
+var total = keys.reduce(function(s, key){ return s + (map[key] || 0); }, 0) || 1;
+var maxVal = map[keys[0]] || 1;
+return keys.map(function(key) {
+var width = Math.round(map[key] / maxVal * 100);
+return '<div class="compact-bar-row"><span class="bar-label">' + key + '</span><div class="bar-track"><div class="bar-fill" style="width:' + width + '%;background:' + color + '"></div></div><span class="bar-val">' + map[key] + '</span><span class="bar-pct">' + pct(map[key], total) + '%</span></div>';
+}).join('');
+}
+
+var overlay = document.createElement('div');
+overlay.id = 'dd-overlay';
+overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:999;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)';
+overlay.onclick = function(e){ if(e.target===overlay) overlay.remove(); };
+
+var html = '<div class="modal-panel" style="width:min(980px,96vw)">';
+html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><h2 style="margin:0;font-size:17px">' + agentName + ' — Agent Deepdive</h2><button onclick="document.getElementById(\'dd-overlay\').remove()" style="background:none;border:none;font-size:24px;color:var(--c-text3);cursor:pointer">&times;</button></div>';
+html += '<div class="trend-summary">Combined view across calls, DevRev call tickets, WhatsApp and care emails for the selected date range. This is the agent-wide workload and quality snapshot.</div>';
+html += '<div class="agent-modal-grid">';
+html += '<div class="agent-modal-stat"><div class="lbl">Inbound</div><div class="val">' + ibAns.length + '</div><div class="sub">' + ibUnans.length + ' unanswered · ' + pct(ibAns.length, inbound.length || 1) + '% answer rate</div></div>';
+html += '<div class="agent-modal-stat"><div class="lbl">Progressive</div><div class="val">' + pgAns.length + '</div><div class="sub">' + pgMiss + ' missed · ' + pct(pgAns.length, progressive.length || 1) + '% answer rate</div></div>';
+html += '<div class="agent-modal-stat"><div class="lbl">Call Tickets</div><div class="val">' + ctRows.length + '</div><div class="sub">' + pct(ctSlaHit, ctRows.length || 1) + '% SLA hit · ' + (qaArr.length ? fmt1(avg(qaArr)) + '/45 QA' : 'No QA') + '</div></div>';
+html += '<div class="agent-modal-stat"><div class="lbl">WhatsApp</div><div class="val">' + waRows.length + '</div><div class="sub">' + (waFrt.length ? fmt1(avg(waFrt)) + ' min FRT' : 'No FRT') + ' · ' + (waRt.length ? fmt1(avg(waRt)) + ' min res' : 'No resolution') + '</div></div>';
+html += '<div class="agent-modal-stat"><div class="lbl">Care Emails</div><div class="val">' + emRows.length + '</div><div class="sub">' + emResolved + ' resolved · ' + (emFrt.length ? fmt1(avg(emFrt)) + ' min FRT' : 'No FRT') + '</div></div>';
+html += '<div class="agent-modal-stat"><div class="lbl">Call Timing</div><div class="val">' + (ahtArr.length ? minsToHMS(avg(ahtArr)) : '-') + '</div><div class="sub">Talk ' + (talkArr.length ? minsToHMS(avg(talkArr)) : '-') + ' · Hold ' + (holdArr.length ? minsToHMS(avg(holdArr)) : '-') + '</div></div>';
+html += '</div>';
+html += '<div class="table-card" style="margin-bottom:12px"><h3>Weekly Activity Trend</h3><div class="table-wrap"><table><thead><tr><th>Week</th><th>IB Ans</th><th>IB Unans</th><th>PG Ans</th><th>PG Miss</th><th>Call Tkts</th><th>WA</th><th>Emails</th></tr></thead><tbody>';
+weeklyRows.forEach(function(w) {
+html += '<tr><td><strong>' + w.label + '</strong></td><td>' + w.ibA + '</td><td>' + (w.ibU || '-') + '</td><td>' + w.pgA + '</td><td>' + (w.pgM || '-') + '</td><td>' + (w.ct || '-') + '</td><td>' + (w.wa || '-') + '</td><td>' + (w.em || '-') + '</td></tr>';
+});
+html += '</tbody></table></div></div>';
+html += '<div class="compact-drill-grid">';
+html += '<div class="ins-card compact-drill-card"><h3>Issue Mix</h3>' + topBars(issueMap, 'var(--c-blue)') + '</div>';
+html += '<div class="ins-card compact-drill-card"><h3>Broker Mix</h3>' + topBars(brokerMap, 'var(--c-teal)') + '</div>';
+html += '<div class="ins-card compact-drill-card"><h3>Branch Mix</h3>' + topBars(branchMap, 'var(--c-purple)') + '</div>';
+html += '<div class="ins-card compact-drill-card"><h3>RM Touchpoints</h3>' + topBars(rmMap, 'var(--c-amber)') + '</div>';
+if (comments.length) {
+html += '<div class="ins-card compact-drill-card" style="grid-column:1 / -1"><h3>Latest Comments</h3>';
+comments.forEach(function(comment) {
+html += '<div style="font-size:11px;color:var(--c-text2);line-height:1.6;padding:6px 0;border-bottom:1px solid var(--c-border)">' + comment.substring(0, 240) + (comment.length > 240 ? '…' : '') + '</div>';
+});
+html += '</div>';
+}
+html += '</div></div>';
+overlay.innerHTML = html;
+document.body.appendChild(overlay);
+}
+
 // ================================================================
 // AGENT PERFORMANCE TAB
 // ================================================================
@@ -3320,7 +4327,7 @@ html += '<div class="sub-tabs">' +
 
 var agData = {};
 function ensureAg(name) {
-if (!agData[name]) agData[name] = { ibAns:0, ibUnans:0, pgAns:0, pgAgMiss:0, pgUsrMiss:0, pgOthMiss:0, ahtArr:[], talkArr:[], holdArr:[], tickets:0, waChats:0, emails:0, qaScores:[], waFrt:[], waRt:[] };
+if (!agData[name]) agData[name] = { ibAns:0, ibUnans:0, pgAns:0, pgAgMiss:0, pgUsrMiss:0, pgOthMiss:0, ahtArr:[], talkArr:[], holdArr:[], tickets:0, ctSlaHit:0, waChats:0, emails:0, emailResolved:0, qaScores:[], waFrt:[], waRt:[] };
 }
 
 callRows.forEach(function(r) {
@@ -3350,6 +4357,7 @@ else agData[a].pgOthMiss++;
 ctRows.forEach(function(r) {
 var a=r['Owner[0]']||'Unassigned'; ensureAg(a);
 agData[a].tickets++;
+if(r['Metric Status[0]']==='hit'||r['Metric Status[1]']==='hit') agData[a].ctSlaHit++;
 var sc=parseFloat(r['Overall Score (45)']); if(!isNaN(sc)) agData[a].qaScores.push(sc);
 });
 
@@ -3366,6 +4374,7 @@ else if(mn==='Resolution time') agData[a].waRt.push(ci);
 
 emRows.forEach(function(r) {
 var a=r['Owner[0]']||'Unassigned'; ensureAg(a); agData[a].emails++;
+if (String(r['Stage'] || '').toLowerCase() === 'resolved') agData[a].emailResolved++;
 });
 
 var agents = Object.keys(agData).map(function(name) {
@@ -3378,12 +4387,12 @@ return { name:name, ibAns:d.ibAns, ibUnans:d.ibUnans, ibTotal:ibTotal,
 pgAns:d.pgAns, pgAgMiss:d.pgAgMiss, pgUsrMiss:d.pgUsrMiss, pgOthMiss:d.pgOthMiss, pgTotal:pgTotal,
 combTotal:combTotal, ansCalls:ansCalls, baseCalls:baseCalls, ansRate:pct(ansCalls,baseCalls||1),
 avgAHT:d.ahtArr.length?avg(d.ahtArr):0, avgTalk:d.talkArr.length?avg(d.talkArr):0, avgHold:d.holdArr.length?avg(d.holdArr):0,
-tickets:d.tickets, waChats:d.waChats, emails:d.emails,
+tickets:d.tickets, ctSlaHit:d.ctSlaHit, waChats:d.waChats, emails:d.emails, emailResolved:d.emailResolved,
 avgQA:d.qaScores.length?fmt1(avg(d.qaScores)):'-',
 waAvgFrt:d.waFrt.length?fmt1(avg(d.waFrt)):'-', waAvgRt:d.waRt.length?fmt1(avg(d.waRt)):'-',
 totalActivity:combTotal+d.tickets+d.waChats+d.emails };
 }).filter(function(a){ return a.totalActivity>0; })
-.sort(function(a,b){ return b.ansCalls-a.ansCalls; });
+.sort(function(a,b){ return b.totalActivity-a.totalActivity; });
 
 var totalIBAns=agents.reduce(function(s,a){return s+a.ibAns;},0);
 var totalIBAll=agents.reduce(function(s,a){return s+a.ibTotal;},0);
@@ -3406,8 +4415,8 @@ html += '<div class="section-head">Per-Agent Performance</div>';
 html += '<div class="table-card"><div class="table-wrap"><table><thead><tr>';
 html += '<th>Agent</th>';
 if(sub!=='progressive'){html+='<th>IB Ans</th><th>IB Unans</th><th>IB Total</th><th>IB Rate</th>';}
-if(sub!=='inbound'){html+='<th>PG Ans</th><th>PG Miss(Ag)</th><th>PG Miss(User)</th><th>PG Total</th><th>PG Rate</th>';}
-html+='<th>Avg AHT</th><th>Avg Talk</th><th>Avg Hold</th><th>Call Tkts</th><th>WA Chats</th><th>WA FRT</th><th>WA Res</th><th>Emails</th><th>QA Score</th>';
+if(sub!=='inbound'){html+='<th>PG Ans</th><th>PG Miss(Ag)</th><th>PG Miss(User)</th><th>PG Miss(Other)</th><th>PG Total</th><th>PG Rate</th>';}
+html+='<th>Avg AHT</th><th>Avg Talk</th><th>Avg Hold</th><th>Call Tkts</th><th>CT SLA</th><th>WA Chats</th><th>WA FRT</th><th>WA Res</th><th>Emails</th><th>Email Res</th><th>Total Activity</th><th>QA Score</th>';
 html+='</tr></thead><tbody>';
 
 agents.forEach(function(ag, i) {
@@ -3417,23 +4426,26 @@ var ns=isMQ?' style="color:var(--c-red)"':'';
 var ibRate=pct(ag.ibAns,ag.ibTotal||1), pgRate=pct(ag.pgAns,ag.pgTotal||1);
 var rank=!isMQ?(i===0?' &#127947;':i===1?' &#129352;':i===2?' &#129353;':''):'';
 html+='<tr'+rowBg+'>';
-html+='<td'+ns+'><strong>'+ag.name+'</strong>'+rank+'</td>';
+html+='<td'+ns+'><button onclick="showUnifiedAgentPerformanceDeepDive(\''+ag.name.replace(/'/g, "\\'")+'\')" style="background:none;border:none;padding:0;color:'+(isMQ?'var(--c-red)':'var(--c-blue-hover)')+';font:inherit;font-weight:700;cursor:pointer;text-align:left"><strong>'+ag.name+'</strong>'+rank+'</button></td>';
 if(sub!=='progressive'){
 html+='<td>'+ag.ibAns+'</td><td>'+(ag.ibUnans||'-')+'</td><td>'+ag.ibTotal+'</td>';
 html+='<td><span class="badge '+(ibRate>=90?'badge-green':ibRate>=70?'badge-amber':'badge-red')+'">'+ibRate+'%</span></td>';
 }
 if(sub!=='inbound'){
-html+='<td>'+ag.pgAns+'</td><td>'+(ag.pgAgMiss||'-')+'</td><td>'+(ag.pgUsrMiss||'-')+'</td><td>'+ag.pgTotal+'</td>';
+html+='<td>'+ag.pgAns+'</td><td>'+(ag.pgAgMiss||'-')+'</td><td>'+(ag.pgUsrMiss||'-')+'</td><td>'+(ag.pgOthMiss||'-')+'</td><td>'+ag.pgTotal+'</td>';
 html+='<td><span class="badge '+(pgRate>=80?'badge-green':pgRate>=50?'badge-amber':'badge-red')+'">'+pgRate+'%</span></td>';
 }
 html+='<td>'+(ag.avgAHT?minsToHMS(ag.avgAHT):'-')+'</td>';
 html+='<td>'+(ag.avgTalk?minsToHMS(ag.avgTalk):'-')+'</td>';
 html+='<td>'+(ag.avgHold?minsToHMS(ag.avgHold):'-')+'</td>';
 html+='<td>'+(ag.tickets?'<span class="badge badge-blue">'+ag.tickets+'</span>':'-')+'</td>';
+html+='<td>'+(ag.tickets?'<span class="badge badge-gray">'+pct(ag.ctSlaHit,ag.tickets||1)+'%</span>':'-')+'</td>';
 html+='<td>'+(ag.waChats?'<span class="badge badge-purple">'+ag.waChats+'</span>':'-')+'</td>';
 html+='<td style="color:var(--c-text2)">'+ag.waAvgFrt+'</td>';
 html+='<td style="color:var(--c-text2)">'+ag.waAvgRt+'</td>';
 html+='<td>'+(ag.emails?'<span class="badge badge-amber">'+ag.emails+'</span>':'-')+'</td>';
+html+='<td>'+(ag.emailResolved?ag.emailResolved:'-')+'</td>';
+html+='<td><span class="badge badge-gray">'+ag.totalActivity+'</span></td>';
 html+='<td>'+(ag.avgQA!=='-'?'<span class="badge badge-green">'+ag.avgQA+'</span>':'-')+'</td>';
 html+='</tr>';
 });
@@ -3442,8 +4454,8 @@ var pgTotUnag=agents.reduce(function(s,a){return s+a.pgAgMiss;},0);
 var pgTotUuu=agents.reduce(function(s,a){return s+a.pgUsrMiss;},0);
 html+='</tbody><tfoot><tr><td><strong>Grand Total</strong></td>';
 if(sub!=='progressive'){html+='<td>'+totalIBAns+'</td><td>'+(agents.reduce(function(s,a){return s+a.ibUnans;},0)||'-')+'</td><td>'+totalIBAll+'</td><td><strong>'+pct(totalIBAns,totalIBAll||1)+'%</strong></td>';}
-if(sub!=='inbound'){html+='<td>'+totalPGAns+'</td><td>'+(pgTotUnag||'-')+'</td><td>'+(pgTotUuu||'-')+'</td><td>'+totalPGAll+'</td><td><strong>'+pct(totalPGAns,totalPGAll||1)+'%</strong></td>';}
-html+='<td colspan="3"></td><td>'+totalTkts+'</td><td>'+totalWA+'</td><td colspan="2"></td><td>'+totalEM+'</td><td></td></tr></tfoot></table></div></div>';
+if(sub!=='inbound'){html+='<td>'+totalPGAns+'</td><td>'+(pgTotUnag||'-')+'</td><td>'+(pgTotUuu||'-')+'</td><td>'+(agents.reduce(function(s,a){return s+a.pgOthMiss;},0)||'-')+'</td><td>'+totalPGAll+'</td><td><strong>'+pct(totalPGAns,totalPGAll||1)+'%</strong></td>';}
+html+='<td colspan="3"></td><td>'+totalTkts+'</td><td><strong>'+pct(agents.reduce(function(s,a){return s+a.ctSlaHit;},0), totalTkts||1)+'%</strong></td><td>'+totalWA+'</td><td colspan="2"></td><td>'+totalEM+'</td><td>'+agents.reduce(function(s,a){return s+a.emailResolved;},0)+'</td><td>'+agents.reduce(function(s,a){return s+a.totalActivity;},0)+'</td><td></td></tr></tfoot></table></div></div>';
 
 c.innerHTML = html;
 }
@@ -3451,12 +4463,50 @@ c.innerHTML = html;
 // ================================================================
 // INSIGHTS NEW TAB — RM / Broker / Branch / Channel breakdown
 // ================================================================
+function showRmHubDeepDive(rmName) {
+var ctRows = filterByDate(G.callTkts, 'Created date');
+var waRows = filterByDate(G.whatsapp, 'Created date');
+var rows = ctRows.concat(waRows).filter(function(r) {
+return normalizeDashboardValue(r['RM Name']) === normalizeDashboardValue(rmName);
+});
+var overlay = document.createElement('div');
+overlay.id = 'dd-overlay';
+overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.55);z-index:1000;display:flex;align-items:flex-start;justify-content:center;padding:28px 16px;overflow-y:auto;backdrop-filter:blur(5px)';
+overlay.onclick = function(e){ if(e.target===overlay) overlay.remove(); };
+var html = '<div class="modal-panel" style="width:min(1020px,96vw);max-height:92vh;overflow-y:auto">';
+html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><h2 style="margin:0;font-size:16px;color:var(--c-navy)">RM — ' + rmName + ' <span style="font-weight:600;color:var(--c-text2)">(' + rows.length + ')</span></h2><button onclick="document.getElementById(\'dd-overlay\').remove()" style="background:none;border:none;font-size:24px;color:var(--c-text3);cursor:pointer">&times;</button></div>';
+if (!rows.length) {
+html += '<div style="padding:16px;color:var(--c-text2)">No Call Ticket or WhatsApp rows for this RM in the selected range.</div></div>';
+overlay.innerHTML = html;
+document.body.appendChild(overlay);
+return;
+}
+html += '<div class="table-wrap"><table><thead><tr><th>Created</th><th>Source</th><th>Ticket / Conversation</th><th>Broker</th><th>Branch</th><th>Issue</th><th>Sub-Issue</th><th>Comments</th></tr></thead><tbody>';
+rows.slice(0, 250).forEach(function(r) {
+var isWA = !!r['ID'];
+var src = isWA ? 'WhatsApp' : 'Call ticket';
+var id = isWA ? String(r['ID'] || '') : String(r['Work ID'] || '');
+var link = id ? generateDevRevLinkWithTime(id, r['Created date']) : '-';
+var com = String(r['Comments'] || '').trim();
+if (com.length > 200) com = com.substring(0, 200) + '…';
+com = com.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+html += '<tr><td style="font-size:11px;white-space:nowrap">' + (formatShortTs(r['Created date']) || '-') + '</td><td>' + src + '</td><td>' + link + '</td>';
+html += '<td>' + normalizeDashboardValue(r['RM Broker Name']) + '</td><td>' + normalizeDashboardValue(r['Branch/Location']) + '</td>';
+html += '<td>' + normalizeDashboardValue(r['Issue Type (B2B)'] || r['Issue']) + '</td><td>' + normalizeDashboardValue(r['Sub Issue Type (B2B)'] || r['Sub-Issue']) + '</td>';
+html += '<td style="font-size:11px;color:var(--c-text2);max-width:300px">' + com + '</td></tr>';
+});
+html += '</tbody></table></div></div>';
+overlay.innerHTML = html;
+document.body.appendChild(overlay);
+}
+
 function renderInsightsNew(c) {
 var ctRows = filterByDate(G.callTkts, 'Created date');
 var waRows = filterByDate(G.whatsapp, 'Created date');
 var allRows = ctRows.concat(waRows);
 
 var html = filterBarHTML('insightsnew');
+html += '<div class="focus-banner" style="margin-top:-4px"><h2>Intelligence Hub</h2><p>Unified view of the old Caller Intelligence, Insights, and Insights New pages. Use the dimension tabs below to inspect RM, broker, branch and channel behaviour, contact frequency, issue concentration and heatmaps from Call Tickets plus WhatsApp together.</p></div>';
 
 // Dimension picker
 var dims = ['rm','broker','branch','channel'];
@@ -3466,60 +4516,93 @@ var activeDim = G.insightsNewSub || 'rm';
 
 html += '<div class="sub-tabs" style="margin-bottom:20px">';
 dims.forEach(function(d) {
-html += '<button class="sub-tab-btn'+(activeDim===d?' active':'')+'" onclick="G.insightsNewSub=\''+d+'\';renderTab(\'insightsnew\')">By '+dimLabels[d]+'</button>';
+html += '<button class="sub-tab-btn'+(activeDim===d?' active':'')+'" onclick="G.insightsNewSub=\''+d+'\';renderTab(G.activeTab)">By '+dimLabels[d]+'</button>';
 });
 html += '</div>';
 
 var field = dimFields[activeDim];
+
+if (!allRows.length) {
+c.innerHTML = html + '<div class="table-card"><h3>Intelligence Hub</h3><div style="padding:18px 20px;color:var(--c-text2)">No Call Ticket or WhatsApp records are available in the selected range.</div></div>';
+return;
+}
 
 // Summary KPI strip
 html += '<div class="kpi-row cols-4">';
 html += kpiCard('Call Tickets','blue',ctRows.length,'Dealer support');
 html += kpiCard('WhatsApp Chats','teal',waRows.length,'Dealer support');
 html += kpiCard('Total','purple',allRows.length,'Combined');
-var uniqueDims = new Set(allRows.map(function(r){ return String(r[field]||'').trim(); }).filter(Boolean));
-html += kpiCard(dimLabels[activeDim]+'s','green',uniqueDims.size,'Unique');
+var uniqueDimMap = {};
+allRows.forEach(function(r) {
+var key = normalizeDashboardValue(r[field]);
+if (key !== 'NA') uniqueDimMap[key] = 1;
+});
+html += kpiCard(dimLabels[activeDim]+'s','green',Object.keys(uniqueDimMap).length,'Unique');
 html += '</div>';
 
 // Build dimension → issue breakdown map
 var dimMap = {};
 allRows.forEach(function(r) {
-var dimVal = String(r[field]||'').trim() || '(unset)';
-var issue = String(r['Issue Type (B2B)'] || r['Issue'] || r['Category'] || '').trim() || 'Unknown';
-var subIss = String(r['Sub Issue Type (B2B)'] || r['Sub-Issue'] || '').trim();
-var channel= String(r['Channel (B2B)']||'').trim();
-var broker = String(r['RM Broker Name']||'').trim();
-var branch = String(r['Branch/Location']||'').trim();
-var rm = String(r['RM Name']||'').trim();
+var dimVal = normalizeDashboardValue(r[field]);
+var issue = normalizeDashboardValue(r['Issue Type (B2B)'] || r['Issue'] || r['Category']);
+var subIss = normalizeDashboardValue(r['Sub Issue Type (B2B)'] || r['Sub-Issue']);
+var channel= normalizeDashboardValue(r['Channel (B2B)']);
+var broker = normalizeDashboardValue(r['RM Broker Name']);
+var branch = normalizeDashboardValue(r['Branch/Location']);
+var rm = normalizeDashboardValue(r['RM Name']);
 var isWA = !!r['ID']; // WA rows have ID field, callTkts don't
 if (!dimMap[dimVal]) dimMap[dimVal] = { total:0, ct:0, wa:0, issues:{}, subIssues:{}, channels:{}, brokers:{}, branches:{}, rms:{} };
 dimMap[dimVal].total++;
 if (isWA) dimMap[dimVal].wa++; else dimMap[dimVal].ct++;
 dimMap[dimVal].issues[issue] = (dimMap[dimVal].issues[issue]||0)+1;
-if (subIss) dimMap[dimVal].subIssues[subIss] = (dimMap[dimVal].subIssues[subIss]||0)+1;
-if (channel) dimMap[dimVal].channels[channel] = (dimMap[dimVal].channels[channel]||0)+1;
-if (broker) dimMap[dimVal].brokers[broker] = (dimMap[dimVal].brokers[broker]||0)+1;
-if (branch) dimMap[dimVal].branches[branch] = (dimMap[dimVal].branches[branch]||0)+1;
-if (rm && activeDim !== 'rm') dimMap[dimVal].rms[rm] = (dimMap[dimVal].rms[rm]||0)+1;
+dimMap[dimVal].subIssues[subIss] = (dimMap[dimVal].subIssues[subIss]||0)+1;
+dimMap[dimVal].channels[channel] = (dimMap[dimVal].channels[channel]||0)+1;
+dimMap[dimVal].brokers[broker] = (dimMap[dimVal].brokers[broker]||0)+1;
+dimMap[dimVal].branches[branch] = (dimMap[dimVal].branches[branch]||0)+1;
+if (activeDim !== 'rm') dimMap[dimVal].rms[rm] = (dimMap[dimVal].rms[rm]||0)+1;
 });
 
 var sorted = Object.keys(dimMap).sort(function(a,b){ return dimMap[b].total - dimMap[a].total; });
 
 // Summary table
 html += '<div class="section-head">'+dimLabels[activeDim]+' — Volume Summary</div>';
-html += '<div class="table-card"><div class="table-wrap"><table><thead><tr>';
+html += '<div class="scroll-panel-10"><div class="table-wrap"><table><thead><tr>';
 html += '<th>'+dimLabels[activeDim]+'</th><th>Total</th><th>Call Tickets</th><th>WhatsApp</th><th>Top Issue</th><th>Top Sub-Issue</th>';
 html += '</tr></thead><tbody>';
 sorted.forEach(function(dim) {
 var d = dimMap[dim];
 var topIssue = topKey(d.issues);
 var topSubIss = topKey(d.subIssues);
-html += '<tr><td><strong>'+dim+'</strong></td><td><span class="badge badge-blue">'+d.total+'</span></td>';
+var dimEsc = String(dim).replace(/\\/g,'\\\\').replace(/'/g, "\\'");
+var dimCell = activeDim === 'rm'
+? '<button type="button" onclick="showRmHubDeepDive(\''+dimEsc+'\')" style="background:none;border:none;padding:0;color:var(--c-blue-hover);font:inherit;font-weight:700;cursor:pointer;text-align:left">'+dim+'</button>'
+: '<strong>'+dim+'</strong>';
+html += '<tr><td>'+dimCell+'</td><td><span class="badge badge-blue">'+d.total+'</span></td>';
 html += '<td>'+(d.ct||'-')+'</td><td>'+(d.wa||'-')+'</td>';
 html += '<td>'+(topIssue?'<span class="badge badge-amber">'+topIssue+'</span>':'-')+'</td>';
 html += '<td style="color:var(--c-text2);font-size:11px">'+(topSubIss||'-')+'</td></tr>';
 });
 html += '</tbody></table></div></div>';
+
+html += '<div class="ins-grid cols-2">';
+var freqBody = '';
+sorted.slice(0,10).forEach(function(dim) {
+freqBody += '<div class="bar-row"><span class="bar-label">'+dim+'</span><div class="bar-track"><div class="bar-fill" style="width:'+pct(dimMap[dim].total,allRows.length||1)+'%;background:var(--c-blue)"></div></div><span class="bar-val">'+dimMap[dim].total+'</span><span class="bar-pct">'+pct(dimMap[dim].total,allRows.length||1)+'%</span></div>';
+});
+html += sectionCard(dimLabels[activeDim]+' contact frequency', allRows.length+' contacts', freqBody);
+
+var dayMap = {};
+allRows.forEach(function(r) {
+var day = String(r['Created date']||'').substring(0,10);
+if (!day) return;
+dayMap[day] = (dayMap[day] || 0) + 1;
+});
+var dayBody = '';
+Object.keys(dayMap).sort(function(a,b){ return dayMap[b]-dayMap[a]; }).slice(0,10).forEach(function(day) {
+dayBody += '<div class="bar-row"><span class="bar-label">'+day+'</span><div class="bar-track"><div class="bar-fill" style="width:'+pct(dayMap[day],allRows.length||1)+'%;background:var(--c-purple)"></div></div><span class="bar-val">'+dayMap[day]+'</span><span class="bar-pct">'+pct(dayMap[day],allRows.length||1)+'%</span></div>';
+});
+html += sectionCard('Contact days heat strip', null, dayBody);
+html += '</div>';
 
 // Expanded issue breakdown per dimension (top 10 dimensions)
 html += '<div class="section-head">Issue Breakdown by '+dimLabels[activeDim]+'</div>';
@@ -3630,7 +4713,7 @@ html += '<div style="padding:12px 16px;border-bottom:1px solid var(--c-border);d
 html += '<input id="comment-search" oninput="filterCommentTable()" placeholder="🔍 Search comments, RM name, issue..." style="flex:1;padding:8px 12px;border:1px solid var(--c-border);border-radius:var(--radius-sm);font-size:12px;font-family:inherit;background:var(--c-surface);color:var(--c-text)">';
 html += '<span id="comment-count" style="font-size:11px;color:var(--c-text3)">'+rows.length+' records</span>';
 html += '</div>';
-html += '<div class="table-wrap"><table id="comment-table"><thead><tr>';
+html += '<div class="scroll-panel-10"><div class="table-wrap"><table id="comment-table"><thead><tr>';
 html += '<th>Date</th><th>Source</th><th>RM Name</th><th>Broker</th><th>Branch</th><th>Channel</th><th>Issue Type</th><th>Comment</th>';
 html += '</tr></thead><tbody>';
 
@@ -3667,7 +4750,7 @@ html += '<td style="font-size:11px;color:var(--c-text2);max-width:320px">'+(shor
 html += '</tr>';
 });
 
-html += '</tbody></table></div></div>';
+html += '</tbody></table></div></div></div>';
 
 // RM summary panel
 html += '<div class="section-head">RM Reporting Summary</div>';
@@ -3725,7 +4808,7 @@ h+=sec('Daily Data Paste — What to Download & Where','&#128229;','blue',[
 {h:'✅ Call Tickets — AUTOMATIC via DevRev API',b:'No action needed. Fetched automatically every day at 9:00 AM from DevRev (group = Call_TKT). To trigger manually: Support Dashboard → "🔄 Sync DevRev Now".'},
 {h:'✅ WhatsApp Chats — AUTOMATIC via DevRev API',b:'No action needed. Fetched automatically every day at 9:00 AM from DevRev (subtype = dealer_support). To trigger manually: Support Dashboard → "🔄 Sync DevRev Now".'},
 {h:'✅ Care Emails — AUTOMATIC via DevRev API',b:'No action needed. Fetched automatically every day at 9:00 AM from DevRev (source channel = email). To trigger manually: Support Dashboard → "🔄 Sync DevRev Now".'},
-{h:'⚠️ Ozonetel Calls — still manual (no API access)',b:'Ozonetel → Reports → Call Logs → download daily export → paste into "Ozonetel Calls" sheet. The onChange trigger auto-fixes dates and rebuilds cache 15 seconds after you paste. This is the only remaining manual step.'},
+{h:'⚠️ Ozonetel Calls — still manual (no API access)',b:'Ozonetel → Reports → Call Logs → download daily export → paste into "Ozonetel Calls" sheet. The onChange trigger auto-fixes dates and rebuilds cache ~15 seconds after you paste. Recordings come from the "Recording URL" column. The dashboard links rows to DevRev call tickets by matching the last 10 digits of the number in the ticket title with Caller No, and Created date within ~10–20 seconds after the Ozonetel start time. Missed/AOH tickets use the next Progressive callback row for the same number when the inbound row has no recording.'},
 ]);
 h+=sec('After Pasting Data — Now Fully Automatic','&#9889;','green',[
 {h:'DevRev data is now fully automatic — no CSV needed',b:'Call Tickets, WhatsApp Chats and Care Emails are fetched directly from the DevRev API every day at 9:00 AM IST. You never need to download or paste these three sources again. The sync fetches only new/updated records since the last run (incremental), so it is fast and never creates duplicates.'},
@@ -3759,15 +4842,15 @@ h+=sec('Apps Script Quick Reference','&#128295;','teal',[
 {h:'Mobile number deduplication',b:'Numbers like +919164567759, 919164567759, 9164567759 are treated as the same caller. This is handled client-side by normMobile() — no config needed.'},
 ]);
 h+=sec('Tab Quick Reference','&#128196;','amber',[
-'Daily Report — B2B Call Report. Left: metrics. Right: agent tables + top issues (Call Tickets | WhatsApp side by side).',
-'Calls — Ozonetel raw calls. Volume, AHT, agent perf, inbound vs progressive.',
-'WhatsApp — DevRev WA chats (Dealer Support). FRT, resolution time, agent table.',
-'Call Tickets — DevRev tickets from calls. SLA, QA scores, issue breakdown.',
-'Caller Intelligence — Combined Call Tickets + WhatsApp. Mobile-normalised deduplication. Sub-tabs: Combined / Calls only / WhatsApp only.',
-'Care Emails — DevRev email tickets. Uses Issue + Sub-Issue fields (different from B2B call/WA classification which uses Issue Type B2B).',
-'Insights — Analysis sub-tabbed by channel. Includes missed-call-by-hour heatmap for Calls tab.',
-'Monthly View — Day-by-day table. Columns = each day. MTD column = month-to-date. Includes WA Avg FRT.',
-'AI Summary — Claude Haiku summarises Comments into issue clusters. Requires API key.',
+'Daily Report — Inbound and AHT are stacked together; Progressive appears in the summary stack. Call Tickets and WhatsApp cards show top Broker, RM, Branch, Channel, Issue and Sub-Issue.',
+'Calls — Ozonetel call logs (paste into sheet). KPI deepdives list calls for that metric with matched DevRev call tickets (by mobile + ~10–20s create lag) and recordings: answered calls use the inbound Ozonetel row; missed/AOH use the next Progressive callback when present. Agent Performance adds DevRev ticket counts and resolved Ozonetel recording links per agent.',
+'WhatsApp — DevRev WA chats with an attribute explorer (Broker, RM, Branch, Channel, Issue, Sub-Issue).',
+'Call Tickets — DevRev call work items. KPI deepdives and explorer; recordings resolve from Ozonetel when not on the ticket row.',
+'Intelligence Hub — Merged Caller Intelligence / Insights: dimension tabs (RM, broker, branch, channel). RM volume table: click an RM name for a centered modal (created time, broker, branch, comments, issue, links).',
+'Care Emails — Email-specific fields (Issue, Sub-Issue, Stage, FRT, QA, Sentiment). Deepdive uses these columns, not B2B call ticket fields.',
+'Monthly View — Day-by-day table with MTD; includes WA Avg FRT.',
+'Strategy — Open backlog shown as four compact tiles in one row; broker pain and SLA views below.',
+'AI Summary — Claude Haiku on Comments. Requires API key.',
 'Dashboard Guide — This page.',
 ]);
 h+='</div></div>';
